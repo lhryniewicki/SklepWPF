@@ -14,11 +14,14 @@ namespace SklepWPF.Models
 		[Required]
 		public string Surname { get; set; }
 		[Required]
-		public Adress Adress { get; set; }
-		[Required]
 		public string Password { get; set; }
 		[Required]
 		public string Email { get; set; }
-
+		[Required]
+		public string StreetName { get; set; }
+		[Required]
+		public string City { get; set; }
+		[Required]
+		public string PostalCode { get; set; }
 	}
 }
