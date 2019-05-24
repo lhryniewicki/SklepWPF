@@ -60,13 +60,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Data\Migrations\201905241711060_init.cs" />
+    <Compile Include="Data\Migrations\201905241711060_init.Designer.cs">
+      <DependentUpon>201905241711060_init.cs</DependentUpon>
+    </Compile>
     <Compile Include="Data\MyDbContext.cs" />
     <Compile Include="IPageViewModel.cs" />
-    <Compile Include="Models\Adress.cs" />
+    <Compile Include="Data\Migrations\Configuration.cs" />
     <Compile Include="Models\ObservableObject.cs" />
     <Compile Include="Models\RelayCommand.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Proxy.cs" />
+    <Compile Include="RunTimeInfo.cs" />
     <Compile Include="ViewModels\ApplicationViewModel.cs" />
     <Compile Include="ViewModels\CartViewModel.cs" />
     <Compile Include="ViewModels\ClientPanelViewModel.cs" />
@@ -183,11 +188,16 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Data\Migrations\201905241711060_init.resx">
+      <DependentUpon>201905241711060_init.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

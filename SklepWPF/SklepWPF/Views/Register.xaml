@@ -3,54 +3,73 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:vm = "clr-namespace:SklepWPF.ViewModels" 
       xmlns:local="clr-namespace:SklepWPF"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800">
+      d:DesignHeight="450" d:DesignWidth="800"
 
+             >
+
+    <UserControl.DataContext>
+        <vm:RegisterViewModel/>
+    </UserControl.DataContext>
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="63*" />
-            <ColumnDefinition Width="96*" />
-            <ColumnDefinition Width="347*" />
-            <ColumnDefinition Width="86*"></ColumnDefinition>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="auto"></ColumnDefinition>
 
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="11*" />
-            <RowDefinition Height="25*" />
-            <RowDefinition Height="42*" />
-            <RowDefinition Height="42*" />
-            <RowDefinition Height="42*" />
-            <RowDefinition Height="42*" />
-            <RowDefinition Height="42*" />
-            <RowDefinition Height="42*" />
-            <RowDefinition Height="405*" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
 
 
-        <Label Margin="5,5,5,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Grid.Column="1" Grid.Row="2"  Height="25">Login</Label>
-        <TextBox  Grid.Row="2" Grid.Column="2" Margin="5,5,5,0" VerticalAlignment="Top"  Height="25" ></TextBox>
+        <Label Margin="5,2,5,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Grid.Column="1" Grid.Row="2"  Height="25">Login</Label>
+        <TextBox Text="{Binding Nickname}"  Grid.Row="2" Grid.Column="2" Margin="5,5,5,0" VerticalAlignment="Top"  Height="25"  ></TextBox>
 
+        
         <Label Margin="5,5,5,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Grid.Column="1" Grid.Row="3"  Height="25">Hasło</Label>
-        <PasswordBox  Grid.Row="3" Grid.Column="2" Margin="5,5,5,0" VerticalAlignment="Top"  Height="25" ></PasswordBox>
+        <PasswordBox  Name="txtPassword"  Grid.Row="3" Grid.Column="2" Margin="5,5,5,0" VerticalAlignment="Top"  Height="25" ></PasswordBox>
 
-        <Label Margin="5,5,5,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Grid.Column="1" Grid.Row="4"  Height="25">Powtórz hasło</Label>
-        <PasswordBox  Grid.Row="4" Grid.Column="2" Margin="5,5,5,0" VerticalAlignment="Top"  Height="25" ></PasswordBox>
 
         <Label Margin="5,5,5,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Grid.Column="1" Grid.Row="5"  Height="25">Imię</Label>
-        <TextBox  Grid.Row="5" Grid.Column="2" Margin="5,5,5,0" VerticalAlignment="Top"  Height="25" ></TextBox>
+        <TextBox Text="{Binding UserName}" Grid.Row="5" Grid.Column="2" Margin="5,5,5,0" VerticalAlignment="Top"  Height="25" ></TextBox>
 
         <Label Margin="5,5,5,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Grid.Column="1" Grid.Row="6"  Height="25">Nazwisko</Label>
-        <TextBox  Grid.Row="6" Grid.Column="2" Margin="5,5,5,0" VerticalAlignment="Top"  Height="25" ></TextBox>
+        <TextBox Text="{Binding Surname}" Grid.Row="6" Grid.Column="2" Margin="5,5,5,0" VerticalAlignment="Top"  Height="25" ></TextBox>
+        
+        <Label Margin="5,5,5,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Grid.Column="1" Grid.Row="7"  Height="25">Email</Label>
+        <TextBox Text="{Binding Email}" Grid.Row="7" Grid.Column="2" Margin="5,5,5,0" VerticalAlignment="Top"  Height="25" ></TextBox>
+
+        <Label Margin="5,5,5,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Grid.Column="1" Grid.Row="8"  Height="25">Miasto</Label>
+        <TextBox Text="{Binding City}" Grid.Row="8" Grid.Column="2" Margin="5,5,5,0" VerticalAlignment="Top"  Height="25" ></TextBox>
+        
+        <Label Margin="5,5,5,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Grid.Column="1" Grid.Row="9"  Height="25">Ulica</Label>
+        <TextBox Text="{Binding StreetName}" Grid.Row="9" Grid.Column="2" Margin="5,5,5,0" VerticalAlignment="Top"  Height="25" ></TextBox>
 
 
-        <Label Margin="5,5,5,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Grid.Column="1" Grid.Row="7"  Height="25">Adres</Label>
-        <TextBox  Grid.Row="7" Grid.Column="2" Margin="5,5,5,0" VerticalAlignment="Top"  Height="25" ></TextBox>
-        <StackPanel Grid.Column="2" Grid.Row="8" Orientation="Horizontal" VerticalAlignment="Top" Height="50">
-            <Button Margin="10" Grid.Column="2" Grid.Row="8" Height="30" Width="100">Rejestruj</Button>
-            <Button Margin="10" Grid.Column="2" Grid.Row="8" Height="30" Width="100">Anuluj</Button>
+        
+        <Label Margin="5,5,5,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Grid.Column="1" Grid.Row="10"  Height="25">Kod pocztowy</Label>
+        <TextBox Text="{Binding PostalCode}" Grid.Row="10" Grid.Column="2" Margin="5,5,5,0" VerticalAlignment="Top"  Height="25" ></TextBox>
+
+        <StackPanel Grid.Column="2" Grid.Row="11" Orientation="Horizontal" VerticalAlignment="Top" Height="50">
+            <Button CommandParameter="{Binding ElementName=txtPassword}" Command="{Binding RegisterUserCommand, Mode=OneWay}" Margin="10" Grid.Column="2" Grid.Row="8" Height="30" Width="100">Rejestruj</Button>
+            <Button Margin="10" Grid.Column="2" Grid.Row="11" Height="30" Width="100">Anuluj</Button>
         </StackPanel>
 
 

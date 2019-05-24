@@ -14,6 +14,7 @@ namespace SklepWPF.ViewModels
 		private IPageViewModel _currentPageViewModel;
 		public List<IPageViewModel> PageViewModels= new List<IPageViewModel>();
 
+
 		public ApplicationViewModel()
 		{
 			// Add available pages
@@ -26,7 +27,6 @@ namespace SklepWPF.ViewModels
 			PageViewModels.Add(new CartViewModel { Name = "Cart" });
 
 			PageViewModels.Add(new ClientPanelViewModel { Name = "Account" });
-
 
 
 			// Set starting page

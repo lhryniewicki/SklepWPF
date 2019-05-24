@@ -1,14 +1,15 @@
-﻿using SklepWPF.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using SklepWPF.Data;
+using SklepWPF.Models;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace SklepWPF.ViewModels
 {
 	class RegisterViewModel : IPageViewModel
 	{
-		public string Name { get; set; }
+		public string Name { get; set; }//Nazwa viewmodelu
+
+		public string Nickname { get; set; }
 
 		public string UserName { get; set; }
 		
@@ -19,11 +20,62 @@ namespace SklepWPF.ViewModels
 		public string City { get; set; }
 		
 		public string PostalCode { get; set; }
-
+/*
 		public string Password { get; set; }
 
 		public string ConfirmPassword { get; set; }
-
+*/
 		public string Email { get; set; }
+
+		private readonly MyDbContext _db;
+
+		private ICommand _RegisterUserCommand { get; set; }
+
+
+		public RegisterViewModel()
+		{
+			_db = MyDbContext.Create();
+		}
+
+		public ICommand RegisterUserCommand
+		{
+			get
+			{
+				if (_RegisterUserCommand == null)
+				{
+					_RegisterUserCommand = new RelayCommand
+						(p => RegisterUser(Nickname, UserName, Surname, StreetName, City, PostalCode, Email, (PasswordBox)p	),
+						p => IsValid((PasswordBox)p));
+				}
+
+				return _RegisterUserCommand;
+
+			}
+		}
+
+		public void RegisterUser(string nickname, string username, string surname, string streetName, string city,string  postalCode, string email, PasswordBox password)
+		{
+			var newUser = new User(nickname,username,surname,streetName,city,postalCode,password.Password,email);
+			
+			_db.Set<User>().Add(newUser);
+			_db.SaveChanges();
+		}
+
+		private bool IsValid(PasswordBox passwordBox)
+		{
+			return !string.IsNullOrEmpty(Nickname) &&
+				!string.IsNullOrEmpty(UserName) &&
+				!string.IsNullOrEmpty(Surname) &&
+				!string.IsNullOrEmpty(StreetName) &&
+				!string.IsNullOrEmpty(City) && 
+				!string.IsNullOrEmpty(passwordBox.Password) &&
+				!string.IsNullOrEmpty(PostalCode) &&
+				!string.IsNullOrEmpty(Email) 
+				;
+						
+
+		}
+
+
 	}
 }

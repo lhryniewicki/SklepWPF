@@ -15,7 +15,7 @@
         <DataTemplate DataType="{x:Type vm:ProductsViewModel}">
             <local:DisplayProducts />
         </DataTemplate>
-        
+
         <DataTemplate DataType="{x:Type vm:RegisterViewModel}">
             <local:Register />
         </DataTemplate>
@@ -32,6 +32,7 @@
             <local:ClientPanel />
         </DataTemplate>
 
+    
 
     </Window.Resources>
 
@@ -73,6 +74,8 @@
 
 
                 </MenuItem>
+                <Label HorizontalAlignment="Center"  Content="{Binding Source={x:Static all:RunTimeInfo.Instance}, Path=Username}" ></Label>
+
             </Menu>
         </DockPanel>
 

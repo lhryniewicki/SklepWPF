@@ -23,5 +23,7 @@ namespace SklepWPF.Views
 		{
 			InitializeComponent();
 		}
+
+
 	}
 }
