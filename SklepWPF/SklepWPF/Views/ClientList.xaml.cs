@@ -12,14 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace WpfApp1
+namespace SklepWPF.Views
 {
     /// <summary>
     /// Interaction logic for ListaKlientow.xaml
     /// </summary>
-    public partial class ListaKlientow : Window
+    public partial class ClientList : Window
     {
-        public ListaKlientow()
+        public ClientList()
         {
             InitializeComponent();
         }

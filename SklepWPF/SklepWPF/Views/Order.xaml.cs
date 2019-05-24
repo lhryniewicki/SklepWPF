@@ -12,18 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace WpfApp1
+namespace SklepWPF.Views
 {
     /// <summary>
     /// Interaction logic for RealizacjaZamowienia.xaml
     /// </summary>
-    public partial class RealizacjaZamowienia : Window
+    public partial class Order : Window
     {
-        public RealizacjaZamowienia()
+        public Order()
         {
             InitializeComponent();
         }
 
-	
 	}
 }

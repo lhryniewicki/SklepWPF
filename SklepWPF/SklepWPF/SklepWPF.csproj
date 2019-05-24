@@ -61,8 +61,21 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Data\MyDbContext.cs" />
+    <Compile Include="IPageViewModel.cs" />
     <Compile Include="Models\Adress.cs" />
+    <Compile Include="Models\ObservableObject.cs" />
+    <Compile Include="Models\RelayCommand.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Proxy.cs" />
+    <Compile Include="ViewModels\ApplicationViewModel.cs" />
+    <Compile Include="ViewModels\CartViewModel.cs" />
+    <Compile Include="ViewModels\ClientPanelViewModel.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\ProductsViewModel.cs" />
+    <Compile Include="ViewModels\RegisterViewModel.cs" />
+    <Compile Include="Views\ApplicationView.xaml.cs">
+      <DependentUpon>ApplicationView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Cart.xaml.cs">
       <DependentUpon>Cart.xaml</DependentUpon>
     </Compile>
@@ -74,6 +87,9 @@
     </Compile>
     <Compile Include="Views\costam.xaml.cs">
       <DependentUpon>costam.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DisplayProducts.xaml.cs">
+      <DependentUpon>DisplayProducts.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\EditProduct.xaml.cs">
       <DependentUpon>EditProduct.xaml</DependentUpon>
@@ -100,6 +116,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\ApplicationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Cart.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -115,6 +135,10 @@
     <Page Include="Views\costam.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\DisplayProducts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\EditProduct.xaml">
       <Generator>MSBuild:Compile</Generator>

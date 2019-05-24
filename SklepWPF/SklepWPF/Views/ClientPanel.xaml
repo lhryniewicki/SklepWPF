@@ -1,11 +1,11 @@
-﻿<Window x:Class="PanelKlienta.MainWindow"
+﻿<UserControl x:Class="SklepWPF.Views.ClientPanel"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PanelKlienta"
+        xmlns:local="clr-namespace:SklepWPF.Views"
         mc:Ignorable="d"
-        Title="Panel Klienta" Height="450" Width="800">
+        Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -52,7 +52,7 @@
                         <ComboBoxItem Content="Obserwowane produkty"/>
                     </ComboBox>
                     <StackPanel Grid.Row="1" Orientation="Horizontal">
-                        <Image Source="search.png" Height="10" Width="10"></Image>
+                        <Image Height="10" Width="10"></Image>
                         <Label Grid.Row="1" Content="Szukaj:" VerticalAlignment="Center"></Label>
                     </StackPanel>
                     <TextBox Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Margin="11"></TextBox>
@@ -154,7 +154,7 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
-                    <TextBox Text="Szukaj" Margin="5" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus">
+                    <TextBox Text="Szukaj" Margin="5"  >
                         
                     </TextBox>
                     <ComboBox SelectedIndex="0" Grid.Column="1" Margin="5">
@@ -177,4 +177,4 @@
             </Grid>
         </GroupBox>
     </Grid>
-</Window>
+</UserControl>

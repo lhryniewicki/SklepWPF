@@ -17,9 +17,9 @@ namespace WpfApp1
     /// <summary>
     /// Interaction logic for ListaProduktow.xaml
     /// </summary>
-    public partial class ListaProduktow : Window
+    public partial class ProductList : Window
     {
-        public ListaProduktow()
+        public ProductList()
         {
             InitializeComponent();
         }

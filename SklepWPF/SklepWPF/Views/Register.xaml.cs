@@ -12,14 +12,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SklepWPF
+namespace SklepWPF.Views
 {
 	/// <summary>
 	/// Interaction logic for RejestracjaStrona.xaml
 	/// </summary>
-	public partial class RejestracjaStrona : Page
+	public partial class Register : UserControl
 	{
-		public RejestracjaStrona()
+		public Register()
 		{
 			InitializeComponent();
 		}

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -14,14 +13,14 @@ using System.Windows.Shapes;
 
 namespace SklepWPF.Views
 {
-    /// <summary>
-    /// Interaction logic for Koszyk.xaml
-    /// </summary>
-    public partial class Cart : UserControl
-    {
-        public Cart()
-        {
-            InitializeComponent();
-        }
-    }
+	/// <summary>
+	/// Interaction logic for ApplicationView.xaml
+	/// </summary>
+	public partial class ApplicationView : Window
+	{
+		public ApplicationView()
+		{
+			InitializeComponent();
+		}
+	}
 }

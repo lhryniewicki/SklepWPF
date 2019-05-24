@@ -13,18 +13,18 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PanelKlienta
+namespace SklepWPF.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ClientPanel : UserControl
     {
-        public MainWindow()
+        public ClientPanel()
         {
             InitializeComponent();
         }
-
+/*
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             TextBox textBox = (TextBox)sender;
@@ -44,5 +44,6 @@ namespace PanelKlienta
                 textBox.Text = "Szukaj";
             }
         }
+*/
     }
 }

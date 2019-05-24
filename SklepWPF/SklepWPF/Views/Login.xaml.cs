@@ -11,14 +11,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace SklepWPF
+namespace SklepWPF.Views
 {
 	/// <summary>
 	/// Interaction logic for LogowanieOkno.xaml
 	/// </summary>
-	public partial class LogowanieOkno : Window
+	public partial class Login : UserControl
 	{
-		public LogowanieOkno()
+		public Login()
 		{
 			InitializeComponent();
 		}

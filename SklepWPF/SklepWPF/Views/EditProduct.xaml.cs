@@ -12,14 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace WpfApp1
+namespace SklepWPF.Views
 {
     /// <summary>
     /// Interaction logic for EdytujProdukt.xaml
     /// </summary>
-    public partial class EdytujProdukt : Window
+    public partial class EditProduct : Window
     {
-        public EdytujProdukt()
+        public EditProduct()
         {
             InitializeComponent();
         }
