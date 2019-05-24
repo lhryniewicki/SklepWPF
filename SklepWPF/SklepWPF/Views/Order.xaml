@@ -65,16 +65,16 @@
                 <TextBox Grid.Row="4" Grid.Column="1" Name="miastoTextBox" FontSize="16" Margin="3"></TextBox>
                 <Label Grid.Row="5" Grid.Column="0" FontSize="16" VerticalAlignment="Center">Sposób dostawy</Label>
                 <ComboBox Grid.Row="5" Grid.Column="1" SelectedIndex="0" Margin="20,3" VerticalContentAlignment="Center" FontSize="18">
-                    <ComboBoxItem Selected="dostawaPocztexCB">Pocztex</ComboBoxItem>
-                    <ComboBoxItem Selected="dostawaPaczkomatCB">Paczkomat</ComboBoxItem>
-                    <ComboBoxItem Selected="dostawaOdbiorOsobistyCB">Odbiór osobisty</ComboBoxItem>
+                    <ComboBoxItem >Pocztex</ComboBoxItem>
+                    <ComboBoxItem >Paczkomat</ComboBoxItem>
+                    <ComboBoxItem >Odbiór osobisty</ComboBoxItem>
                 </ComboBox>
 
                 <Label Grid.Row="6" Grid.Column="0" FontSize="16" VerticalAlignment="Center">Sposób zapłaty</Label>
                 <ComboBox Grid.Row="6" Grid.Column="1" SelectedIndex="0" Margin="20,3" VerticalContentAlignment="Center" FontSize="18">
-                    <ComboBoxItem Selected="zaplataPrzelewCB">Przelew</ComboBoxItem>
-                    <ComboBoxItem Selected="zaplataGotwokaCB">Gotówka przy odbiorze</ComboBoxItem>
-                    <ComboBoxItem Selected="zaplataPayPalCB">PayPal</ComboBoxItem>
+                    <ComboBoxItem >Przelew</ComboBoxItem>
+                    <ComboBoxItem >Gotówka przy odbiorze</ComboBoxItem>
+                    <ComboBoxItem >PayPal</ComboBoxItem>
                 </ComboBox>
             </Grid>
         </Grid>

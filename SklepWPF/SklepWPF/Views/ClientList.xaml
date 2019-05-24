@@ -22,15 +22,15 @@
 
             <Label Grid.Row="0" FontFamily="Verdana" FontSize="25" Margin="0,10" VerticalAlignment="Top" HorizontalContentAlignment="Center">Filtry</Label>
             <ComboBox SelectedIndex="0" Grid.Row="1" Width="200" Height="35" VerticalContentAlignment="Center" FontSize="18">
-                <ComboBoxItem Selected="filtrKlienNic">Bez filtrów</ComboBoxItem>
-                <ComboBoxItem Selected="filtrKlientImie">Imie</ComboBoxItem>
-                <ComboBoxItem Selected="filtrKlientNazwisko">Nazwisko</ComboBoxItem>
-                <ComboBoxItem Selected="filtrKlientEmail">Email</ComboBoxItem>
+                <ComboBoxItem >Bez filtrów</ComboBoxItem>
+                <ComboBoxItem >Imie</ComboBoxItem>
+                <ComboBoxItem >Nazwisko</ComboBoxItem>
+                <ComboBoxItem >Email</ComboBoxItem>
             </ComboBox>
             <ComboBox SelectedIndex="0" Grid.Row="2" Width="200" Height="35" VerticalContentAlignment="Center" FontSize="18">
-                <ComboBoxItem Selected="sortKlientNic">Bez sortowania</ComboBoxItem>
-                <ComboBoxItem Selected="sortKlientRosnaco">Rosnąco</ComboBoxItem>
-                <ComboBoxItem Selected="sortKlientMalejaco">Malejąco</ComboBoxItem>
+                <ComboBoxItem >Bez sortowania</ComboBoxItem>
+                <ComboBoxItem >Rosnąco</ComboBoxItem>
+                <ComboBoxItem >Malejąco</ComboBoxItem>
             </ComboBox>
 
             <Grid Grid.Row="3">
@@ -39,8 +39,8 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <Button Grid.Column="0" Click="filtrujKlienci" FontSize="20" Width="150" Height="35" Margin="20,10">Filtruj</Button>
-                <Button Grid.Column="1" Click="usunFiltryKlienci" FontSize="20" Width="150" Height="35" Margin="20,10">Usuń Filtry</Button>
+                <Button Grid.Column="0"  FontSize="20" Width="150" Height="35" Margin="20,10">Filtruj</Button>
+                <Button Grid.Column="1"  FontSize="20" Width="150" Height="35" Margin="20,10">Usuń Filtry</Button>
             </Grid>
         </Grid>
 
