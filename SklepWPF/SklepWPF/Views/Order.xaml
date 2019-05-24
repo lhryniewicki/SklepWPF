@@ -1,0 +1,96 @@
+﻿<Window x:Class="WpfApp1.RealizacjaZamowienia"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="RealizacjaZamowienia" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <Label FontFamily="Verdana" FontSize="25" FontWeight="Bold" Content="Dane do zamówienia"/>
+
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" FontSize="16" >Imie</Label>
+                <TextBox Grid.Row="0" Grid.Column="1" Name="nazwaTextBox" FontSize="16" Margin="3"></TextBox>
+                <Label Grid.Row="1" Grid.Column="0" FontSize="16" >Nazwisko</Label>
+                <TextBox Grid.Row="1" Grid.Column="1" Name="cenaTextBox" FontSize="16"  Margin="3"></TextBox>
+                <Label Grid.Row="2" Grid.Column="0" FontSize="16">Ulica</Label>
+                <TextBox Grid.Row="2" Grid.Column="1" Name="kategoriaTextBox" FontSize="16" Margin="3"></TextBox>
+                <Grid Grid.Row="3" Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" FontSize="16" Margin="0,0,3,0">Dom</Label>
+                    <TextBox Grid.Column="1" Name="nrDomuTextBox" FontSize="16" Margin="3"></TextBox>
+                    <Label Grid.Column="2" FontSize="16">Mieszkanie</Label>
+                    <TextBox Grid.Column="3" Name="nrMieszkaniaTextBox" FontSize="16" Margin="3"></TextBox>
+                </Grid>
+                <Label Grid.Row="4" Grid.Column="0" FontSize="16">Miasto</Label>
+                <TextBox Grid.Row="4" Grid.Column="1" Name="miastoTextBox" FontSize="16" Margin="3"></TextBox>
+                <Label Grid.Row="5" Grid.Column="0" FontSize="16" VerticalAlignment="Center">Sposób dostawy</Label>
+                <ComboBox Grid.Row="5" Grid.Column="1" SelectedIndex="0" Margin="20,3" VerticalContentAlignment="Center" FontSize="18">
+                    <ComboBoxItem Selected="dostawaPocztexCB">Pocztex</ComboBoxItem>
+                    <ComboBoxItem Selected="dostawaPaczkomatCB">Paczkomat</ComboBoxItem>
+                    <ComboBoxItem Selected="dostawaOdbiorOsobistyCB">Odbiór osobisty</ComboBoxItem>
+                </ComboBox>
+
+                <Label Grid.Row="6" Grid.Column="0" FontSize="16" VerticalAlignment="Center">Sposób zapłaty</Label>
+                <ComboBox Grid.Row="6" Grid.Column="1" SelectedIndex="0" Margin="20,3" VerticalContentAlignment="Center" FontSize="18">
+                    <ComboBoxItem Selected="zaplataPrzelewCB">Przelew</ComboBoxItem>
+                    <ComboBoxItem Selected="zaplataGotwokaCB">Gotówka przy odbiorze</ComboBoxItem>
+                    <ComboBoxItem Selected="zaplataPayPalCB">PayPal</ComboBoxItem>
+                </ComboBox>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" FontSize="24" VerticalAlignment="Center">Do zapłaty:</Label>
+            <Label Name="cenaDoZaplaty" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="24" Margin="15">0,00 zł</Label>
+        </Grid>
+
+        <ListBox Grid.Row="0" Grid.Column="1" Grid.RowSpan="2"></ListBox>
+        <Button Grid.Column="1" Grid.Row="2" Margin="40,10" Padding="10">Powrót</Button>
+        <Button Grid.Column="0" Grid.Row="2" Margin="40,10" Padding="10">Realizuj</Button>
+
+
+    </Grid>
+</Window>

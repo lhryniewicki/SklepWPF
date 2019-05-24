@@ -1,0 +1,57 @@
+﻿<Window x:Class="WpfApp1.ListaKlientow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="ListaKlientow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" FontFamily="Verdana" FontSize="25" Margin="0,10" VerticalAlignment="Top" HorizontalContentAlignment="Center">Filtry</Label>
+            <ComboBox SelectedIndex="0" Grid.Row="1" Width="200" Height="35" VerticalContentAlignment="Center" FontSize="18">
+                <ComboBoxItem Selected="filtrKlienNic">Bez filtrów</ComboBoxItem>
+                <ComboBoxItem Selected="filtrKlientImie">Imie</ComboBoxItem>
+                <ComboBoxItem Selected="filtrKlientNazwisko">Nazwisko</ComboBoxItem>
+                <ComboBoxItem Selected="filtrKlientEmail">Email</ComboBoxItem>
+            </ComboBox>
+            <ComboBox SelectedIndex="0" Grid.Row="2" Width="200" Height="35" VerticalContentAlignment="Center" FontSize="18">
+                <ComboBoxItem Selected="sortKlientNic">Bez sortowania</ComboBoxItem>
+                <ComboBoxItem Selected="sortKlientRosnaco">Rosnąco</ComboBoxItem>
+                <ComboBoxItem Selected="sortKlientMalejaco">Malejąco</ComboBoxItem>
+            </ComboBox>
+
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0" Click="filtrujKlienci" FontSize="20" Width="150" Height="35" Margin="20,10">Filtruj</Button>
+                <Button Grid.Column="1" Click="usunFiltryKlienci" FontSize="20" Width="150" Height="35" Margin="20,10">Usuń Filtry</Button>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <ListBox Grid.Row="0" Name="osobyListBox" Grid.Column="1" FontSize="18"></ListBox>
+            <Button Grid.Row="1" Name="powrotZEdycji" Grid.Column="0" FontSize="20" Width="150" Height="35" Margin="20,10">Powrót</Button>
+        </Grid>
+
+    </Grid>
+</Window>
