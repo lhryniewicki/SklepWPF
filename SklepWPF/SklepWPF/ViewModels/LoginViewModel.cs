@@ -42,7 +42,7 @@ namespace SklepWPF.ViewModels
 
 		private void Login( string username,  PasswordBox passwordBox)
 		{
-			var user = _db.Set<User>()
+			var user = _db.Users
 				.Where(x => x.Nickname == username && x.Password == passwordBox.Password)
 				.SingleOrDefault();
 

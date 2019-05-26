@@ -6,9 +6,8 @@
         xmlns:local="clr-namespace:SklepWPF.Views"
         xmlns:vm="clr-namespace:SklepWPF.ViewModels"
         xmlns:all="clr-namespace:SklepWPF"
-
         mc:Ignorable="d"
-        Title="ApplicationView" Height="700" Width="600"
+        Title="Sklep internetowy" Height="700" Width="600"
         WindowStartupLocation="CenterScreen"
 >
     <Window.Resources>
@@ -74,15 +73,12 @@
 
 
                 </MenuItem>
-                <Label HorizontalAlignment="Center"  Content="{Binding Source={x:Static all:RunTimeInfo.Instance}, Path=Username}" ></Label>
+                <Label HorizontalAlignment="Center"  Content="{Binding Source={x:Static all:RunTimeInfo.Instance}, Path=Username}" Focusable="False" ></Label>
 
             </Menu>
         </DockPanel>
 
-
         <ContentControl Grid.Row="1" Content="{Binding CurrentPageViewModel}" />
-
-
 
     </Grid>
 </Window>

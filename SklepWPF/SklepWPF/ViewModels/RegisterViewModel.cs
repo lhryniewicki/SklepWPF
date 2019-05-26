@@ -57,7 +57,7 @@ namespace SklepWPF.ViewModels
 		{
 			var newUser = new User(nickname,username,surname,streetName,city,postalCode,password.Password,email);
 			
-			_db.Set<User>().Add(newUser);
+			_db.Users.Add(newUser);
 			_db.SaveChanges();
 		}
 

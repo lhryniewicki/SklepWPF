@@ -4,8 +4,14 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SklepWPF.Views"
+      xmlns:data="clr-namespace:SklepWPF.Models"
       mc:Ignorable="d" 
+      xmlns:vm = "clr-namespace:SklepWPF.ViewModels" 
       d:DesignHeight="700" d:DesignWidth="600">
+
+    <UserControl.DataContext>
+        <vm:ProductsViewModel/>
+    </UserControl.DataContext>
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -24,33 +30,28 @@
 
 
         <DockPanel Height="40" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
-            <Button DockPanel.Dock="Right" Background="LawnGreen" Padding="10" Margin="0,0,10,0">Wyszukaj</Button>
-            <TextBox Margin="10,0,0,0" DockPanel.Dock="Left" >
+            <Button DockPanel.Dock="Right" Background="LawnGreen" Padding="10" Margin="0,0,10,0" Command="{Binding SearchCommand, Mode=OneWay}"  >Wyszukaj</Button>
+            <TextBox Text="{Binding Query}"  x:Name="textBox" Margin="10,0,0,0" DockPanel.Dock="Left" >
             </TextBox>
         </DockPanel>
 
 
 
 
-        <ListBox Grid.Column="0" Grid.Row="2" Margin="10,10,0,50" >
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <CheckBox Content="Kategoriax" 
-                      IsChecked="false" FlowDirection="RightToLeft" />
+        <ListBox ItemsSource="{Binding Categories}" Grid.Column="0" Grid.Row="2" Margin="10,10,0,50" >
+            <ListBox.Resources>
+                <DataTemplate DataType="{x:Type data:Category}">
+                    <CheckBox Content="{Binding Path=Name,Mode=TwoWay}" 
+                              
+                 CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}" 
+                 Command="{Binding DataContext.QueryByCategoriesCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" FlowDirection="RightToLeft" />
                 </DataTemplate>
-            </ListBox.ItemTemplate>
-            <CheckBox ></CheckBox>
-            <CheckBox ></CheckBox>
-            <CheckBox ></CheckBox>
-            <CheckBox ></CheckBox>
-            <CheckBox ></CheckBox>
-            <CheckBox ></CheckBox>
-            <CheckBox ></CheckBox>
-            <CheckBox ></CheckBox>
+            </ListBox.Resources>
+
         </ListBox>
 
 
-        <ListBox HorizontalContentAlignment="Stretch"  Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Margin="10" FlowDirection="RightToLeft">
+        <ListBox HorizontalContentAlignment="Stretch"  Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Margin="10" FlowDirection="RightToLeft" ItemsSource="{Binding Products, Mode=OneWay}">
 
             <ListBox.ItemTemplate>
                 <DataTemplate >
@@ -61,32 +62,21 @@
                         <Label DockPanel.Dock="Right">IMG</Label>
                         <Button Background="IndianRed" Padding="5" Margin="10,0,0,0">Dodaj do koszyka</Button>
 
-                        <TextBox Padding="5" HorizontalContentAlignment="Center"  IsReadOnly="True" Text="NazwaProduktuX" Margin="0,0,10,0"  >
+                        <TextBox Padding="5" HorizontalContentAlignment="Center"  IsReadOnly="True" Text="{Binding Name}" Margin="0,0,10,0"  >
                         </TextBox>
                     </DockPanel>
-
-
-
                 </DataTemplate>
             </ListBox.ItemTemplate>
-            <TextBox></TextBox>
-            <TextBox></TextBox>
-            <TextBox></TextBox>
-            <TextBox></TextBox>
-            <TextBox></TextBox>
-            <TextBox></TextBox>
-            <TextBox></TextBox>
-            <TextBox></TextBox>
-            <TextBox></TextBox>
-            <TextBox></TextBox>
-            <TextBox></TextBox>
-            <TextBox></TextBox>
-            <TextBox></TextBox>
-            <TextBox></TextBox>
         </ListBox>
 
-
-        <Button HorizontalContentAlignment="Right" Padding="5" Margin="140,15,10,15" Grid.Column="1" Grid.Row="3">Poprzednia</Button>
-        <Button HorizontalContentAlignment="Left" Margin="10,15,150,15" Grid.Column="2" Grid.Row="3">Następna</Button>
+        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2">
+            <Button Command="{Binding PreviousPageCommand, Mode=OneWay}" HorizontalContentAlignment="Right" Padding="5" Margin="130,15,10,15" Grid.Column="1" Grid.Row="3">Poprzednia</Button>
+            <Label Margin="3" FontSize="30" HorizontalAlignment="Right" DockPanel.Dock="Right" Content="{Binding Page, Mode=OneWay}"  ></Label>
+            <Button  HorizontalContentAlignment="Left" Margin="10,15,150,15" Grid.Column="2" Grid.Row="3" Command="{Binding NextPageCommand, Mode=OneWay}"
+                >Następna</Button>
+          
+        </StackPanel>
+       
+        
     </Grid>
 </UserControl>

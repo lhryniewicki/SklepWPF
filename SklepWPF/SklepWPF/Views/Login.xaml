@@ -19,26 +19,31 @@
             <RowDefinition Height="2*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="auto" ></ColumnDefinition>
+
         </Grid.ColumnDefinitions>
 
-        <DockPanel Grid.Column="0" Grid.Row="0" Margin="0,10,0,0" Grid.ColumnSpan="2">
 
-            <Label Margin="5" DockPanel.Dock="Left">Login</Label>
-            <TextBox  Margin="5"  VerticalAlignment="Top"   Height="25"  Text="{Binding Username}" ></TextBox>
+        
+        
+        <Label  Margin="5" Grid.Column="0" HorizontalContentAlignment="Right">Login</Label>
+            <TextBox  Margin="5" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Top"   Height="25"  Text="{Binding Username}" ></TextBox>
 
-        </DockPanel>
-        <DockPanel Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+        
+        
+            <Label Grid.Column="0" Grid.Row="1" HorizontalContentAlignment="Right" Margin="5" DockPanel.Dock="Left">Hasło</Label>
+            <PasswordBox Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Name="passwordTxt" Margin="5" VerticalAlignment="Top"    Height="25" ></PasswordBox>
 
-            <Label Margin="5" DockPanel.Dock="Left">Hasło</Label>
-            <PasswordBox Name="passwordTxt" Margin="5" VerticalAlignment="Top"    Height="25" ></PasswordBox>
 
-        </DockPanel>
+        <StackPanel Grid.Column="1" Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center">
 
-        <Button Margin="25" Command="{Binding loginCommand, Mode=OneWay}" Background="AliceBlue"  Grid.Column="0" Grid.Row="2" CommandParameter="{Binding ElementName=passwordTxt}">Zaloguj</Button>
+            <Button Margin="10,25" Height="30" Width="100" Command="{Binding loginCommand, Mode=OneWay}" Background="AliceBlue"  Grid.Column="1" Grid.Row="2" CommandParameter="{Binding ElementName=passwordTxt}">Zaloguj</Button>
 
-        <Button Margin="25"   Grid.Column="1" Grid.Row="2" Background="IndianRed">Anuluj</Button>
+            <Button Margin="10,25" Height="30" Width="100"  Grid.Column="2" Grid.Row="2" Background="IndianRed">Anuluj</Button>
+        </StackPanel>
 
       
     </Grid>

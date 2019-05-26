@@ -12,21 +12,24 @@ namespace SklepWPF.ViewModels
 
 		private ICommand _changePageCommand;
 		private IPageViewModel _currentPageViewModel;
-		public List<IPageViewModel> PageViewModels= new List<IPageViewModel>();
+		public List<IPageViewModel> PageViewModels;
 
 
 		public ApplicationViewModel()
 		{
-			// Add available pages
-			PageViewModels.Add(new ProductsViewModel { Name = "Products" });
+			PageViewModels = new List<IPageViewModel>
+			{
+				// Add available pages
+				new ProductsViewModel { Name = "Products" },
 
-			PageViewModels.Add(new LoginViewModel{ Name = "Login" });
+				new LoginViewModel { Name = "Login" },
 
-			PageViewModels.Add(new RegisterViewModel { Name = "Register" });
+				new RegisterViewModel { Name = "Register" },
 
-			PageViewModels.Add(new CartViewModel { Name = "Cart" });
+				new CartViewModel { Name = "Cart" },
 
-			PageViewModels.Add(new ClientPanelViewModel { Name = "Account" });
+				new ClientPanelViewModel { Name = "Account" }
+			};
 
 
 			// Set starting page
