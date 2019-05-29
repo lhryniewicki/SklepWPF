@@ -13,7 +13,10 @@ namespace SklepWPF.ViewModels
 	{
 
 		private static ApplicationViewModel _instance = null;
+
 		private ICommand _changePageCommand;
+		private ICommand _logOutCommand;
+
 		private IPageViewModel _currentPageViewModel;
 		public List<IPageViewModel> PageViewModels;
 
@@ -48,6 +51,36 @@ namespace SklepWPF.ViewModels
 			// Set starting page
 			CurrentPageViewModel = PageViewModels[0];
 		}
+
+		public ICommand LogOutCommand
+		{
+			get
+			{
+				if (_logOutCommand == null)
+				{
+					_logOutCommand = new RelayCommand(p => LogOut(),
+						p=>IsLogOutValid());
+				}
+
+				return _logOutCommand;
+
+			}
+		}
+
+		private bool IsLogOutValid()
+		{
+			if (RunTimeInfo.Instance.Username != "Konto") return true;
+			return false;
+		}
+
+		private void LogOut()
+		{
+
+			RunTimeInfo.Instance.Username = "Konto";
+			IsUserLogged = false;
+			CurrentPageViewModel = new LoginViewModel();
+		}
+
 		public ICommand ChangePageCommand
 		{
 			get
@@ -61,6 +94,13 @@ namespace SklepWPF.ViewModels
 				return _changePageCommand;
 
 			}
+		}
+	
+		private void ChangeViewModel(string name)
+		{
+			CurrentPageViewModel = PageViewModels
+				.Where(x => x.Name == name)
+				.SingleOrDefault();
 		}
 
 		public bool IsUserLogged
@@ -78,14 +118,6 @@ namespace SklepWPF.ViewModels
 					OnPropertyChanged("IsUserLogged");
 				}
 			}
-		}
-
-
-		private void ChangeViewModel(string name)
-		{
-			CurrentPageViewModel = PageViewModels
-				.Where(x => x.Name == name)
-				.SingleOrDefault();
 		}
 
 		public IPageViewModel CurrentPageViewModel

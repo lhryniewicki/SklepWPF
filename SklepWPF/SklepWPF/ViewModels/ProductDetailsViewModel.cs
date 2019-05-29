@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Data.Entity;
-
 namespace SklepWPF.ViewModels
 {
 	 class ProductDetailsViewModel:ObservableObject,IPageViewModel
@@ -47,7 +46,7 @@ namespace SklepWPF.ViewModels
 			get
 			{
 				var username = new RunTimeInfo().UsernameCodeValue;
-				if (username != null) ShowCartButton = true;
+				if (username != "Konto") ShowCartButton = true;
 
 				return _showCartButon;
 			}
@@ -67,9 +66,7 @@ namespace SklepWPF.ViewModels
 			_product = _db.Products
 				.Include(x => x.Categories)
 				.Where(x => x.Id == id)
-				.SingleOrDefault();
-			
-			
+				.SingleOrDefault();		
 		}
 	}
 }

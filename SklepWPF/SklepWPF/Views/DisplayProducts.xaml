@@ -7,8 +7,8 @@
       xmlns:data="clr-namespace:SklepWPF.Models"
       mc:Ignorable="d" 
       xmlns:vm = "clr-namespace:SklepWPF.ViewModels"
-             xmlns:all="clr-namespace:SklepWPF"
-             d:DesignHeight="700" d:DesignWidth="600">
+      xmlns:all="clr-namespace:SklepWPF"
+      d:DesignHeight="700" d:DesignWidth="600">
 
     <UserControl.DataContext>
         <vm:ProductsViewModel/>

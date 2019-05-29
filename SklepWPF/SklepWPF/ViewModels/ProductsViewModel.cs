@@ -52,7 +52,7 @@ namespace SklepWPF.ViewModels
 		{
 			get {
 				var username = new RunTimeInfo().UsernameCodeValue;
-				if (username != null) ShowCartButton = true;
+				if (username != "Konto") ShowCartButton = true;
 
 				return _showCartButon;
 			}

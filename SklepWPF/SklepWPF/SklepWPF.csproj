@@ -81,7 +81,7 @@
       <DependentUpon>201905271950175_AddedRequiredAnnotations.cs</DependentUpon>
     </Compile>
     <Compile Include="Data\MyDbContext.cs" />
-    <Compile Include="InverseBooleanConverter.cs" />
+    <Compile Include="ReverseBooleanToVisibilityConverter.cs" />
     <Compile Include="IPageViewModel.cs" />
     <Compile Include="Data\Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />

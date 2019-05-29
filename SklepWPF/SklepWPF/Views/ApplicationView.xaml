@@ -85,7 +85,7 @@
                     </MenuItem>
 
 
-                    <MenuItem DataContext="{Binding Source={x:Static vm:ApplicationViewModel.Instance}}" Visibility="{Binding IsUserLogged, Converter={StaticResource BoolToVis},FallbackValue=Hidden}" Command="{Binding Source={StaticResource Proxy}, Path=Data.ChangePageCommand}"  Header="Wyloguj">
+                    <MenuItem DataContext="{Binding Source={x:Static vm:ApplicationViewModel.Instance}}" Visibility="{Binding IsUserLogged, Converter={StaticResource BoolToVis},FallbackValue=Hidden}" Command="{Binding Source={StaticResource Proxy}, Path=Data.LogOutCommand}"   Header="Wyloguj">
 
                     </MenuItem>
 
