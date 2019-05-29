@@ -6,14 +6,19 @@
       xmlns:local="clr-namespace:SklepWPF.Views"
       xmlns:data="clr-namespace:SklepWPF.Models"
       mc:Ignorable="d" 
-      xmlns:vm = "clr-namespace:SklepWPF.ViewModels" 
-      d:DesignHeight="700" d:DesignWidth="600">
+      xmlns:vm = "clr-namespace:SklepWPF.ViewModels"
+             xmlns:all="clr-namespace:SklepWPF"
+             d:DesignHeight="700" d:DesignWidth="600">
 
     <UserControl.DataContext>
         <vm:ProductsViewModel/>
     </UserControl.DataContext>
 
     <Grid>
+        <Grid.Resources>
+            <all:Proxy x:Key="Proxy" Data="{Binding}" />
+            <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+        </Grid.Resources>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1.3*" />
             <ColumnDefinition Width="2*" />
@@ -52,18 +57,22 @@
 
 
         <ListBox HorizontalContentAlignment="Stretch"  Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Margin="10" FlowDirection="RightToLeft" ItemsSource="{Binding Products, Mode=OneWay}">
-
+            
             <ListBox.ItemTemplate>
-                <DataTemplate >
+                
+                    <DataTemplate  >
 
 
                     <DockPanel>
                         <!--<Image DockPanel.Dock="Right"></Image>-->
+                        
                         <Label DockPanel.Dock="Right">IMG</Label>
-                        <Button Background="IndianRed" Padding="5" Margin="10,0,0,0">Dodaj do koszyka</Button>
 
-                        <TextBox Padding="5" HorizontalContentAlignment="Center"  IsReadOnly="True" Text="{Binding Name}" Margin="0,0,10,0"  >
-                        </TextBox>
+                        <Button Command="{Binding Source={StaticResource Proxy}, Path=Data.AddItemToCartCommand}" CommandParameter="{Binding Id}" Visibility="{Binding Source={StaticResource Proxy}, Path=Data.ShowCartButton, Converter={StaticResource BoolToVis},FallbackValue=Hidden}"  Background="IndianRed" Padding="5" Margin="10,0,0,0">
+                             Dodaj do koszyka
+                        </Button>
+                        <Button Command="{Binding Source={StaticResource Proxy}, Path=Data.DisplayProductCommand}" CommandParameter="{Binding Id}" Background="White" BorderBrush="Black" Padding="5" HorizontalContentAlignment="Center"   Content="{Binding Name}" Margin="0,0,10,0"  >
+                        </Button>
                     </DockPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>

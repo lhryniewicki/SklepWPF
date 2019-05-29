@@ -5,15 +5,28 @@ using System.Linq;
 using System.Text;
 using System.Windows.Input;
 
+//TO DO 
+//	NAPRAWIC POJAWIANIE SIE NAWIGACJI PO LOGOWANIU
 namespace SklepWPF.ViewModels
 {
 	 class ApplicationViewModel :ObservableObject
 	{
 
+		private static ApplicationViewModel _instance = null;
 		private ICommand _changePageCommand;
 		private IPageViewModel _currentPageViewModel;
 		public List<IPageViewModel> PageViewModels;
 
+		private bool _isUserLogged = false;
+
+		public static ApplicationViewModel Instance
+		{
+			get
+			{
+				if (_instance == null) _instance = new ApplicationViewModel();
+				return _instance;
+			}
+		}
 
 		public ApplicationViewModel()
 		{
@@ -50,10 +63,27 @@ namespace SklepWPF.ViewModels
 			}
 		}
 
+		public bool IsUserLogged
+		{
+			get
+			{
+				return _isUserLogged;
+			}
+			set
+			{
+				if(_isUserLogged != value)
+				{
+
+					_isUserLogged = value;
+					OnPropertyChanged("IsUserLogged");
+				}
+			}
+		}
+
 
 		private void ChangeViewModel(string name)
 		{
-			 CurrentPageViewModel = PageViewModels
+			CurrentPageViewModel = PageViewModels
 				.Where(x => x.Name == name)
 				.SingleOrDefault();
 		}

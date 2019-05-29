@@ -24,9 +24,9 @@
 			//  You can use the DbSet<T>.AddOrUpdate() helper extension method 
 			//  to avoid creating duplicate seed data.
 
-			var carCategory = new Category { Name = "Samochody" };
-			var bookCategory = new Category { Name = "Książki" };
-			_db.Categories.AddOrUpdate(new Category { Name = "Elektronika" });
+			var carCategory = new Category { Id=1 ,Name = "Samochody" };
+			var bookCategory = new Category { Id = 2, Name = "Książki" };
+			_db.Categories.AddOrUpdate(new Category { Id = 3, Name = "Elektronika" });
 			_db.Categories.AddOrUpdate(carCategory);
 			_db.Categories.AddOrUpdate(bookCategory);
 

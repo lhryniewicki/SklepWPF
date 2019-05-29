@@ -1,5 +1,6 @@
 ﻿using SklepWPF.Data;
 using SklepWPF.Models;
+using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -20,11 +21,7 @@ namespace SklepWPF.ViewModels
 		public string City { get; set; }
 		
 		public string PostalCode { get; set; }
-/*
-		public string Password { get; set; }
 
-		public string ConfirmPassword { get; set; }
-*/
 		public string Email { get; set; }
 
 		private readonly MyDbContext _db;
@@ -59,10 +56,17 @@ namespace SklepWPF.ViewModels
 			
 			_db.Users.Add(newUser);
 			_db.SaveChanges();
+			ApplicationViewModel.Instance.CurrentPageViewModel = new LoginViewModel();
 		}
 
 		private bool IsValid(PasswordBox passwordBox)
 		{
+			var isNicknameTaken = _db.Users
+				.Where(x => x.Nickname == Nickname)
+				.SingleOrDefault();
+
+			if (isNicknameTaken != null) return false;
+
 			return !string.IsNullOrEmpty(Nickname) &&
 				!string.IsNullOrEmpty(UserName) &&
 				!string.IsNullOrEmpty(Surname) &&

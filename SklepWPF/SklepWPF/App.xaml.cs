@@ -19,7 +19,7 @@ namespace SklepWPF
 			base.OnStartup(e);
 
 			ApplicationView app = new ApplicationView();
-			ApplicationViewModel context = new ApplicationViewModel();
+			ApplicationViewModel context = ApplicationViewModel.Instance;
 			app.DataContext = context;
 			app.Show();
 		}

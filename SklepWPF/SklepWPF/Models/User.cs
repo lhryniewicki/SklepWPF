@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SklepWPF.Models
 {
-	class User
+	public class User
 	{
 		public int Id { get; set; }
 		[Required]
@@ -25,6 +25,8 @@ namespace SklepWPF.Models
 		public string City { get; set; }
 		[Required]
 		public string PostalCode { get; set; }
+
+		public ICollection<Product> Cart { get; set; }
 
 		public User()
 		{

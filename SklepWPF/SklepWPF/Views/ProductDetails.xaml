@@ -1,15 +1,18 @@
-﻿<Page x:Class="SklepWPF.Views.ProductDetails"
+﻿<UserControl x:Class="SklepWPF.Views.ProductDetails"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SklepWPF"
+              xmlns:vm="clr-namespace:SklepWPF.ViewModels"
       mc:Ignorable="d" 
-      d:DesignHeight="700" d:DesignWidth="600"
-      Title="SzczegolyProduktu">
+      d:DesignHeight="700" d:DesignWidth="600">
 
     <Grid>
-
+        <Grid.Resources>
+            <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+        </Grid.Resources>
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1.3*" />
             <ColumnDefinition Width="0.7*" />
@@ -42,26 +45,34 @@
 
 
         <StackPanel Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" MaxHeight="230">
-            <Label HorizontalAlignment="Center" Content="Nazwa produktu"></Label>
+            <Label HorizontalAlignment="Center" Content="{Binding ProductName}"></Label>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Cena"></Label>
-                <Label Content="CenaX"></Label>
+                <Label Content="{Binding Price}"></Label>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Firma"></Label>
-                <Label Content="FirmaX"></Label>
+                <Label Content="{Binding Brand}"></Label>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
                 <Label Content="Ilość sztuk w magazynie"></Label>
-                <Label Content="SztukiX"></Label>
+                <Label Content="{Binding Quantity}"></Label>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
                 <Label Content="Kategorie"></Label>
-                <Label Content="KategorieProduktu"></Label>
+                <ListBox ItemsSource="{Binding Categories}">
+                    <ListBox.ItemTemplate>
+
+                        <DataTemplate >
+                            <Label Content="{Binding Name}" ></Label>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                
             </StackPanel>
-            <Button Background="IndianRed" Padding="5" Width="150" HorizontalAlignment="Left" >Dodaj do koszyka</Button>
+            <Button Visibility="{Binding ShowCartButton, Converter={StaticResource BoolToVis},FallbackValue=Hidden}" Background="IndianRed" Padding="5" Width="150" HorizontalAlignment="Left" >Dodaj do koszyka</Button>
 
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="4" Margin="30,0,30,0">
@@ -69,8 +80,8 @@
                    FontSize="20" 
                    TextWrapping="Wrap" 
                    Foreground="Black"
-                   Text="Opis produktuOpis produktuOpis produktuOpis produktuOpis produktuOpis produktuOpis produktuOpis produktuOpis produktu " />
+                   Text="{Binding Description}" />
         </StackPanel>
     </Grid>
 
-</Page>
+</UserControl>
