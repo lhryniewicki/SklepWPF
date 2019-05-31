@@ -14,6 +14,16 @@ namespace SklepWPF
 			set { SetValue(UsernameProperty, value); }
 		}
 
+		public string UsernameCodeValue
+		{
+			get
+			{
+				if (Instance!=null)
+					return Instance.Username;
+				return null;
+			}
+		}
+
 		public static RunTimeInfo Instance {get;private set;}
 
 		static RunTimeInfo()
@@ -23,6 +33,6 @@ namespace SklepWPF
 
 		public static readonly DependencyProperty UsernameProperty =
 	  DependencyProperty.Register("Username", typeof(string),
-	  typeof(RunTimeInfo), new UIPropertyMetadata((null)));
+	  typeof(RunTimeInfo), new UIPropertyMetadata(("Konto")));
 	}
 }

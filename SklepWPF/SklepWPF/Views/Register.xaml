@@ -68,7 +68,7 @@
 
         <StackPanel Grid.Column="2" Grid.Row="11" Orientation="Horizontal" VerticalAlignment="Top" Height="50">
             <Button CommandParameter="{Binding ElementName=txtPassword}" Command="{Binding RegisterUserCommand, Mode=OneWay}" Margin="10" Grid.Column="2" Grid.Row="8" Height="30" Width="100">Rejestruj</Button>
-            <Button Margin="10" Grid.Column="2" Grid.Row="11" Height="30" Width="100">Anuluj</Button>
+            <Button DataContext="{Binding Source={x:Static vm:ApplicationViewModel.Instance}}" Command="{Binding ChangePageCommand}" CommandParameter="Products" Margin="10" Grid.Column="2" Grid.Row="11" Height="30" Width="100">Anuluj</Button>
         </StackPanel>
 
 

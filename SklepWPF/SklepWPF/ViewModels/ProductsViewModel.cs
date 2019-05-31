@@ -19,12 +19,11 @@ namespace SklepWPF.ViewModels
 
 		public string Query { get; set; }
 
-		
 
-		private readonly int PageSize;
-
+		private readonly int _pageSize;
 		private int _productsQuantity;
 		private int _page;
+		private bool _showCartButon=false;
 
 		public ICollection<Category> ChosenCategories { get; set; } 
 		public ICollection<Category> Categories { get; set; }
@@ -35,16 +34,78 @@ namespace SklepWPF.ViewModels
 		{
 
 			_db = MyDbContext.Create();
+
 			ChosenCategories = new List<Category>();
-			_products = new List<Product>();
 			Products = new ObservableCollection<Product>();
 			Categories = new ObservableCollection<Category>();
-			PageSize = 10;
-			_page = 1;
+			_products = new List<Product>();
+
+			_pageSize = 10;
+			Page = 1;
+
+			LoadData();
+
 
 		}
 
+		public bool ShowCartButton
+		{
+			get {
+				var username = new RunTimeInfo().UsernameCodeValue;
+				if (username != "Konto") ShowCartButton = true;
 
+				return _showCartButon;
+			}
+			set
+			{
+				if(_showCartButon != value)
+				{
+					_showCartButon = value;
+					OnPropertyChanged("ShowCartButton");
+				}
+
+			}
+		}
+
+		private void LoadData()
+		{
+			 _products = _db.Products.ToList();
+			RefreshProducts(_products);
+			
+
+			var categories = _db.Categories.ToList();
+			foreach (var item in categories) Categories.Add(item);
+
+		}
+		public ICommand AddItemToCartCommand
+		{
+			get
+			{
+				return new RelayCommand(p => AddItemToCart((int)p));
+			}
+		}
+		public void AddItemToCart(int id)
+		{
+			var Nickname = RunTimeInfo.Instance.Username;
+
+			var user = _db.Users.
+				Include(x=>x.Cart)
+				.Where(x => x.Nickname == Nickname)
+				.SingleOrDefault();
+
+			var item = _db.Products
+				.Where(x => x.Id == id)
+				.SingleOrDefault();
+
+			user.Cart.Add(item);
+			_db.SaveChanges();
+			var user2 = _db.Users
+				.Include(x=>x.Cart)
+				.Where(x => x.Nickname == Nickname)
+				.SingleOrDefault();
+
+
+		}
 		public ICommand NextPageCommand
 		{
 			get
@@ -56,7 +117,7 @@ namespace SklepWPF.ViewModels
 
 		private bool IsValidNext()
 		{
-			return (_productsQuantity > (PageSize * (_page))); 
+			return (_productsQuantity > (_pageSize * (_page))); 
 		}
 
 		private void NextPage()
@@ -64,15 +125,6 @@ namespace SklepWPF.ViewModels
 			Page++;
 			RefreshProducts(_products);
 		}
-
-		//public ICommand PreviousPageCommand
-		//{
-		//	get
-		//	{
-		//		return new RelayCommand(p => NextPage(),
-		//		p => IsValidPrevious());
-		//	}
-		//}
 		public ICommand PreviousPageCommand
 		{
 			get
@@ -83,7 +135,7 @@ namespace SklepWPF.ViewModels
 		}
 		private bool IsValidPrevious()
 		{
-			return (Page - 1) > 0; 
+			return (Page-1) > 0; 
 		}
 	
 		private void PreviousPage()
@@ -92,12 +144,23 @@ namespace SklepWPF.ViewModels
 			RefreshProducts(_products);
 
 		}
+		public ICommand DisplayProductCommand
+		{
+			get
+			{
+				return new RelayCommand(p => DisplayProduct((int)p));
+			}
+		}
+		public void DisplayProduct(int id)
+		{
+			ApplicationViewModel.Instance.CurrentPageViewModel = new ProductDetailsViewModel(id);
+		}
 
 		public ICommand SearchCommand
 		{
 			get
 			{
-				return new RelayCommand(p => Search(Query));
+				return new RelayCommand(p => Search());
 			}
 		}
 
@@ -123,18 +186,18 @@ namespace SklepWPF.ViewModels
 			}
 		}
 
-		private void QueryByCategories(string query)
+		private void QueryByCategories(string categoryName)
 		{
 			Page = 1;
 			var alreadyInCategories = ChosenCategories
-				.Where(x => x.Name == query)
+				.Where(x => x.Name == categoryName)
 				.SingleOrDefault();
 
 			if(alreadyInCategories== null)
 			{
 
 				var category = _db.Categories
-					.Where(x => x.Name == query)
+					.Where(x => x.Name == categoryName)
 					.SingleOrDefault();
 
 				ChosenCategories.Add(category);
@@ -143,62 +206,35 @@ namespace SklepWPF.ViewModels
 			{
 				ChosenCategories.Remove(alreadyInCategories);
 			}
-			
-			
-			if(ChosenCategories.Count ==0)
-			{
-				_products = _db.Products
-				.Include(x => x.Categories)
-			   .ToList();
-			}
-			else
-			{
-				 _products = _db.Products
-					.Include(x => x.Categories)
-					.AsEnumerable()
-					.Where(x => x.Categories.Any(y => ChosenCategories.Contains(y)))
-					.ToList();
 
+
+			Search();
+		}
+
+		private void Search()
+		{
+
+			Page = 1;
+
+			_products = _db.Products
+				.Include(x => x.Categories)
+				.ToList();
+
+			if (ChosenCategories.Count > 0)
+			{
+				_products = _products
+					   .Where(x => x.Categories.Any(y => ChosenCategories.Contains(y)))
+					   .ToList();
 			}
 
 			if (!string.IsNullOrWhiteSpace(Query))
-				_products =_products.Where(x => x.Name.ToLower().
-					Contains(Query.ToLower()) ||
-					 x.Description.ToLower().Contains(Query.ToLower()))
+				_products = _products.Where(x => x.Name.ToLower().
+					 Contains(Query.ToLower()) ||
+					  x.Description.ToLower().Contains(Query.ToLower()))
 					.ToList();
-
 
 			RefreshProducts(_products);
-		}
-
-		private void Search(string query)
-		{
-			ChosenCategories.Clear();
-			Page = 1;
-			Categories.Clear();
-			var categories = _db.Categories.ToList();
-			foreach (var item in categories) Categories.Add(item);
-
-			if (string.IsNullOrWhiteSpace(query))
-			{
-
-					 _products = _db.Products
-					.Include(x => x.Categories)
-					.ToList();
-
-				RefreshProducts(_products);
-			}
-			else
-			{
-				var products = _db.Products.
-					Include(x => x.Categories).
-					Where(x => x.Name.ToLower().
-					Contains(query.ToLower()) ||
-					 x.Description.ToLower().Contains(query.ToLower()))
-					.ToList();
-
-				RefreshProducts(_products);
-			}
+			
 			
 
 		}
@@ -208,7 +244,7 @@ namespace SklepWPF.ViewModels
 			Products.Clear();
 			
 			_productsQuantity = products.Count;
-			 var takeProducts =products.Skip(PageSize * (Page-1)).Take(PageSize);
+			 var takeProducts =products.Skip(_pageSize * (Page-1)).Take(_pageSize);
 				
 			foreach (var item in takeProducts) Products.Add(item);
 		}

@@ -17,7 +17,7 @@ namespace SklepWPF.Views
 	/// <summary>
 	/// Interaction logic for SzczegolyProduktu.xaml
 	/// </summary>
-	public partial class ProductDetails : Page
+	public partial class ProductDetails : UserControl
 	{
 		public ProductDetails()
 		{

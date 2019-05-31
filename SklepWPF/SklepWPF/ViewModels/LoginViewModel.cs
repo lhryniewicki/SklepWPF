@@ -43,16 +43,19 @@ namespace SklepWPF.ViewModels
 		private void Login( string username,  PasswordBox passwordBox)
 		{
 			var user = _db.Users
-				.Where(x => x.Nickname == username && x.Password == passwordBox.Password)
+				.Where(x => x.Nickname == username &&
+				x.Password == passwordBox.Password)
 				.SingleOrDefault();
 
 			if (user == null) return;
 			else
 			{
 				RunTimeInfo.Instance.Username = username;
-				
+				ApplicationViewModel.Instance.IsUserLogged = true;
+				ApplicationViewModel.Instance.CurrentPageViewModel = new ProductsViewModel();
+
 			}
-			
+
 		}
 		private bool IsValid(PasswordBox passwordBox)
 		{

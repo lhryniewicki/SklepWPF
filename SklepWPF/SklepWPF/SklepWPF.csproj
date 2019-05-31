@@ -60,7 +60,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Converter.cs" />
     <Compile Include="Data\Migrations\201905241711060_init.cs" />
     <Compile Include="Data\Migrations\201905241711060_init.Designer.cs">
       <DependentUpon>201905241711060_init.cs</DependentUpon>
@@ -73,11 +72,20 @@
     <Compile Include="Data\Migrations\201905251049542_ProductPriceTypeChanged.Designer.cs">
       <DependentUpon>201905251049542_ProductPriceTypeChanged.cs</DependentUpon>
     </Compile>
+    <Compile Include="Data\Migrations\201905270902382_Cart.cs" />
+    <Compile Include="Data\Migrations\201905270902382_Cart.Designer.cs">
+      <DependentUpon>201905270902382_Cart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Migrations\201905271950175_AddedRequiredAnnotations.cs" />
+    <Compile Include="Data\Migrations\201905271950175_AddedRequiredAnnotations.Designer.cs">
+      <DependentUpon>201905271950175_AddedRequiredAnnotations.cs</DependentUpon>
+    </Compile>
     <Compile Include="Data\Migrations\201905282233105_Messages_Orders_UserAndProductModifications.cs" />
     <Compile Include="Data\Migrations\201905282233105_Messages_Orders_UserAndProductModifications.Designer.cs">
       <DependentUpon>201905282233105_Messages_Orders_UserAndProductModifications.cs</DependentUpon>
     </Compile>
     <Compile Include="Data\MyDbContext.cs" />
+    <Compile Include="ReverseBooleanToVisibilityConverter.cs" />
     <Compile Include="IPageViewModel.cs" />
     <Compile Include="Data\Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
@@ -95,6 +103,7 @@
     <Compile Include="ViewModels\CartViewModel.cs" />
     <Compile Include="ViewModels\ClientPanelViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\ProductDetailsViewModel.cs" />
     <Compile Include="ViewModels\ProductsViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
     <Compile Include="Views\ApplicationView.xaml.cs">
@@ -215,6 +224,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Data\Migrations\201905251049542_ProductPriceTypeChanged.resx">
       <DependentUpon>201905251049542_ProductPriceTypeChanged.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Data\Migrations\201905270902382_Cart.resx">
+      <DependentUpon>201905270902382_Cart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Data\Migrations\201905271950175_AddedRequiredAnnotations.resx">
+      <DependentUpon>201905271950175_AddedRequiredAnnotations.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Data\Migrations\201905282233105_Messages_Orders_UserAndProductModifications.resx">
       <DependentUpon>201905282233105_Messages_Orders_UserAndProductModifications.cs</DependentUpon>

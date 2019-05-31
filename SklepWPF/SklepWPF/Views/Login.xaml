@@ -4,25 +4,26 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm = "clr-namespace:SklepWPF.ViewModels" 
-        xmlns:local="clr-namespace:SklepWPF"
-        mc:Ignorable="d"
+        xmlns:local="clr-namespace:SklepWPF" 
+             xmlns:v1="clr-namespace:SklepWPF.Views"
+             mc:Ignorable="d"
              Height="200" Width="400">
 
     <UserControl.DataContext>
         <vm:LoginViewModel/>
     </UserControl.DataContext>
     
+
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"></RowDefinition>
-            <RowDefinition Height="1*"></RowDefinition>
-            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="auto"></ColumnDefinition>
-            <ColumnDefinition Width="auto" ></ColumnDefinition>
+
 
         </Grid.ColumnDefinitions>
 
@@ -42,7 +43,8 @@
 
             <Button Margin="10,25" Height="30" Width="100" Command="{Binding loginCommand, Mode=OneWay}" Background="AliceBlue"  Grid.Column="1" Grid.Row="2" CommandParameter="{Binding ElementName=passwordTxt}">Zaloguj</Button>
 
-            <Button Margin="10,25" Height="30" Width="100"  Grid.Column="2" Grid.Row="2" Background="IndianRed">Anuluj</Button>
+            <Button DataContext="{Binding Source={x:Static vm:ApplicationViewModel.Instance}}" Margin="10,25" Height="30" Width="100"  Grid.Column="2" Grid.Row="2" Background="IndianRed" Command="{Binding ChangePageCommand}" CommandParameter="Products">
+                 Anuluj</Button>
         </StackPanel>
 
       

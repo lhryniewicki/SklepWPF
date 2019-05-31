@@ -18,6 +18,10 @@
         <DataTemplate DataType="{x:Type vm:RegisterViewModel}">
             <local:Register />
         </DataTemplate>
+        
+        <DataTemplate DataType="{x:Type vm:ProductDetailsViewModel}">
+            <local:ProductDetails />
+        </DataTemplate>
 
         <DataTemplate DataType="{x:Type vm:LoginViewModel}">
             <local:Login />
@@ -45,7 +49,10 @@
         </Grid.RowDefinitions>
 
         <Grid.Resources>
+            
+            <BooleanToVisibilityConverter x:Key="BoolToVis"/>
             <all:Proxy x:Key="Proxy" Data="{Binding}" />
+            <all:ReverseBooleanToVisibilityConverter x:Key="ReverseVisibility" />
         </Grid.Resources>
 
         <DockPanel  Grid.Row="0">
@@ -59,23 +66,34 @@
 
                 </MenuItem>
 
-                <MenuItem Header="Konto"  >
+                <MenuItem Header="{Binding Source={x:Static all:RunTimeInfo.Instance}, Path=Username}" >
 
-                    <MenuItem Command="{Binding Source={StaticResource Proxy}, Path=Data.ChangePageCommand}" CommandParameter="Register" Header="Rejestracja"></MenuItem>
+                    <MenuItem DataContext="{Binding Source={x:Static vm:ApplicationViewModel.Instance}}" Visibility="{Binding IsUserLogged, Converter={StaticResource ReverseVisibility},FallbackValue=Visible}" Command="{Binding Source={StaticResource Proxy}, Path=Data.ChangePageCommand}" CommandParameter="Register" Header="Rejestracja">
 
-                    <MenuItem Command="{Binding Source={StaticResource Proxy}, Path=Data.ChangePageCommand}" CommandParameter="Login" Header="Zaloguj"></MenuItem>
+                    </MenuItem>
 
-                    <MenuItem Command="{Binding Source={StaticResource Proxy}, Path=Data.ChangePageCommand}"  Header="Wyloguj"></MenuItem>
+                    <MenuItem DataContext="{Binding Source={x:Static vm:ApplicationViewModel.Instance}}" Visibility="{Binding IsUserLogged, Converter={StaticResource ReverseVisibility},FallbackValue=Visible}" Command="{Binding Source={StaticResource Proxy}, Path=Data.ChangePageCommand}" CommandParameter="Login" Header="Zaloguj">
 
-                    <MenuItem Command="{Binding Source={StaticResource Proxy}, Path=Data.ChangePageCommand}" CommandParameter="Cart" Header="Koszyk"></MenuItem>
+                    </MenuItem>
 
-                    <MenuItem Command="{Binding Source={StaticResource Proxy}, Path=Data.ChangePageCommand}" CommandParameter="Account" Header="Konto"></MenuItem>
+                    <MenuItem DataContext="{Binding Source={x:Static vm:ApplicationViewModel.Instance}}" Visibility="{Binding IsUserLogged, Converter={StaticResource BoolToVis},FallbackValue=Hidden}" Command="{Binding Source={StaticResource Proxy}, Path=Data.ChangePageCommand}" CommandParameter="Cart" Header="Koszyk">
+
+                    </MenuItem>
+
+                    <MenuItem DataContext="{Binding Source={x:Static vm:ApplicationViewModel.Instance}}" Visibility="{Binding IsUserLogged, Converter={StaticResource BoolToVis},FallbackValue=Hidden}" Command="{Binding Source={StaticResource Proxy}, Path=Data.ChangePageCommand}" CommandParameter="Account" Header="Konto">
+
+                    </MenuItem>
+
+
+                    <MenuItem DataContext="{Binding Source={x:Static vm:ApplicationViewModel.Instance}}" Visibility="{Binding IsUserLogged, Converter={StaticResource BoolToVis},FallbackValue=Hidden}" Command="{Binding Source={StaticResource Proxy}, Path=Data.LogOutCommand}"   Header="Wyloguj">
+
+                    </MenuItem>
 
 
                 </MenuItem>
-                <Label HorizontalAlignment="Center"  Content="{Binding Source={x:Static all:RunTimeInfo.Instance}, Path=Username}" Focusable="False" ></Label>
 
             </Menu>
+            
         </DockPanel>
 
         <ContentControl Grid.Row="1" Content="{Binding CurrentPageViewModel}" />

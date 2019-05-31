@@ -33,7 +33,9 @@ namespace SklepWPF.Models
         public ICollection<Message> ReceivedMessages { get; set; }
         public ICollection<Order> Orders { get; set; }
 
-        public User()
+		public ICollection<Product> Cart { get; set; }
+
+		public User()
 		{
 		}
 
