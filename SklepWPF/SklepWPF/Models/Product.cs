@@ -14,5 +14,6 @@ namespace SklepWPF.Models
 		public string Brand { get; set; }
 		public int Quantity { get; set; }
 		public ICollection<Category> Categories { get;set;}
-	}
+        public ICollection<OrderProduct> Orders { get; set; }
+    }
 }

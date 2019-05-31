@@ -5,7 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SklepWPF.Views"
         mc:Ignorable="d"
+        xmlns:vm = "clr-namespace:SklepWPF.ViewModels"
         Height="450" Width="800">
+
+    <UserControl.DataContext>
+        <vm:ClientPanelViewModel/>
+    </UserControl.DataContext>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -85,16 +91,17 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
                 <Label Content="Imię:" VerticalAlignment="Center"></Label>
-                <TextBox Grid.Column="1" Grid.ColumnSpan="2" Margin="5,7"></TextBox>
+                <TextBox Name="Username" Text="{Binding User.Name}" Grid.Column="1" Grid.ColumnSpan="2" Margin="5,7"></TextBox>
                 <Label Content="Nazwisko:" Grid.Row="1" VerticalAlignment="Center"></Label>
-                <TextBox Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Margin="5,7"></TextBox>
+                <TextBox Name="Surname" Text="{Binding User.Surname}" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Margin="5,7"></TextBox>
                 <Label Content="Numer kontaktowy:" Grid.Row="2" VerticalAlignment="Center"></Label>
-                <TextBox Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Margin="5,7"></TextBox>
+                <TextBox Name="PhoneNumber" Text="{Binding User.PhoneNumber}" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Margin="5,7"></TextBox>
                 <Label Content="Miasto:" Grid.Row="3" VerticalAlignment="Center"></Label>
-                <TextBox Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Margin="5,7"></TextBox>
+                <TextBox Name="City" Text="{Binding User.City}" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Margin="5,7"></TextBox>
 
                 <Grid Grid.Row="4" Grid.ColumnSpan="3">
                     <Grid.ColumnDefinitions>
@@ -106,7 +113,7 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Label Content="Ulica:" VerticalAlignment="Center"></Label>
-                    <TextBox Grid.Column="2" Grid.ColumnSpan="2" Margin="5,7"></TextBox>
+                    <TextBox Name="StreetName" Text="{Binding User.StreetName}" Grid.Column="2" Grid.ColumnSpan="2" Margin="5,7"></TextBox>
 
                     <Grid Grid.Column="4" Grid.ColumnSpan="2">
                         <Grid.ColumnDefinitions>
@@ -116,15 +123,20 @@
                         </Grid.ColumnDefinitions>
 
                         <Label Grid.ColumnSpan="2" Content="Kod pocztowy:" VerticalAlignment="Center"></Label>
-                        <TextBox Grid.Column="2" Margin="0,7"></TextBox>
+                        <TextBox Name="PostalCode" Text="{Binding User.PostalCode}" Grid.Column="2" Margin="0,7"></TextBox>
                     </Grid>
                 </Grid>
                 
                 <Label Content="Sposób płatności:" Grid.Row="5" VerticalAlignment="Center"></Label>
-                <ComboBox SelectedIndex="0" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Margin="5,7">
+                <ComboBox SelectedIndex="{Binding User.PaymentMethod}" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Margin="5,7">
                     <ComboBoxItem Content="Gotówką"/>
                     <ComboBoxItem Content="Przelew bankowy"/>
                 </ComboBox>
+
+                <StackPanel Grid.Row="6" Orientation="Horizontal" Grid.ColumnSpan="3">
+                    <Button Margin="5" Content="Zapisz"></Button>
+                    <Button Margin="5" Content="Wyczyść" Click="ClearPersonalData_Click"></Button>
+                </StackPanel>
             </Grid>
         </GroupBox>
         

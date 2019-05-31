@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using static SklepWPF.Models.Enums;
 
 namespace SklepWPF.Models
 {
-	class User
+	public class User
 	{
 		public int Id { get; set; }
 		[Required]
@@ -25,8 +26,14 @@ namespace SklepWPF.Models
 		public string City { get; set; }
 		[Required]
 		public string PostalCode { get; set; }
+        public string PhoneNumber { get; set; }
+        [Required]
+        public PaymentMethod PaymentMethod { get; set; }
+        public ICollection<Message> SentMessages { get; set; }
+        public ICollection<Message> ReceivedMessages { get; set; }
+        public ICollection<Order> Orders { get; set; }
 
-		public User()
+        public User()
 		{
 		}
 
