@@ -22,7 +22,7 @@ namespace SklepWPF.Models
 
 		public ICollection<Category> Categories { get; set;}
 		public ICollection<User> InUserCart { get; set; }
-
+        public ICollection<User> ObservingUsers { get; set; }
         public ICollection<OrderProduct> Orders { get; set; }
     }
 }

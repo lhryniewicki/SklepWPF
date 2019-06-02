@@ -43,6 +43,15 @@ namespace SklepWPF.Data
                 .WithRequired(u => u.User)
                 .HasForeignKey(u => u.UserId);
 
+            modelBuilder.Entity<User>()
+                .HasMany(p => p.ObservedProducts)
+                .WithMany(u => u.ObservingUsers).Map(cs =>
+                {
+                    cs.MapLeftKey("UserId");
+                    cs.MapRightKey("ProductId");
+                    cs.ToTable("UserObservedProducts");
+                });
+
             modelBuilder.Entity<Product>()
                 .HasMany(o => o.Orders)
                 .WithRequired(p => p.Product)

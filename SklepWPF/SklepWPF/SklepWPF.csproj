@@ -40,9 +40,15 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net40\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -84,12 +90,26 @@
     <Compile Include="Data\Migrations\201905282233105_Messages_Orders_UserAndProductModifications.Designer.cs">
       <DependentUpon>201905282233105_Messages_Orders_UserAndProductModifications.cs</DependentUpon>
     </Compile>
+    <Compile Include="Data\Migrations\201905311035110_BlankMigration.cs" />
+    <Compile Include="Data\Migrations\201905311035110_BlankMigration.Designer.cs">
+      <DependentUpon>201905311035110_BlankMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Migrations\201906011246186_MessageModelModification.cs" />
+    <Compile Include="Data\Migrations\201906011246186_MessageModelModification.Designer.cs">
+      <DependentUpon>201906011246186_MessageModelModification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Migrations\201906012152334_AddedObservedProductsAndOrderModification.cs" />
+    <Compile Include="Data\Migrations\201906012152334_AddedObservedProductsAndOrderModification.Designer.cs">
+      <DependentUpon>201906012152334_AddedObservedProductsAndOrderModification.cs</DependentUpon>
+    </Compile>
     <Compile Include="Data\MyDbContext.cs" />
+    <Compile Include="Enums\EnumBindingSourceExtension.cs" />
+    <Compile Include="Enums\EnumDescriptionTypeConverter.cs" />
     <Compile Include="ReverseBooleanToVisibilityConverter.cs" />
     <Compile Include="IPageViewModel.cs" />
     <Compile Include="Data\Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
-    <Compile Include="Models\Enums.cs" />
+    <Compile Include="Enums\Enums.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\ObservableObject.cs" />
     <Compile Include="Models\Order.cs" />
@@ -233,6 +253,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Data\Migrations\201905282233105_Messages_Orders_UserAndProductModifications.resx">
       <DependentUpon>201905282233105_Messages_Orders_UserAndProductModifications.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Data\Migrations\201905311035110_BlankMigration.resx">
+      <DependentUpon>201905311035110_BlankMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Data\Migrations\201906011246186_MessageModelModification.resx">
+      <DependentUpon>201906011246186_MessageModelModification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Data\Migrations\201906012152334_AddedObservedProductsAndOrderModification.resx">
+      <DependentUpon>201906012152334_AddedObservedProductsAndOrderModification.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

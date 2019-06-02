@@ -7,13 +7,13 @@ namespace SklepWPF.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class Cart_Annotations_Messages_Orders : IMigrationMetadata
+    public sealed partial class BlankMigration : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Cart_Annotations_Messages_Orders));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(BlankMigration));
         
         string IMigrationMetadata.Id
         {
-            get { return "201905311016561_Cart_Annotations_Messages_Orders"; }
+            get { return "201905311035110_BlankMigration"; }
         }
         
         string IMigrationMetadata.Source

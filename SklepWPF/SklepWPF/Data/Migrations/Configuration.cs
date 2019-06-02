@@ -30,8 +30,79 @@
 			_db.Categories.AddOrUpdate(carCategory);
 			_db.Categories.AddOrUpdate(bookCategory);
 
+            _db.Messages.AddOrUpdate(new Message
+            {
+                Id = 1,
+                AuthorId = 1,
+                ReceiverId = 2,
+                Title = "sranie do mordy",
+                AuthorFullName = "Kamil Kapliński",
+                ReceiverFullName = "Mateusz Surynowicz",
+                Content = "lalalal",
+                Created = new DateTime(2012, 1, 11)
+            });
 
-			_db.Products.AddOrUpdate(new Product {
+            _db.Messages.AddOrUpdate(new Message
+            {
+                Id = 2,
+                AuthorId = 1,
+                ReceiverId = 2,
+                Title = "sranie do mordy2",
+                AuthorFullName = "Kamil Kapliński",
+                ReceiverFullName = "Mateusz Surynowicz",
+                Content = "lalalaxxxxxxl",
+                Created = new DateTime(2012, 1, 12)
+            });
+
+            _db.Messages.AddOrUpdate(new Message
+            {
+                Id = 3,
+                AuthorId = 1,
+                ReceiverId = 2,
+                Title = "sranie do mordy3",
+                AuthorFullName = "Kamil Kapliński",
+                ReceiverFullName = "Mateusz Surynowicz",
+                Content = "lalasadfsdasdasdlal",
+                Created = new DateTime(2012, 1, 14)
+            });
+
+            _db.Messages.AddOrUpdate(new Message
+            {
+                Id = 4,
+                AuthorId = 1,
+                ReceiverId = 2,
+                Title = "sranie do mordy4",
+                AuthorFullName = "Kamil Kapliński",
+                ReceiverFullName = "Mateusz Surynowicz",
+                Content = "lalalasdsadasddwwal",
+                Created = new DateTime(2012, 1, 17)
+            });
+
+            _db.Messages.AddOrUpdate(new Message
+            {
+                Id = 5,
+                AuthorId = 1,
+                ReceiverId = 2,
+                Title = "sranie do mordy5",
+                AuthorFullName = "Kamil Kapliński",
+                ReceiverFullName = "Mateusz Surynowicz",
+                Content = "lalalawdwdqdqwdqwal",
+                Created = new DateTime(2012, 1, 16)
+            });
+
+            _db.Messages.AddOrUpdate(new Message
+            {
+                Id = 6,
+                AuthorId = 1,
+                ReceiverId = 2,
+                Title = "sranie do mordy6",
+                AuthorFullName = "Kamil Kapliński",
+                ReceiverFullName = "Mateusz Surynowicz",
+                Content = "lalalaasdasdasasdasdasdasdl",
+                Created = new DateTime(2012, 1, 18)
+            });
+
+            _db.Products.AddOrUpdate(new Product {
 				Id=1,
 				Brand = "Audi",
 				Description = "Audi nówka sztuka nie klepana",

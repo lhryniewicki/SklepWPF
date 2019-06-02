@@ -1,9 +1,9 @@
-﻿using System;
+﻿using SklepWPF.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
-using static SklepWPF.Models.Enums;
 
 namespace SklepWPF.Models
 {
@@ -32,8 +32,8 @@ namespace SklepWPF.Models
         public ICollection<Message> SentMessages { get; set; }
         public ICollection<Message> ReceivedMessages { get; set; }
         public ICollection<Order> Orders { get; set; }
-
 		public ICollection<Product> Cart { get; set; }
+        public ICollection<Product> ObservedProducts { get; set; }
 
 		public User()
 		{

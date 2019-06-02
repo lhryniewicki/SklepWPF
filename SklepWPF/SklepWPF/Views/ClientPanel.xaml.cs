@@ -33,6 +33,7 @@ namespace SklepWPF.Views
             PostalCode.Clear();
             PhoneNumber.Clear();
             City.Clear();
+            Email.Clear();
         }
         /*
        private void TextBox_GotFocus(object sender, RoutedEventArgs e)
