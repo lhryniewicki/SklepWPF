@@ -46,8 +46,12 @@ namespace SklepWPF.ViewModels
 
 				new ClientPanelViewModel { Name = "Account" },
 
-                new MessageBoxViewModel { Name = "MessageBox" }
-			};
+                new MessageBoxViewModel { Name = "MessageBox" },
+
+                new AdminPanelViewModel { Name = "AdminPanel" },
+
+                new ProductListViewModel { Name = "ProductList" }
+            };
 
 
 			// Set starting page

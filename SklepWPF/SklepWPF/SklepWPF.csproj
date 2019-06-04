@@ -119,12 +119,14 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Proxy.cs" />
     <Compile Include="RunTimeInfo.cs" />
+    <Compile Include="ViewModels\AdminPanelViewModel.cs" />
     <Compile Include="ViewModels\ApplicationViewModel.cs" />
     <Compile Include="ViewModels\CartViewModel.cs" />
     <Compile Include="ViewModels\ClientPanelViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MessageBoxViewModel.cs" />
     <Compile Include="ViewModels\ProductDetailsViewModel.cs" />
+    <Compile Include="ViewModels\ProductListViewModel.cs" />
     <Compile Include="ViewModels\ProductsViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
     <Compile Include="Views\ApplicationView.xaml.cs">
@@ -139,14 +141,11 @@
     <Compile Include="Views\ClientPanel.xaml.cs">
       <DependentUpon>ClientPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\costam.xaml.cs">
-      <DependentUpon>costam.xaml</DependentUpon>
+    <Compile Include="Views\AdminPanel.xaml.cs">
+      <DependentUpon>AdminPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DisplayProducts.xaml.cs">
       <DependentUpon>DisplayProducts.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\EditProduct.xaml.cs">
-      <DependentUpon>EditProduct.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
@@ -189,17 +188,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\costam.xaml">
+    <Page Include="Views\AdminPanel.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\DisplayProducts.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\EditProduct.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Login.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -39,6 +39,14 @@
             <local:MessageBox />
         </DataTemplate>
 
+        <DataTemplate DataType="{x:Type vm:AdminPanelViewModel}">
+            <local:AdminPanel />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vm:ProductListViewModel}">
+            <local:ProductList />
+        </DataTemplate>
+
     </Window.Resources>
 
     <Grid>
@@ -64,7 +72,7 @@
 
                     <MenuItem Command="{Binding Source={StaticResource Proxy}, Path=Data.ChangePageCommand}" CommandParameter="Products"  Header="Produkty"></MenuItem>
 
-                    <MenuItem Header="Zarządzaj"></MenuItem>
+                    <MenuItem Command="{Binding Source={StaticResource Proxy}, Path=Data.ChangePageCommand}" CommandParameter="AdminPanel" Header="Zarządzaj"></MenuItem>
 
                 </MenuItem>
 
