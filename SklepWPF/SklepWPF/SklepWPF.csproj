@@ -123,6 +123,7 @@
     <Compile Include="ViewModels\CartViewModel.cs" />
     <Compile Include="ViewModels\ClientPanelViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\MessageBoxViewModel.cs" />
     <Compile Include="ViewModels\ProductDetailsViewModel.cs" />
     <Compile Include="ViewModels\ProductsViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
@@ -152,6 +153,9 @@
     </Compile>
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MessageBox.xaml.cs">
+      <DependentUpon>MessageBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Order.xaml.cs">
       <DependentUpon>Order.xaml</DependentUpon>
@@ -204,6 +208,10 @@
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MessageBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Order.xaml">
       <Generator>MSBuild:Compile</Generator>

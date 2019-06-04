@@ -35,7 +35,9 @@
             <local:ClientPanel />
         </DataTemplate>
 
-    
+        <DataTemplate DataType="{x:Type vm:MessageBoxViewModel}">
+            <local:MessageBox />
+        </DataTemplate>
 
     </Window.Resources>
 
@@ -84,6 +86,9 @@
 
                     </MenuItem>
 
+                    <MenuItem DataContext="{Binding Source={x:Static vm:ApplicationViewModel.Instance}}" Visibility="{Binding IsUserLogged, Converter={StaticResource BoolToVis},FallbackValue=Hidden}" Command="{Binding Source={StaticResource Proxy}, Path=Data.ChangePageCommand}" CommandParameter="MessageBox" Header="Wiadomości">
+
+                    </MenuItem>
 
                     <MenuItem DataContext="{Binding Source={x:Static vm:ApplicationViewModel.Instance}}" Visibility="{Binding IsUserLogged, Converter={StaticResource BoolToVis},FallbackValue=Hidden}" Command="{Binding Source={StaticResource Proxy}, Path=Data.LogOutCommand}"   Header="Wyloguj">
 

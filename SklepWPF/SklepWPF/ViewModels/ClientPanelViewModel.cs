@@ -16,7 +16,7 @@ namespace SklepWPF.ViewModels
 
         private readonly MyDbContext _db;
 
-        private readonly int UserId;
+        private readonly int userId;
 
         //Dane osobowe
 
@@ -36,20 +36,6 @@ namespace SklepWPF.ViewModels
         
         public PaymentMethod PaymentMethod { get; set; }
 
-        //Wiadomości
-
-        public ICollection<Message> Messages { get; set; }
-
-        public MessageDisplay DisplayedMessages { get; set; }
-
-        private readonly int messagePageSize;
-
-        private bool IsNextMsgPageValid; 
-
-        private int messagePage;
-
-        public string MessageSearchQuery { get; set; }
-
         //Historia zamówień
 
         public ICollection<Order> Orders { get; set; }
@@ -58,7 +44,7 @@ namespace SklepWPF.ViewModels
 
         public readonly int productsAndOrdersPageSize;
 
-        private bool IsNextOrdPrdPageValid;
+        private bool isNextOrdPrdPageValid;
 
         private int ordPrdPage;
 
@@ -74,7 +60,7 @@ namespace SklepWPF.ViewModels
             var user = _db.Users.Where(n => n.Name == RunTimeInfo.Instance.Username).SingleOrDefault();
             if(user != null)
             {
-                UserId = user.Id;
+                userId = user.Id;
                 UserName = user.Name;
                 Surname = user.Surname;
                 Email = user.Email;
@@ -84,17 +70,13 @@ namespace SklepWPF.ViewModels
                 PhoneNumber = user.PhoneNumber;
                 PaymentMethod = user.PaymentMethod;
             }
-            messagePage = 1;
-            messagePageSize = 4;
+
             ordPrdPage = 1;
             productsAndOrdersPageSize = 10;
-            IsNextMsgPageValid = false;
-            Messages = new ObservableCollection<Message>();
+            isNextOrdPrdPageValid = false;
             ObservedProducts = new ObservableCollection<Product>();
             Orders = new ObservableCollection<Order>();
-            DisplayedMessages = MessageDisplay.Received;
             DisplayedItems = ClientPanelDisplayedItems.Orders;
-            LoadMessages();
             LoadOrders();
         }
 
@@ -109,7 +91,7 @@ namespace SklepWPF.ViewModels
 
         private void Save()
         {
-            var user = _db.Users.Find(UserId);
+            var user = _db.Users.Find(userId);
             user.Name = UserName;
             user.Surname = Surname;
             user.Email = Email;
@@ -138,20 +120,6 @@ namespace SklepWPF.ViewModels
             return true;
         }
 
-        public int MessagePage
-        {
-            get
-            {
-                return messagePage;
-            }
-            set
-            {
-                if (messagePage != value)
-                    messagePage = value;
-                OnPropertyChanged("MessagePage");
-            }
-        }
-
         public int OrdPrdPage
         {
             get
@@ -170,43 +138,27 @@ namespace SklepWPF.ViewModels
         {
             get
             {
-                return new RelayCommand(p => NextPage((string)p),
-                    p => IsValidNext((string)p));
+                return new RelayCommand(p => NextPage(),
+                    p => IsValidNext());
             }
         }
 
-        private bool IsValidNext(string collectionName)
+        private bool IsValidNext()
         {
-            if (collectionName == "Messages")
-            {
-                return IsNextMsgPageValid;
-            }
-            else if (collectionName == "OrdersAndProducts")
-            {
-                return IsNextOrdPrdPageValid;
-            }
-            return false;
+            return isNextOrdPrdPageValid;
         }
 
-        private void NextPage(string collectionName)
+        private void NextPage()
         {
-            if (collectionName == "Messages")
-            {
-                MessagePage++;
-                LoadMessages();
-            }
-            else if (collectionName == "OrdersAndProducts")
-            {
-                OrdPrdPage++;
+            OrdPrdPage++;
 
-                if (DisplayedItems == ClientPanelDisplayedItems.Orders)
-                {
-                    LoadOrders();
-                }
-                else
-                {
-                    LoadObservedProducts();
-                }
+            if (DisplayedItems == ClientPanelDisplayedItems.Orders)
+            {
+                LoadOrders();
+            }
+            else
+            {
+                LoadObservedProducts();
             }
         }
 
@@ -214,59 +166,28 @@ namespace SklepWPF.ViewModels
         {
             get
             {
-                return new RelayCommand(p => PreviousPage((string)p),
-                    p => IsValidPrevious((string)p));
+                return new RelayCommand(p => PreviousPage(),
+                    p => IsValidPrevious());
             }
         }
 
-        private bool IsValidPrevious(string collectionName)
+        private bool IsValidPrevious()
         {
-            if (collectionName == "Messages")
-            {
-                return (messagePage - 1) > 0;
-            }
-            else if (collectionName == "OrdersAndProducts")
-            {
-                return (ordPrdPage - 1) > 0;
-            }
-            return false;
+            return (ordPrdPage - 1) > 0;
         }
 
-        private void PreviousPage(string collectionName)
+        private void PreviousPage()
         {
-            if (collectionName == "Messages")
-            {
-                MessagePage--;
-                LoadMessages();
-            }
-            else if (collectionName == "OrdersAndProducts")
-            {
-                OrdPrdPage--;
+            OrdPrdPage--;
 
-                if (DisplayedItems == ClientPanelDisplayedItems.Orders)
-                {
-                    LoadOrders();
-                }
-                else
-                {
-                    LoadObservedProducts();
-                }
-            }
-        }
-
-        public ICommand ChangeMessagesCommand
-        {
-            get
+            if (DisplayedItems == ClientPanelDisplayedItems.Orders)
             {
-                return new RelayCommand(p => ChangeMessages((int)p));
+                LoadOrders();
             }
-        }
-
-        private void ChangeMessages(int display)
-        {
-            DisplayedMessages = (MessageDisplay)display;
-            MessagePage = 1;
-            LoadMessages();
+            else
+            {
+                LoadObservedProducts();
+            }
         }
 
         public ICommand ChangeDisplayedItemsCommand
@@ -288,145 +209,6 @@ namespace SklepWPF.ViewModels
             else
             {
                 LoadObservedProducts();
-            }
-        }
-
-        public ICommand SearchMessagesCommand
-        {
-            get
-            {
-                return new RelayCommand(p => SearchMessages());
-            }
-        }
-
-        private void SearchMessages()
-        {
-            MessagePage = 1;
-            LoadMessages();
-        }
-
-        public ICommand DeleteSelectedMessagesCommand
-        {
-            get
-            {
-                return new RelayCommand(p => DeleteSelectedMessages(((System.Collections.IList)p).Cast<Message>().ToList()));
-            }
-        }
-
-        private void DeleteSelectedMessages(ICollection<Message> selectedMessages)
-        {
-            foreach(Message m in selectedMessages)
-            {
-                if (DisplayedMessages == MessageDisplay.Sent)
-                {
-                    if (m.ReceiverId == null)
-                    {
-                        _db.Messages.Remove(m);
-                    }
-                    else
-                    {
-                        m.Author = null;
-                    }
-                }
-                else
-                {
-                    if (m.AuthorId == null)
-                    {
-                        _db.Messages.Remove(m);
-                    }
-                    else
-                    {
-                        m.Receiver = null;
-                    }
-                }
-
-                Messages.Remove(m);
-            }
-
-            _db.SaveChanges();
-
-            LoadMessages();
-        }
-
-        public ICommand ClearMessageBoxCommand
-        {
-            get
-            {
-                return new RelayCommand(p => ClearMessageBox());
-            }
-        }
-
-        private void ClearMessageBox()
-        {
-            ICollection<Message> messages;
-            List<Message> dbRemovedMessages = new List<Message>();
-
-            var user = _db.Users.Where(n => n.Name == RunTimeInfo.Instance.Username);
-
-            if (DisplayedMessages == MessageDisplay.Sent)
-            {
-                messages = user.Include(m => m.SentMessages).SingleOrDefault().SentMessages;
-            }
-            else
-            {
-                messages = user.Include(m => m.SentMessages).SingleOrDefault().ReceivedMessages;
-            }
-
-            if(messages != null)
-            {
-                foreach (Message m in messages)
-                {
-                    if (m.AuthorId == null || m.ReceiverId == null)
-                    {
-                        dbRemovedMessages.Add(m);
-                    }
-                }
-
-                messages.Clear();
-                _db.Messages.RemoveRange(dbRemovedMessages);
-                _db.SaveChanges();
-
-                MessagePage = 1;
-                Messages.Clear();
-                IsNextMsgPageValid = false;
-            }
-        }
-
-        private void LoadMessages()
-        {
-            IQueryable<Message> messages;
-
-            if (DisplayedMessages == MessageDisplay.Sent)
-            {
-                messages = _db.Messages.Where(m => m.AuthorId == UserId);
-            }
-            else
-            {
-                messages = _db.Messages.Where(m => m.ReceiverId == UserId);
-            }
-           
-            if(!String.IsNullOrEmpty(MessageSearchQuery))
-            {
-                messages = messages.Where(m => m.Title.Contains(MessageSearchQuery));
-            }
-
-            var _messages = messages.OrderBy(d => d.Created).Skip((messagePage - 1) * messagePageSize)
-                    .Take(messagePageSize + 1).ToList();
-
-            if (_messages.Count == messagePageSize + 1)
-            {
-                IsNextMsgPageValid = true;
-                _messages.RemoveAt(_messages.Count - 1);
-            }
-            else
-            {
-                IsNextMsgPageValid = false;
-            }
-
-            Messages.Clear();
-            for(int i = 0; i < _messages.Count; i++)
-            {
-                Messages.Add(_messages[i]);
             }
         }
 
@@ -454,19 +236,29 @@ namespace SklepWPF.ViewModels
         private void LoadOrders()
         {
             IQueryable<Order> orders = _db.Orders
-                .Where(u => u.UserId == UserId);
+                .Where(u => u.UserId == userId);
 
             if(!String.IsNullOrEmpty(OrdPrdSearchQuery))
             {
                 orders = orders.Where(op => op.OrderedProducts.Any(p => p.Product.Name.Contains(OrdPrdSearchQuery)));
             }
 
-            orders = orders.OrderBy(o => o.Created)
+            var _orders = orders.OrderBy(o => o.Created)
                 .Skip((ordPrdPage - 1) * productsAndOrdersPageSize)
-                .Take(productsAndOrdersPageSize);
+                .Take(productsAndOrdersPageSize + 1).ToList();
+
+            if (_orders.Count == productsAndOrdersPageSize + 1)
+            {
+                isNextOrdPrdPageValid = true;
+                _orders.RemoveAt(_orders.Count - 1);
+            }
+            else
+            {
+                isNextOrdPrdPageValid = false;
+            }
 
             Orders.Clear();
-            foreach(Order o in orders)
+            foreach(Order o in _orders)
             {
                 Orders.Add(o);
             }
@@ -475,19 +267,29 @@ namespace SklepWPF.ViewModels
         private void LoadObservedProducts()
         {
             IQueryable<Product> observedProducts = _db.Products
-                .Where(ou => ou.ObservingUsers.Any(u => u.Id == UserId));
+                .Where(ou => ou.ObservingUsers.Any(u => u.Id == userId));
 
             if (!String.IsNullOrEmpty(OrdPrdSearchQuery))
             {
                 observedProducts = observedProducts.Where(n => n.Name.Contains(OrdPrdSearchQuery));
             }
 
-            observedProducts = observedProducts.OrderBy(o => o.Name)
+            var _observedProducts = observedProducts.OrderBy(o => o.Name)
                 .Skip((ordPrdPage - 1) * productsAndOrdersPageSize)
-                .Take(productsAndOrdersPageSize);
+                .Take(productsAndOrdersPageSize + 1).ToList();
+
+            if (_observedProducts.Count == productsAndOrdersPageSize + 1)
+            {
+                isNextOrdPrdPageValid = true;
+                _observedProducts.RemoveAt(_observedProducts.Count - 1);
+            }
+            else
+            {
+                isNextOrdPrdPageValid = false;
+            }
 
             ObservedProducts.Clear();
-            foreach (Product o in observedProducts)
+            foreach (Product o in _observedProducts)
             {
                 ObservedProducts.Add(o);
             }

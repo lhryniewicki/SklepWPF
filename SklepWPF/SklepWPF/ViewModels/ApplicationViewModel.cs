@@ -44,7 +44,9 @@ namespace SklepWPF.ViewModels
 
 				new CartViewModel { Name = "Cart" },
 
-				new ClientPanelViewModel { Name = "Account" }
+				new ClientPanelViewModel { Name = "Account" },
+
+                new MessageBoxViewModel { Name = "MessageBox" }
 			};
 
 

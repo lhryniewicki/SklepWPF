@@ -4,7 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:enums = "clr-namespace:SklepWPF.Enums"
-        xmlns:enumsbindingext = "clr-namespace:SklepWPF.Enums"
         mc:Ignorable="d"
         xmlns:vm = "clr-namespace:SklepWPF.ViewModels"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
@@ -73,7 +72,7 @@
                     </Grid.RowDefinitions>
 
                     <Label Content="Wyświetl:" VerticalAlignment="Center"></Label>
-                    <ComboBox SelectedIndex="0" Name="OrdersAndProductsCombobox" Grid.Column="1" Grid.ColumnSpan="3" Margin="11" ItemsSource="{Binding Source={enumsbindingext:EnumBindingSource {x:Type enums:ClientPanelDisplayedItems}}}" SelectedItem="{Binding DisplayedItems}">
+                    <ComboBox SelectedIndex="0" Name="OrdersAndProductsCombobox" Grid.Column="1" Grid.ColumnSpan="3" Margin="11" ItemsSource="{Binding Source={enums:EnumBindingSource {x:Type enums:ClientPanelDisplayedItems}}}" SelectedItem="{Binding DisplayedItems}">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="SelectionChanged">
                                 <i:InvokeCommandAction Command="{Binding ChangeDisplayedItemsCommand}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ComboBox}, 
@@ -81,8 +80,8 @@
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                     </ComboBox>
-                    <Button Grid.Row="1" Grid.Column="3" Content="Szukaj" VerticalAlignment="Center" Command="{Binding SearchOrdPrdCommand}"/>
-                    <TextBox Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Margin="0 11 0 11" Text="{Binding OrdPrdSearchQuery}"></TextBox>
+                    <Button Grid.Row="1" Grid.Column="3" Content="Szukaj" VerticalAlignment="Center" Command="{Binding SearchOrdPrdCommand}" Click="SearchButton_Click"/>
+                    <TextBox Name="SearchQueryTextBox" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Margin="0 11 0 11" Text="{Binding OrdPrdSearchQuery, UpdateSourceTrigger=Explicit}"></TextBox>
                 </Grid>
             </GroupBox>
         </Grid>
@@ -117,15 +116,15 @@
             <Grid Grid.Row="8" Margin="10 0 10 10">
                 <Border BorderBrush="Black" BorderThickness="2 2 2 2">
                     <StackPanel Orientation="Horizontal" Grid.Row="8" HorizontalAlignment="Center">
-                        <Button Padding="5" Margin="5" Content="Poprzednia strona" Command="{Binding PreviousPageCommand}" CommandParameter="OrdersAndProducts"></Button>
+                        <Button Padding="5" Margin="5" Content="Poprzednia strona" Command="{Binding PreviousPageCommand}"></Button>
                         <Label Padding="5" Margin="5" Content="{Binding OrdPrdPage}"></Label>
-                        <Button Padding="5" Margin="5" Content="Następna strona" Command="{Binding NextPageCommand}" CommandParameter="OrdersAndProducts"></Button>
+                        <Button Padding="5" Margin="5" Content="Następna strona" Command="{Binding NextPageCommand}"></Button>
                     </StackPanel>
                 </Border>
             </Grid>
         </Grid>
 
-        <GroupBox Header="Dane" Grid.ColumnSpan="3" Grid.RowSpan="3" Margin="10" BorderBrush="Black" BorderThickness="2">
+        <GroupBox Grid.Row="1" Header="Dane" Grid.ColumnSpan="3" Grid.RowSpan="3" Margin="10, 0" BorderBrush="Black" BorderThickness="2">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -177,115 +176,15 @@
                         <TextBox Name="PostalCode" Text="{Binding PostalCode, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" Margin="0,7"></TextBox>
                     </Grid>
                 </Grid>
-                
+
                 <Label Content="Sposób płatności:" Grid.Row="6" VerticalAlignment="Center"></Label>
-                <ComboBox ItemsSource="{Binding Source={enumsbindingext:EnumBindingSource {x:Type enums:PaymentMethod}}}" SelectedItem="{Binding PaymentMethod}" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Margin="5,7">
+                <ComboBox ItemsSource="{Binding Source={enums:EnumBindingSource {x:Type enums:PaymentMethod}}}" SelectedItem="{Binding PaymentMethod}" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Margin="5,7">
                 </ComboBox>
 
-                    <StackPanel Grid.Row="7" Orientation="Horizontal" Grid.ColumnSpan="3">
+                <StackPanel Grid.Row="7" Orientation="Horizontal" Grid.ColumnSpan="3">
                     <Button Margin="5" Content="Zapisz" Command="{Binding SaveUserDataCommand}"></Button>
                     <Button Margin="5" Content="Wyczyść" Click="ClearPersonalData_Click"></Button>
                 </StackPanel>
-            </Grid>
-        </GroupBox>
-        
-        <GroupBox Header="Wiadomości" Grid.ColumnSpan="3" Grid.Row="3" Grid.RowSpan="2" Margin="10" BorderBrush="Black" BorderThickness="2">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                </Grid.RowDefinitions>
-
-                <Grid Grid.Row="6" Grid.ColumnSpan="3">
-                    <Border BorderBrush="Black" BorderThickness="1" Margin="5 0 5 0">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <Button Padding="5" Margin="5" Content="Utwórz"></Button>
-                            <Button Padding="5" Margin="5" Content="Podgląd">
-                                <Button.Style>
-                                    <Style TargetType="Button">
-                                        <Setter Property="IsEnabled" Value="False" />
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding ElementName=messages, Path=SelectedItems.Count}" Value="1">
-                                                <Setter Property="IsEnabled" Value="True" />
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Button.Style>
-                            </Button>
-                            <Button Padding="5" Margin="5" Content="Usuń wybrane" IsEnabled="{Binding ElementName=messages, Path=SelectedItems.Count}" Command="{Binding DeleteSelectedMessagesCommand}" CommandParameter="{Binding SelectedItems, ElementName=messages}"></Button>
-                            <Button Padding="5" Margin="5" Content="Wyczyść" Command="{Binding ClearMessageBoxCommand}"></Button>
-                        </StackPanel>
-                    </Border>
-                </Grid>
-
-                <Grid Grid.Row="7" Grid.ColumnSpan="3">
-                    <Border BorderBrush="Black" BorderThickness="1 0 1 1" Margin="5 0 5 0">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <Button Padding="5" Margin="5" Content="Poprzednia strona" Command="{Binding PreviousPageCommand}" CommandParameter="Messages"></Button>
-                            <Label Padding="5" Margin="5" Content="{Binding MessagePage}"></Label>
-                            <Button Padding="5" Margin="5" Content="Następna strona" Command="{Binding NextPageCommand}" CommandParameter="Messages"></Button>
-                        </StackPanel>
-                    </Border>
-                </Grid>
-
-                <Grid Grid.ColumnSpan="2">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"/>
-                    </Grid.RowDefinitions>
-
-                    <TextBox Grid.ColumnSpan="3" Margin="5 5 0 5" Text="{Binding MessageSearchQuery}"/>
-                    <Button Grid.Column="3" Padding="5" Margin="0 5 5 5" Content="Szukaj" Command="{Binding SearchMessagesCommand}"></Button>
-                    <ComboBox Grid.ColumnSpan="2" Grid.Column="4" Name="MessagesTypeCombobox" ItemsSource="{Binding Source={enumsbindingext:EnumBindingSource {x:Type enums:MessageDisplay}}}" SelectedItem="{Binding DisplayedMessages}" Margin="5">
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="SelectionChanged">
-                                <i:InvokeCommandAction Command="{Binding ChangeMessagesCommand}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ComboBox}, 
-                                        Path=SelectedIndex}" />
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                    </ComboBox>
-                </Grid>
-                <ListView Name="messages" ItemsSource="{Binding Messages}" Grid.Row="1" Grid.RowSpan="5" Grid.ColumnSpan="2" Margin="5 5 5 0" BorderBrush="Black" BorderThickness="1 1 1 0" HorizontalContentAlignment="Stretch">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <DockPanel Margin="5 4 5 4">
-                                <TextBlock Margin="5" DockPanel.Dock="Left">
-                                    <TextBlock.Style>
-                                        <Style TargetType="TextBlock">
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding ElementName=MessagesTypeCombobox, Path=SelectedItem}" Value="Sent">
-                                                    <Setter Property="Text" Value="{Binding ReceiverFullName}"/>
-                                                </DataTrigger>
-                                                <DataTrigger Binding="{Binding ElementName=MessagesTypeCombobox, Path=SelectedItem}" Value="Received">
-                                                    <Setter Property="Text" Value="{Binding AuthorFullName}"/>
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </TextBlock.Style>
-                                </TextBlock>
-                                <TextBlock Margin="5" Text="{Binding}"/>
-                                <TextBlock Margin="5" Text="{Binding Created, StringFormat=dd-MM-yyyy}" DockPanel.Dock="Right"/>
-                            </DockPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
             </Grid>
         </GroupBox>
     </Grid>
