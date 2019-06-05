@@ -45,14 +45,15 @@
                             <ColumnDefinition Width="auto"/>
                             <ColumnDefinition Width="auto"/>
                             <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
 
                         <!--<Image DockPanel.Dock="Right"></Image>-->
-                        <Label Grid.Column="0" Width="243" Content="{Binding Nickname}"></Label>
-                        <Label Grid.Column="1" Width="75" Content="{Binding Name}"></Label>
-                        <Label Grid.Column="2" Width="75" Content="{Binding Surname}"></Label>
-                        <Label Grid.Column="2" Width="75" Content="{Binding Eamil}"></Label>
-                        <Label Grid.Column="2" Width="75" Content="{Binding PhoneNumber}"></Label>
+                        <Label Grid.Column="0" Margin="10" Content="{Binding Nickname}"></Label>
+                        <Label Grid.Column="1" Margin="10" Content="{Binding Name}"></Label>
+                        <Label Grid.Column="2" Margin="10" Content="{Binding Surname}"></Label>
+                        <Label Grid.Column="3" Margin="10" Content="{Binding Email}"></Label>
+                        <Label Grid.Column="4" Margin="10" Content="{Binding PhoneNumber}"></Label>
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>

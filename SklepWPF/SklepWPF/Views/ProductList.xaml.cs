@@ -23,5 +23,19 @@ namespace SklepWPF.Views
         {
             InitializeComponent();
         }
+
+        private void produktyListBox_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if(produktyListBox.SelectedIndex != -1)
+            {
+                produktyListBox.UnselectAll();
+                nazwaTextBox.Clear();
+                opisTextBox.Clear();
+                cenaTextBox.Clear();
+                markaTextBox.Clear();
+                iloscTextBox.Clear();
+                CategoryComboBox.SelectedIndex = -1;
+            }
+        }
     }
 }

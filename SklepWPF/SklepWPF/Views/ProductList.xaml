@@ -64,7 +64,7 @@
                 <TextBox Grid.Row="4" Grid.Column="1" Name="iloscTextBox" Text="{Binding Quantity, UpdateSourceTrigger=PropertyChanged}" FontSize="16"  Margin="3"></TextBox>
 
                 <Label FontSize="16" Grid.Row="5" Grid.Column="0">Kategoria</Label>
-                <ComboBox Grid.Row="5" Grid.Column="1" Margin="3" ItemsSource="{Binding Categories}" SelectedValue="{Binding Category}" SelectedValuePath="Name" DisplayMemberPath="Name" FontSize="16">
+                <ComboBox Name="CategoryComboBox" Grid.Row="5" Grid.Column="1" Margin="3" ItemsSource="{Binding Categories}" SelectedValue="{Binding Category}" SelectedValuePath="Name" DisplayMemberPath="Name" FontSize="16">
                     <ComboBox.Resources>
                         <DataTemplate DataType="{x:Type data:Category}">
                             <Label Content="{Binding Path=Name}"/>
@@ -80,7 +80,18 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <Button Name="dodajButton" Command="{Binding AddNewProductCommand}" Grid.Column="0" FontSize="20" Margin="20,10">Dodaj</Button>
+                <Button Name="dodajButton" Command="{Binding AddNewProductCommand}" Grid.Column="0" FontSize="20" Margin="20,10">Dodaj
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="IsEnabled" Value="False" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=produktyListBox, Path=SelectedItems.Count}" Value="0">
+                                    <Setter Property="IsEnabled" Value="True" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
                 <Button Name="usunButton" Command="{Binding DeleteSelectedProductCommand}" CommandParameter="{Binding ElementName=produktyListBox, Path=SelectedIndex}" Grid.Column="1" FontSize="20" Margin="20,10">Usuń</Button>
                 <Button Name="editButton" Command="{Binding UpdateSelectedProductCommand}" CommandParameter="{Binding ElementName=produktyListBox, Path=SelectedIndex}" Grid.Column="2" FontSize="20" Margin="20,10">Edytuj</Button>
             </Grid>
@@ -149,7 +160,7 @@
                 <Label Height="43" Width="75" Grid.Column="2" FontSize="15">Ilość</Label>
             </Grid>
 
-            <ListBox Grid.Row="1" Name="produktyListBox" Grid.Column="1" FontSize="15" FlowDirection="LeftToRight" ItemsSource="{Binding Products, Mode=OneWay}">
+            <ListBox MouseDown="produktyListBox_MouseDown" Grid.Row="1" Name="produktyListBox" Grid.Column="1" FontSize="15" FlowDirection="LeftToRight" ItemsSource="{Binding Products, Mode=OneWay}">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SelectionChanged">
                         <i:InvokeCommandAction Command="{Binding ChangeDisplayedItemCommand}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListBox}, Path=SelectedIndex}"/>
