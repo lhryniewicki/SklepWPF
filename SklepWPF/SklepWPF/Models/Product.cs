@@ -30,13 +30,15 @@ namespace SklepWPF.Models
 
         }
 
-        public Product(string name, string description, string price, string brand, int quantity)
+        public Product(string name, string description, string price, string brand, int quantity, Category category)
         {
             Name = name;
             Description = description;
             Price = price;
             Brand = brand;
             Quantity = quantity;
+            Categories = new List<Category>();
+            Categories.Add(category);
         }
     }
 }

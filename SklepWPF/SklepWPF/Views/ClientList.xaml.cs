@@ -17,7 +17,7 @@ namespace SklepWPF.Views
     /// <summary>
     /// Interaction logic for ListaKlientow.xaml
     /// </summary>
-    public partial class ClientList : Window
+    public partial class ClientList : UserControl
     {
         public ClientList()
         {

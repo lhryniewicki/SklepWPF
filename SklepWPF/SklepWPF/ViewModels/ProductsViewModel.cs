@@ -234,9 +234,6 @@ namespace SklepWPF.ViewModels
 					.ToList();
 
 			RefreshProducts(_products);
-			
-			
-
 		}
 
 		private void RefreshProducts(ICollection<Product> products)

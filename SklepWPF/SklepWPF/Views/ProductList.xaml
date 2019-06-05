@@ -6,13 +6,16 @@
         xmlns:local="clr-namespace:SklepWPF.Views"
                    xmlns:vm = "clr-namespace:SklepWPF.ViewModels"
                    xmlns:all="clr-namespace:SklepWPF"
-                    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                   xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                   xmlns:data="clr-namespace:SklepWPF.Models"
+             xmlns:enums = "clr-namespace:SklepWPF.Enums"
         mc:Ignorable="d"
-        Height="450" Width="800">
+        Height="550" Width="800">
+    
     <UserControl.DataContext>
         <vm:ProductListViewModel/>
     </UserControl.DataContext>
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -25,66 +28,97 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition/>
-                <RowDefinition Height="auto"/>
+                <RowDefinition />
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
-            <Label Grid.Row="0" FontFamily="Verdana" FontSize="25" FontWeight="Bold">Zarządzanie Produktami</Label>
+            <Label Grid.Row="0" Grid.ColumnSpan="2" FontFamily="Verdana" FontSize="25" FontWeight="Bold">Zarządzanie Produktami</Label>
 
-            <StackPanel Grid.Row="1" Orientation="Horizontal" Grid.ColumnSpan="2">
-                <Label FontSize="20" Width="95">Nazwa</Label>
-                <TextBox Name="nazwaTextBox" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" FontSize="20" Width="275" Margin="3"></TextBox>
-            </StackPanel>
-            <StackPanel Grid.Row="2" Orientation="Horizontal" Grid.ColumnSpan="2">
-                <Label FontSize="20" Width="95">Opis</Label>
-                <TextBox Name="opisTextBox" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" FontSize="20" Width="275" Margin="3"></TextBox>
-            </StackPanel>
-            <StackPanel Grid.Row="3" Orientation="Horizontal" Grid.ColumnSpan="2">
-                <Label FontSize="20" Width="95">Cena</Label>
-                <TextBox Name="cenaTextBox" Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}" FontSize="20" Width="275" Margin="3"></TextBox>
-            </StackPanel>
-            <StackPanel Grid.Row="4" Orientation="Horizontal" Grid.ColumnSpan="2">
-                <Label FontSize="20" Width="95">Marka</Label>
-                <TextBox Name="markaTextBox" Text="{Binding Brand, UpdateSourceTrigger=PropertyChanged}" FontSize="20" Width="275" Margin="3"></TextBox>
-            </StackPanel>
-            <StackPanel Grid.Row="5" Orientation="Horizontal" Grid.ColumnSpan="2">
-                <Label FontSize="20" Width="95">Ilość</Label>
-                <TextBox Name="iloscTextBox" Text="{Binding Quantity, UpdateSourceTrigger=PropertyChanged}" FontSize="20" Width="275" Margin="3"></TextBox>
-            </StackPanel>
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
 
-            <Grid Grid.Row="6">
+                <Label FontSize="16" Grid.Row="0" Grid.Column="0">Nazwa</Label>
+                <TextBox Grid.Row="0" Grid.Column="1" Name="nazwaTextBox" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" FontSize="16" Margin="3"></TextBox>
+
+                <Label FontSize="16" Grid.Row="1" Grid.Column="0">Opis</Label>
+                <TextBox Grid.Row="1" Grid.Column="1" Name="opisTextBox" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" FontSize="16" Margin="3"></TextBox>
+
+                <Label FontSize="16" Grid.Row="2" Grid.Column="0">Cena</Label>
+                <TextBox Grid.Row="2" Grid.Column="1" Name="cenaTextBox" Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}" FontSize="16"  Margin="3"></TextBox>
+
+                <Label FontSize="16" Grid.Row="3" Grid.Column="0">Firma xd</Label>
+                <TextBox Grid.Row="3" Grid.Column="1" Name="markaTextBox" Text="{Binding Brand, UpdateSourceTrigger=PropertyChanged}" FontSize="16"  Margin="3"></TextBox>
+
+                <Label FontSize="16" Grid.Row="4" Grid.Column="0">Ilość</Label>
+                <TextBox Grid.Row="4" Grid.Column="1" Name="iloscTextBox" Text="{Binding Quantity, UpdateSourceTrigger=PropertyChanged}" FontSize="16"  Margin="3"></TextBox>
+
+                <Label FontSize="16" Grid.Row="5" Grid.Column="0">Kategoria</Label>
+                <ComboBox Grid.Row="5" Grid.Column="1" Margin="3" ItemsSource="{Binding Categories}" SelectedValue="{Binding Category}" SelectedValuePath="Name" DisplayMemberPath="Name" FontSize="16">
+                    <ComboBox.Resources>
+                        <DataTemplate DataType="{x:Type data:Category}">
+                            <Label Content="{Binding Path=Name}"/>
+                        </DataTemplate>
+                    </ComboBox.Resources>
+                </ComboBox>
+            </Grid>
+
+            <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <Button Name="dodajButton" Command="{Binding AddNewProductCommand, Mode=OneWay}" Grid.Column="0" FontSize="20" Margin="20,10">Dodaj</Button>
-                <Button Name="usunButton" Command="{Binding DeleteSelectedProductCommand, Mode=OneWay}" Grid.Column="1" FontSize="20" Margin="20,10">Usuń</Button>
-                <Button Name="editButton" Command="{Binding UpdateSelectedProductCommand, Mode=OneWay}" Grid.Column="2" FontSize="20" Margin="20,10">Edytuj</Button>
+                <Button Name="dodajButton" Command="{Binding AddNewProductCommand}" Grid.Column="0" FontSize="20" Margin="20,10">Dodaj</Button>
+                <Button Name="usunButton" Command="{Binding DeleteSelectedProductCommand}" CommandParameter="{Binding ElementName=produktyListBox, Path=SelectedIndex}" Grid.Column="1" FontSize="20" Margin="20,10">Usuń</Button>
+                <Button Name="editButton" Command="{Binding UpdateSelectedProductCommand}" CommandParameter="{Binding ElementName=produktyListBox, Path=SelectedIndex}" Grid.Column="2" FontSize="20" Margin="20,10">Edytuj</Button>
             </Grid>
 
-            <Label Grid.Row="7" FontFamily="Verdana" FontSize="25" Margin="0,10" FontWeight="Bold" VerticalContentAlignment="Bottom">Filtry</Label>
+            <Label Grid.Row="3" FontFamily="Verdana" FontSize="25" Margin="0,10" FontWeight="Bold" VerticalContentAlignment="Bottom">Filtry</Label>
 
-            <StackPanel Grid.Row="8" Orientation="Horizontal">
-                <ComboBox SelectedIndex="0" Grid.Row="1" VerticalContentAlignment="Center" FontSize="18">
-                    <ComboBoxItem >Bez filtrów</ComboBoxItem>
-                    <ComboBoxItem >Nazwa</ComboBoxItem>
-                    <ComboBoxItem >Cena</ComboBoxItem>
-                    <ComboBoxItem >Kategoria</ComboBoxItem>
+            <Grid Grid.Row="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                
+                <Label Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" FontSize="16" FontWeight="Bold">Sortuj:</Label>
+                <ComboBox SelectedIndex="0" Grid.Column="1"  Grid.Row="1" VerticalAlignment="Top" VerticalContentAlignment="Center" FontSize="16" Margin="10" Height="30" ItemsSource="{Binding Source={enums:EnumBindingSource {x:Type enums:ProductListSortingProducts}}}" SelectedItem="{Binding SortedProducts}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction Command="{Binding SortProductListCommand}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ComboBox}, Path=SelectedIndex}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
                 </ComboBox>
-                <ComboBox SelectedIndex="0" Grid.Row="2" VerticalContentAlignment="Center" FontSize="18">
-                    <ComboBoxItem >Bez sortowania</ComboBoxItem>
-                    <ComboBoxItem >Rosnąco</ComboBoxItem>
-                    <ComboBoxItem >Malejąco</ComboBoxItem>
-                </ComboBox>
-            </StackPanel>
 
-            <Grid Grid.Row="9">
+                <Label Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" FontSize="16" FontWeight="Bold">Filtruj po kategorii:</Label>
+                <ListBox Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Categories}" Margin="10">
+                    <ListBox.Resources>
+                        <DataTemplate DataType="{x:Type data:Category}">
+                            <CheckBox Content="{Binding Path=Name, Mode=TwoWay}" 
+                                      Command="{Binding DataContext.QueryByCategoriesCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" 
+                                      CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}" FlowDirection="LeftToRight"/>
+                        </DataTemplate>
+                    </ListBox.Resources>
+                </ListBox>
+            </Grid>
+
+            <Grid Grid.Row="5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
@@ -96,17 +130,26 @@
         </Grid>
 
         <Grid Grid.Column="1">
-            <Grid.Resources>
-                <all:Proxy x:Key="Proxy" Data="{Binding}" />
-                <BooleanToVisibilityConverter x:Key="BoolToVis"/>
-            </Grid.Resources>
             <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
                 <RowDefinition/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
-            <ListBox Grid.Row="0" Name="produktyListBox" Grid.Column="1" FontSize="18" FlowDirection="RightToLeft" ItemsSource="{Binding Products, Mode=OneWay}">
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                
+                <Label Height="43" Grid.Column="0" FontSize="15">Nazwa produktu</Label>
+                <Label Height="43" Width="75" Grid.Column="1" FontSize="15">Cena</Label>
+                <Label Height="43" Width="75" Grid.Column="2" FontSize="15">Ilość</Label>
+            </Grid>
+
+            <ListBox Grid.Row="1" Name="produktyListBox" Grid.Column="1" FontSize="15" FlowDirection="LeftToRight" ItemsSource="{Binding Products, Mode=OneWay}">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SelectionChanged">
                         <i:InvokeCommandAction Command="{Binding ChangeDisplayedItemCommand}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListBox}, Path=SelectedIndex}"/>
@@ -117,27 +160,28 @@
                     <DataTemplate>
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="auto"/>
                             </Grid.ColumnDefinitions>
 
                             <!--<Image DockPanel.Dock="Right"></Image>-->
-                            <Label Grid.Column="0">IMG</Label>
-                            <Label Grid.Column="1" DockPanel.Dock="Left" Content="{Binding Name}"></Label>
+                            <Label Grid.Column="0" Width="243" Content="{Binding Name}"></Label>
+                            <Label Grid.Column="1" Width="75" Content="{Binding Price}"></Label>
+                            <Label Grid.Column="2" Width="75" Content="{Binding Quantity}"></Label>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
 
-            <StackPanel Orientation="Horizontal" Grid.Row="1">
+            <StackPanel Orientation="Horizontal" Grid.Row="2">
                 <Button Command="{Binding PreviousPageCommand, Mode=OneWay}" HorizontalContentAlignment="Right" Padding="5" Margin="130,15,10,15" Grid.Column="0" Grid.Row="3">Poprzednia</Button>
                 <Label Margin="3" FontSize="30" HorizontalAlignment="Right" DockPanel.Dock="Right" Content="{Binding Page, Mode=OneWay}"  ></Label>
-                <Button  HorizontalContentAlignment="Left" Margin="10,15,150,15" Grid.Column="1" Grid.Row="3" Command="{Binding NextPageCommand, Mode=OneWay}"
-                >Następna</Button>
+                <Button  HorizontalContentAlignment="Left" Margin="10,15,150,15" Grid.Column="1" Grid.Row="3" Command="{Binding NextPageCommand, Mode=OneWay}">Następna</Button>
 
             </StackPanel>
 
-            <Button Grid.Row="2" Name="powrotZEdycji" Grid.Column="0" FontSize="20" Width="150" Height="35" Margin="20,10">Powrót</Button>
+            <Button Grid.Row="3" Name="powrotZEdycji" Grid.Column="0" FontSize="20" Width="150" Height="35" Margin="20,10">Powrót</Button>
         </Grid>
 
     </Grid>

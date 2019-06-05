@@ -1,5 +1,6 @@
 ﻿using SklepWPF.Data;
 using SklepWPF.Models;
+using SklepWPF.Enums;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -21,6 +22,7 @@ namespace SklepWPF.ViewModels
         public string price { get; set; }
         public string brand { get; set; }
         public int quantity { get; set; }
+        public string category { get; set; }
 
         public string Name
         {
@@ -92,17 +94,31 @@ namespace SklepWPF.ViewModels
             }
         }
 
+        public string Category
+        {
+            get
+            {
+                return category;
+            }
+            set
+            {
+                if (category != value)
+                    category = value;
+                OnPropertyChanged("Category");
+            }
+        }
+
         private readonly MyDbContext _db;
         private readonly int _pageSize;
         private int _productsQuantity;
         private int _page;
 
+        public string Query { get; set; }
+        public ProductListSortingProducts SortedProducts { get; set; }
         public ICollection<Category> ChosenCategories { get; set; }
         public ICollection<Category> Categories { get; set; }
         public ICollection<Product> Products { get; set; }
         public List<Product> _products { get; set; }
-
-        
 
         public ProductListViewModel()
         {
@@ -129,15 +145,20 @@ namespace SklepWPF.ViewModels
 
         public void ChangeDisplayedItem(int index)
         {
-            var product = Products.Where(p => p.Id == (index + 1)).FirstOrDefault();
-            if (product != null)
+            if(index >= 0)
             {
-                productId = product.Id;
-                Name = product.Name;
-                Description = product.Description;
-                Price = product.Price;
-                Brand = product.Brand;
-                Quantity = product.Quantity;
+                var product = Products.ElementAt(index);
+                if (product != null)
+                {
+                    Name = product.Name;
+                    Description = product.Description;
+                    Price = product.Price;
+                    Brand = product.Brand;
+                    Quantity = product.Quantity;
+                    var pom = product.Categories.SingleOrDefault();
+                    if(pom != null)
+                    Category = pom.Name;
+                }
             }
         }
 
@@ -145,14 +166,14 @@ namespace SklepWPF.ViewModels
         {
             get
             {
-                return new RelayCommand(p => UpdateSelectedProduct((int)p));
+                return new RelayCommand(p => UpdateSelectedProduct((int)p), p => IsProductValid());
             }
         }
 
         public void UpdateSelectedProduct(int index)
         {
-            var product = Products.Where(p => p.Id == (index + 1)).FirstOrDefault();
-            if(product != null)
+            var product = Products.ElementAt(index);
+            if (product != null)
             {
                 //wyciągnięcie ID produktu obecnego na liście
                 productId = product.Id;
@@ -164,6 +185,9 @@ namespace SklepWPF.ViewModels
                 product2.Brand = Brand;
                 product2.Price = Price;
                 product2.Quantity = Quantity;
+
+                var cat = _db.Categories.Where(p => p.Name == Category).ToList();
+                product2.Categories = cat;
 
                 _db.SaveChanges();
                 LoadData();
@@ -180,7 +204,7 @@ namespace SklepWPF.ViewModels
 
         public void DeleteSelectedProduct(int index)
         {
-            var product = Products.Where(p => p.Id == (index + 1)).FirstOrDefault();
+            var product = Products.ElementAt(index);
             if (product != null)
             {
                 //wyciągnięcie ID produktu obecnego na liście
@@ -188,6 +212,7 @@ namespace SklepWPF.ViewModels
                 var product2 = _db.Products.Find(productId);
                 _db.Products.Remove(product2);
 
+                _db.SaveChanges();
                 LoadData();
             }
         }
@@ -196,18 +221,75 @@ namespace SklepWPF.ViewModels
         {
             get
             {
-                return new RelayCommand(p => AddNewProduct(Name, Description, Price, Brand, Quantity));
+                return new RelayCommand(p => AddNewProduct(Name, Description, Price, Brand, Quantity, Category));
             }
         }
 
-        public void AddNewProduct(string name, string description, string price, string brand, int quantity)
+        public void AddNewProduct(string name, string description, string price, string brand, int quantity, string category)
         {
-            var newProduct = new Product(name, description, price, brand, quantity);
+            var cat = _db.Categories.Where(p => p.Name == category).SingleOrDefault();
+            var newProduct = new Product(name, description, price, brand, quantity, cat);
 
             _db.Products.Add(newProduct);
             _db.SaveChanges();
 
             LoadData();
+        }
+
+        private bool IsProductValid()
+        {
+            if (String.IsNullOrEmpty(Name) ||
+                String.IsNullOrEmpty(Description) ||
+                String.IsNullOrEmpty(Price) ||
+                String.IsNullOrEmpty(Brand))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public ICommand SortProductListCommand
+        {
+            get
+            {
+                return new RelayCommand(p => SortProductList((int)p));
+            }
+        }
+
+        public void SortProductList(int index)
+        {
+            List<Product> products;
+            switch(index)
+            {
+                case (int)ProductListSortingProducts.NameAsc:
+                    products = Products.OrderBy(p => p.Name).ToList();
+                    break;
+                case (int)ProductListSortingProducts.NameDesc:
+                    products = Products.OrderByDescending(p => p.Name).ToList();
+                    break;
+                case (int)ProductListSortingProducts.PrizeAsc:
+                    products = Products.OrderBy(p => p.Price).ToList();
+                    break;
+                case (int)ProductListSortingProducts.PrizeDesc:
+                    products = Products.OrderByDescending(p => p.Price).ToList();
+                    break;
+                case (int)ProductListSortingProducts.QuantityAsc:
+                    products = Products.OrderBy(p => p.Quantity).ToList();
+                    break;
+                case (int)ProductListSortingProducts.QunatityDesc:
+                    products = Products.OrderByDescending(p => p.Quantity).ToList();
+                    break;
+                default:
+                    products = _products.ToList();
+                    break;
+            }
+
+            Products.Clear();
+            foreach(Product p in products)
+            {
+                Products.Add(p);
+            }
         }
 
         public int Page
@@ -263,15 +345,73 @@ namespace SklepWPF.ViewModels
 
         }
 
+        public ICommand QueryByCategoriesCommand
+        {
+            get
+            {
+                return new RelayCommand(p => QueryByCategories((string)p));
+            }
+        }
+
+        private void QueryByCategories(string categoryName)
+        {
+            Page = 1;
+            var alreadyInCategories = ChosenCategories
+                .Where(x => x.Name == categoryName)
+                .SingleOrDefault();
+
+            if (alreadyInCategories == null)
+            {
+
+                var category = _db.Categories
+                    .Where(x => x.Name == categoryName)
+                    .SingleOrDefault();
+
+                ChosenCategories.Add(category);
+            }
+            else
+            {
+                ChosenCategories.Remove(alreadyInCategories);
+            }
+
+
+            Search();
+        }
+
+        private void Search()
+        {
+
+            Page = 1;
+
+            _products = _db.Products
+                .Include(x => x.Categories)
+                .ToList();
+
+            if (ChosenCategories.Count > 0)
+            {
+                _products = _products
+                       .Where(x => x.Categories.Any(y => ChosenCategories.Contains(y)))
+                       .ToList();
+            }
+
+            if (!string.IsNullOrWhiteSpace(Query))
+                _products = _products.Where(x => x.Name.ToLower().
+                     Contains(Query.ToLower()) ||
+                      x.Description.ToLower().Contains(Query.ToLower()))
+                    .ToList();
+
+            RefreshProducts(_products);
+        }
+
         private void LoadData()
         {
-            _products = _db.Products.ToList();
+            _products = _db.Products.Include(c => c.Categories).ToList();
             RefreshProducts(_products);
 
 
             var categories = _db.Categories.ToList();
+            Categories.Clear();
             foreach (var item in categories) Categories.Add(item);
-
         }
 
         private void RefreshProducts(ICollection<Product> products)

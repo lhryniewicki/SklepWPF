@@ -80,7 +80,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Image  Width="80" VerticalAlignment="Center"></Image>
-                <Button Name="clientListButton" Grid.Column="1" Margin="30,60" Width="130" Height="35">Lista Klientów</Button>
+                <Button Name="clientListButton" Grid.Column="1" Margin="30,60" Width="130" Height="35" Command="{Binding UserListCommand}">Lista Klientów</Button>
             </Grid>
 
             <Grid Grid.Column="2">

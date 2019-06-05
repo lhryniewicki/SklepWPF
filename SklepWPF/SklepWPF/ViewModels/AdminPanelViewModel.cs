@@ -23,5 +23,18 @@ namespace SklepWPF.ViewModels
         {
             ApplicationViewModel.Instance.CurrentPageViewModel = new ProductListViewModel();
         }
+
+        public ICommand UserListCommand
+        {
+            get
+            {
+                return new RelayCommand(p => UserList());
+            }
+        }
+
+        public void UserList()
+        {
+            ApplicationViewModel.Instance.CurrentPageViewModel = new ClientListViewModel();
+        }
     }
 }

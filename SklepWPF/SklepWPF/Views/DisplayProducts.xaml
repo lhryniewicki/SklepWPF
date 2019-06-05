@@ -52,7 +52,6 @@
                  Command="{Binding DataContext.QueryByCategoriesCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" FlowDirection="RightToLeft" />
                 </DataTemplate>
             </ListBox.Resources>
-
         </ListBox>
 
 

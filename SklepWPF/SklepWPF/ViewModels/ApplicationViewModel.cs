@@ -49,8 +49,6 @@ namespace SklepWPF.ViewModels
                 new MessageBoxViewModel { Name = "MessageBox" },
 
                 new AdminPanelViewModel { Name = "AdminPanel" },
-
-                new ProductListViewModel { Name = "ProductList" }
             };
 
 

@@ -1,58 +1,71 @@
-﻿<Window x:Class="SklepWPF.Views.ClientList"
+﻿<UserControl x:Class="SklepWPF.Views.ClientList"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SklepWPF"
-             xmlns:vm = "clr-namespace:SklepWPF.ViewModels" 
+                xmlns:local="clr-namespace:SklepWPF.Views"
+                   xmlns:vm = "clr-namespace:SklepWPF.ViewModels"
+                   xmlns:all="clr-namespace:SklepWPF"
+                   xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                   xmlns:data="clr-namespace:SklepWPF.Models"
+             xmlns:enums = "clr-namespace:SklepWPF.Enums"
         mc:Ignorable="d"
-        Title="ListaKlientow" Height="450" Width="800">
+        Height="450" Width="800">
+
+    <UserControl.DataContext>
+        <vm:ClientListViewModel/>
+    </UserControl.DataContext>
+
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
 
-        <Grid Grid.Column="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition Height="auto"/>
-            </Grid.RowDefinitions>
+        <Label Grid.Row="0" FontFamily="Verdana" FontSize="20" Margin="0,10" VerticalAlignment="Top" HorizontalContentAlignment="Center">Lista zarejestrowanych użytkowników</Label>
 
-            <Label Grid.Row="0" FontFamily="Verdana" FontSize="25" Margin="0,10" VerticalAlignment="Top" HorizontalContentAlignment="Center">Filtry</Label>
-            <ComboBox SelectedIndex="0" Grid.Row="1" Width="200" Height="35" VerticalContentAlignment="Center" FontSize="18">
-                <ComboBoxItem >Bez filtrów</ComboBoxItem>
-                <ComboBoxItem >Imie</ComboBoxItem>
-                <ComboBoxItem >Nazwisko</ComboBoxItem>
-                <ComboBoxItem >Email</ComboBoxItem>
-            </ComboBox>
-            <ComboBox SelectedIndex="0" Grid.Row="2" Width="200" Height="35" VerticalContentAlignment="Center" FontSize="18">
-                <ComboBoxItem >Bez sortowania</ComboBoxItem>
-                <ComboBoxItem >Rosnąco</ComboBoxItem>
-                <ComboBoxItem >Malejąco</ComboBoxItem>
-            </ComboBox>
+        <ComboBox SelectedIndex="0" Grid.Row="1" ItemsSource="{Binding Source={enums:EnumBindingSource {x:Type enums:ClientListSortingClients}}}" SelectedItem="{Binding SortedClients}" Width="200" Height="35"
+                  VerticalContentAlignment="Center" HorizontalAlignment="Right" Margin="15,0" FontSize="18">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding SortClientListCommand}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ComboBox}, Path=SelectedIndex}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </ComboBox>
 
-            <Grid Grid.Row="3">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
+        <ListBox Grid.Row="2" Name="osobyListBox" Grid.Column="1" FontSize="18" Margin="15" ItemsSource="{Binding Users}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
 
-                <Button Grid.Column="0"  FontSize="20" Width="150" Height="35" Margin="20,10">Filtruj</Button>
-                <Button Grid.Column="1"  FontSize="20" Width="150" Height="35" Margin="20,10">Usuń Filtry</Button>
-            </Grid>
-        </Grid>
+                        <!--<Image DockPanel.Dock="Right"></Image>-->
+                        <Label Grid.Column="0" Width="243" Content="{Binding Nickname}"></Label>
+                        <Label Grid.Column="1" Width="75" Content="{Binding Name}"></Label>
+                        <Label Grid.Column="2" Width="75" Content="{Binding Surname}"></Label>
+                        <Label Grid.Column="2" Width="75" Content="{Binding Eamil}"></Label>
+                        <Label Grid.Column="2" Width="75" Content="{Binding PhoneNumber}"></Label>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
 
-        <Grid Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition Height="auto"/>
-            </Grid.RowDefinitions>
-            <ListBox Grid.Row="0" Name="osobyListBox" Grid.Column="1" FontSize="18"></ListBox>
-            <Button Grid.Row="1" Name="powrotZEdycji" Grid.Column="0" FontSize="20" Width="150" Height="35" Margin="20,10">Powrót</Button>
-        </Grid>
+        <StackPanel Orientation="Horizontal" Grid.Row="3">
+            <Button Command="{Binding PreviousPageCommand, Mode=OneWay}" HorizontalContentAlignment="Right" Padding="5" Margin="130,15,10,15" Grid.Column="0" Grid.Row="3">Poprzednia</Button>
+            <Label Margin="3" FontSize="30" HorizontalAlignment="Right" DockPanel.Dock="Right" Content="{Binding Page, Mode=OneWay}"  ></Label>
+            <Button  HorizontalContentAlignment="Left" Margin="10,15,150,15" Grid.Column="1" Grid.Row="3" Command="{Binding NextPageCommand, Mode=OneWay}">Następna</Button>
+
+        </StackPanel>
+
+        <Button Grid.Row="4" Name="powrotZEdycji" Grid.Column="0" FontSize="20" Width="150" Height="35" Margin="20,10">Powrót</Button>
 
     </Grid>
-</Window>
+</UserControl>

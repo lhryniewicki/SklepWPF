@@ -47,6 +47,9 @@
             <local:ProductList />
         </DataTemplate>
 
+        <DataTemplate DataType="{x:Type vm:ClientListViewModel}">
+            <local:ClientList />
+        </DataTemplate>
     </Window.Resources>
 
     <Grid>
