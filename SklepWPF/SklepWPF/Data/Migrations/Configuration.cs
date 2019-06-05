@@ -30,76 +30,121 @@
 			_db.Categories.AddOrUpdate(carCategory);
 			_db.Categories.AddOrUpdate(bookCategory);
 
+            User user1 = new User
+            {
+                Id = 1,
+                Name = "Kamil",
+                Surname = "Kapliński",
+                Nickname = "Kamil",
+                PhoneNumber = "781787771",
+                City = "Białystok",
+                Email = "123",
+                Password = "123",
+                PostalCode = "111",
+                PaymentMethod = Enums.PaymentMethod.ByCash,
+                StreetName = "123",
+                IsAdmin = true
+            };
+
+            User user2 = new User
+            {
+                Id = 2,
+                Name = "Mati",
+                Surname = "Kapliński",
+                Nickname = "Mati",
+                PhoneNumber = "781787771",
+                City = "Białystok",
+                Email = "123",
+                Password = "123",
+                PostalCode = "111",
+                PaymentMethod = Enums.PaymentMethod.ByCash,
+                StreetName = "123",
+                IsAdmin = true
+            };
+
+            User user3 = new User
+            {
+                Id = 3,
+                Name = "Łukasz",
+                Surname = "Kapliński",
+                Nickname = "Łukasz",
+                PhoneNumber = "781787771",
+                City = "Białystok",
+                Email = "123",
+                Password = "123",
+                PostalCode = "111",
+                PaymentMethod = Enums.PaymentMethod.ByCash,
+                StreetName = "123"
+            };
+
+            _db.Users.AddOrUpdate(user1);
+            _db.Users.AddOrUpdate(user2);
+            _db.Users.AddOrUpdate(user3);
+
             _db.Messages.AddOrUpdate(new Message
             {
                 Id = 1,
-                AuthorId = 1,
-                ReceiverId = 2,
+                AuthorId = 3,
+                Receivers = new List<User> { user1, user2 },
                 Title = "sranie do mordy",
-                AuthorFullName = "Kamil Kapliński",
-                ReceiverFullName = "Mateusz Surynowicz",
                 Content = "lalalal",
-                Created = new DateTime(2012, 1, 11)
+                Created = new DateTime(2012, 1, 11),
+                AuthorFullName = "Łukasz Hryniewicki"
             });
 
             _db.Messages.AddOrUpdate(new Message
             {
                 Id = 2,
-                AuthorId = 1,
-                ReceiverId = 2,
+                AuthorId = 3,
+                Receivers = new List<User> { user1, user2 },
                 Title = "sranie do mordy2",
-                AuthorFullName = "Kamil Kapliński",
-                ReceiverFullName = "Mateusz Surynowicz",
                 Content = "lalalaxxxxxxl",
-                Created = new DateTime(2012, 1, 12)
+                Created = new DateTime(2012, 1, 12),
+                AuthorFullName = "Łukasz Hryniewicki"
             });
 
             _db.Messages.AddOrUpdate(new Message
             {
                 Id = 3,
-                AuthorId = 1,
-                ReceiverId = 2,
+                AuthorId = 3,
+                Receivers = new List<User> { user1, user2 },
                 Title = "sranie do mordy3",
-                AuthorFullName = "Kamil Kapliński",
-                ReceiverFullName = "Mateusz Surynowicz",
                 Content = "lalasadfsdasdasdlal",
-                Created = new DateTime(2012, 1, 14)
+                Created = new DateTime(2012, 1, 14),
+                AuthorFullName = "Łukasz Hryniewicki"
             });
 
             _db.Messages.AddOrUpdate(new Message
             {
                 Id = 4,
-                AuthorId = 1,
-                ReceiverId = 2,
+                AuthorId = 3,
+                Receivers = new List<User> { user1, user2 },
                 Title = "sranie do mordy4",
-                AuthorFullName = "Kamil Kapliński",
-                ReceiverFullName = "Mateusz Surynowicz",
                 Content = "lalalasdsadasddwwal",
-                Created = new DateTime(2012, 1, 17)
+                Created = new DateTime(2012, 1, 17),
+                AuthorFullName = "Łukasz Hryniewicki"
             });
 
             _db.Messages.AddOrUpdate(new Message
             {
                 Id = 5,
-                AuthorId = 1,
-                ReceiverId = 2,
+                AuthorId = 3,
+                Receivers = new List<User> { user1, user2 },
                 Title = "sranie do mordy5",
-                AuthorFullName = "Kamil Kapliński",
-                ReceiverFullName = "Mateusz Surynowicz",
                 Content = "lalalawdwdqdqwdqwal",
-                Created = new DateTime(2012, 1, 16)
+                Created = new DateTime(2012, 1, 16),
+                AuthorFullName = "Łukasz Hryniewicki"
             });
 
             _db.Messages.AddOrUpdate(new Message
             {
                 Id = 6,
-                AuthorId = 1,
-                ReceiverId = 2,
+                AuthorId = 3,
+                Receivers = new List<User> { user1, user2 },
                 Title = "sranie do mordy6",
-                AuthorFullName = "Kamil Kapliński",
-                ReceiverFullName = "Mateusz Surynowicz",
                 Content = "lalalaasdasdasasdasdasdasdl",
-                Created = new DateTime(2012, 1, 18)
+                Created = new DateTime(2012, 1, 18),
+                AuthorFullName = "Łukasz Hryniewicki"
             });
 
             _db.Products.AddOrUpdate(new Product {

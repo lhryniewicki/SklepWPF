@@ -27,6 +27,7 @@ namespace SklepWPF.Models
 		[Required]
 		public string PostalCode { get; set; }
         public string PhoneNumber { get; set; }
+        public bool IsAdmin { get; set; }
         [Required]
         public PaymentMethod PaymentMethod { get; set; }
         public ICollection<Message> SentMessages { get; set; }
