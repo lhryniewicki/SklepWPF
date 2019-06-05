@@ -89,15 +89,6 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-
-                <Image Grid.Row="0"  Width="80"></Image>
-                <Image Grid.Row="1"  Width="80"></Image>
-                <Button Grid.Column="1" Grid.Row="0" Width="130" Height="35" VerticalContentAlignment="Center">Wysłane Wiadomości</Button>
-                <Button Grid.Column="1" Grid.Row="1" Width="130" Height="35" VerticalContentAlignment="Center">Odebrane Wiadomości</Button>
             </Grid>
         </Grid>
 

@@ -24,5 +24,19 @@ namespace SklepWPF.Models
 		public ICollection<User> InUserCart { get; set; }
         public ICollection<User> ObservingUsers { get; set; }
         public ICollection<OrderProduct> Orders { get; set; }
+
+        public Product()
+        {
+
+        }
+
+        public Product(string name, string description, string price, string brand, int quantity)
+        {
+            Name = name;
+            Description = description;
+            Price = price;
+            Brand = brand;
+            Quantity = quantity;
+        }
     }
 }
