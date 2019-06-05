@@ -33,18 +33,18 @@ namespace SklepWPF.ViewModels
 
 		public ApplicationViewModel()
 		{
-			PageViewModels = new List<IPageViewModel>
-			{
+            PageViewModels = new List<IPageViewModel>
+            {
 				// Add available pages
 				new ProductsViewModel { Name = "Products" },
 
-				new LoginViewModel { Name = "Login" },
+                new LoginViewModel { Name = "Login" },
 
-				new RegisterViewModel { Name = "Register" },
+                new RegisterViewModel { Name = "Register" },
 
-				new CartViewModel { Name = "Cart" },
+                new CartViewModel { Name = "Cart" },
 
-				new ClientPanelViewModel { Name = "Account" },
+                new ClientPanelViewModel { Name = "Account" },
 
                 new MessageBoxViewModel { Name = "MessageBox" },
 

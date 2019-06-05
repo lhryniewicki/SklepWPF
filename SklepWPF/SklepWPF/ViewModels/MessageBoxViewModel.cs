@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
 using System.Windows.Input;
 
 namespace SklepWPF.ViewModels
@@ -140,26 +139,28 @@ namespace SklepWPF.ViewModels
         {
             foreach (Message m in selectedMessages)
             {
+                var _message = _db.Messages.Include(msg => msg.Receivers).SingleOrDefault(msg => msg.Id == m.Id);
+
                 if (DisplayedMessages == MessageDisplay.Sent)
                 {
-                    if (m.ReceiverId == null)
+                    if (_message.Receivers.Count == 0)
                     {
                         _db.Messages.Remove(m);
                     }
                     else
                     {
-                        m.Author = null;
+                        _message.Author = null;
                     }
                 }
                 else
                 {
-                    if (m.AuthorId == null)
+                    if (_message.Receivers.Count == 1 && m.AuthorId == null)
                     {
                         _db.Messages.Remove(m);
                     }
                     else
                     {
-                        m.Receiver = null;
+                        _message.Receivers.Remove(_db.Users.Find(userId));
                     }
                 }
 
@@ -184,24 +185,32 @@ namespace SklepWPF.ViewModels
             ICollection<Message> messages;
             List<Message> dbRemovedMessages = new List<Message>();
 
-            var user = _db.Users.Where(n => n.Name == RunTimeInfo.Instance.Username);
+            var user = _db.Users.SingleOrDefault(n => n.Name == RunTimeInfo.Instance.Username);
 
             if (DisplayedMessages == MessageDisplay.Sent)
             {
-                messages = user.Include(m => m.SentMessages).SingleOrDefault().SentMessages;
+                messages = _db.Messages.Where(a => a.AuthorId == user.Id).ToList();
             }
             else
             {
-                messages = user.Include(m => m.SentMessages).SingleOrDefault().ReceivedMessages;
+                messages = _db.Messages.Include(r => r.Receivers).Where(r => r.Receivers.Any(u => u.Id == userId)).ToList();
             }
 
             if (messages != null)
             {
                 foreach (Message m in messages)
                 {
-                    if (m.AuthorId == null || m.ReceiverId == null)
+                    if (m.Receivers.Count == 0 || (m.AuthorId == null && m.Receivers.Count == 1))
                     {
                         dbRemovedMessages.Add(m);
+                    }
+                    else if (DisplayedMessages == MessageDisplay.Sent)
+                    {
+                        m.AuthorId = null;
+                    }
+                    else
+                    {
+                        m.Receivers.Remove(user);
                     }
                 }
 
@@ -225,7 +234,7 @@ namespace SklepWPF.ViewModels
             }
             else
             {
-                messages = _db.Messages.Where(m => m.ReceiverId == userId);
+                messages = _db.Messages.Where(m => m.Receivers.Any(u => u.Id == userId));
             }
 
             if (!String.IsNullOrEmpty(MessageSearchQuery))
@@ -233,7 +242,7 @@ namespace SklepWPF.ViewModels
                 messages = messages.Where(m => m.Title.Contains(MessageSearchQuery));
             }
 
-            var _messages = messages.OrderBy(d => d.Created).Skip((messagePage - 1) * messagePageSize)
+            var _messages = messages.OrderBy(d => d.Created).ThenBy(s => s.Seen).Skip((messagePage - 1) * messagePageSize)
                     .Take(messagePageSize + 1).ToList();
 
             if (_messages.Count == messagePageSize + 1)
@@ -251,6 +260,37 @@ namespace SklepWPF.ViewModels
             {
                 Messages.Add(_messages[i]);
             }
+        }
+
+        public ICommand DisplayMessageCommand
+        {
+            get
+            {
+                return new RelayCommand(p => DisplayMessage((Message)p));
+            }
+        }
+
+        private void DisplayMessage(Message message)
+        {
+            if(message.AuthorId != userId)
+            {
+                message.Seen = true;
+                _db.SaveChanges();
+            }
+            ApplicationViewModel.Instance.CurrentPageViewModel = new DisplayMessageViewModel(message);
+        }
+
+        public ICommand CreateMessageCommand
+        {
+            get
+            {
+                return new RelayCommand(p => CreateMessage());
+            }
+        }
+        
+        private void CreateMessage()
+        {
+            ApplicationViewModel.Instance.CurrentPageViewModel = new CreateMessageViewModel();
         }
     }
 }

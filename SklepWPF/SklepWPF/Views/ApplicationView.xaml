@@ -39,6 +39,14 @@
             <local:MessageBox />
         </DataTemplate>
 
+        <DataTemplate DataType="{x:Type vm:DisplayMessageViewModel}">
+            <local:DisplayMessage />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vm:CreateMessageViewModel}">
+            <local:CreateMessage />
+        </DataTemplate>
+
         <DataTemplate DataType="{x:Type vm:AdminPanelViewModel}">
             <local:AdminPanel />
         </DataTemplate>

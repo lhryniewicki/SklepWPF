@@ -46,6 +46,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -102,6 +104,14 @@
     <Compile Include="Data\Migrations\201906012152334_AddedObservedProductsAndOrderModification.Designer.cs">
       <DependentUpon>201906012152334_AddedObservedProductsAndOrderModification.cs</DependentUpon>
     </Compile>
+    <Compile Include="Data\Migrations\201906051853490_MessageModification.cs" />
+    <Compile Include="Data\Migrations\201906051853490_MessageModification.Designer.cs">
+      <DependentUpon>201906051853490_MessageModification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Migrations\201906051920127_AddedIsAdminFieldToUser.cs" />
+    <Compile Include="Data\Migrations\201906051920127_AddedIsAdminFieldToUser.Designer.cs">
+      <DependentUpon>201906051920127_AddedIsAdminFieldToUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Data\MyDbContext.cs" />
     <Compile Include="Enums\EnumBindingSourceExtension.cs" />
     <Compile Include="Enums\EnumDescriptionTypeConverter.cs" />
@@ -124,6 +134,8 @@
     <Compile Include="ViewModels\CartViewModel.cs" />
     <Compile Include="ViewModels\ClientListViewModel.cs" />
     <Compile Include="ViewModels\ClientPanelViewModel.cs" />
+    <Compile Include="ViewModels\CreateMessageViewModel.cs" />
+    <Compile Include="ViewModels\DisplayMessageViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MessageBoxViewModel.cs" />
     <Compile Include="ViewModels\ProductDetailsViewModel.cs" />
@@ -144,6 +156,12 @@
     </Compile>
     <Compile Include="Views\AdminPanel.xaml.cs">
       <DependentUpon>AdminPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateMessage.xaml.cs">
+      <DependentUpon>CreateMessage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DisplayMessage.xaml.cs">
+      <DependentUpon>DisplayMessage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DisplayProducts.xaml.cs">
       <DependentUpon>DisplayProducts.xaml</DependentUpon>
@@ -192,6 +210,14 @@
     <Page Include="Views\AdminPanel.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\CreateMessage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DisplayMessage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\DisplayProducts.xaml">
       <SubType>Designer</SubType>
@@ -266,6 +292,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Data\Migrations\201906012152334_AddedObservedProductsAndOrderModification.resx">
       <DependentUpon>201906012152334_AddedObservedProductsAndOrderModification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Data\Migrations\201906051853490_MessageModification.resx">
+      <DependentUpon>201906051853490_MessageModification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Data\Migrations\201906051920127_AddedIsAdminFieldToUser.resx">
+      <DependentUpon>201906051920127_AddedIsAdminFieldToUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

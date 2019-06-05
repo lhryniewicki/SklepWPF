@@ -31,12 +31,12 @@ namespace SklepWPF.Data
             modelBuilder.Entity<Message>()
                 .HasOptional(a => a.Author)
                 .WithMany(u => u.SentMessages)
-                .HasForeignKey(a => a.AuthorId);
+                .HasForeignKey(a => a.AuthorId)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Message>()
-                .HasOptional(r => r.Receiver)
-                .WithMany(u => u.ReceivedMessages)
-                .HasForeignKey(r => r.ReceiverId);
+                .HasMany(r => r.Receivers)
+                .WithMany(rm => rm.ReceivedMessages);
 
             modelBuilder.Entity<User>()
                 .HasMany(o => o.Orders)
