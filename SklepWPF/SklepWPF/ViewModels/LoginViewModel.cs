@@ -43,9 +43,8 @@ namespace SklepWPF.ViewModels
 		private void Login( string username,  PasswordBox passwordBox)
 		{
 			var user = _db.Users
-				.Where(x => x.Nickname == username &&
-				x.Password == passwordBox.Password)
-				.SingleOrDefault();
+				.SingleOrDefault(x => x.Nickname == username &&
+				x.Password == passwordBox.Password);
 
 			if (user == null) return;
 			else

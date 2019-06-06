@@ -62,8 +62,7 @@ namespace SklepWPF.ViewModels
 		private bool IsValid(PasswordBox passwordBox)
 		{
 			var isNicknameTaken = _db.Users
-				.Where(x => x.Nickname == Nickname)
-				.SingleOrDefault();
+				.SingleOrDefault(x => x.Nickname == Nickname);
 
 			if (isNicknameTaken != null) return false;
 

@@ -103,8 +103,7 @@ namespace SklepWPF.ViewModels
 		private void ChangeViewModel(string name)
 		{
 			CurrentPageViewModel = PageViewModels
-				.Where(x => x.Name == name)
-				.SingleOrDefault();
+				.SingleOrDefault(x => x.Name == name);
 		}
 
 		public bool IsUserLogged
