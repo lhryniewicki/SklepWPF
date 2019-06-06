@@ -18,6 +18,7 @@ namespace SklepWPF.Data
 		}
 
 		public DbSet<User> Users { get; set; }
+		public DbSet<UserCart> UsersCart { get; set; }
 		public DbSet<Category> Categories { get; set; }
 		public DbSet<Product> Products { get; set; }
         public DbSet<Message> Messages { get; set; }
@@ -26,7 +27,22 @@ namespace SklepWPF.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Message>()
+			modelBuilder.Entity<UserCart>()
+				.HasKey(x => new { x.ProductId, x.UserId });
+
+			modelBuilder.Entity<UserCart>()
+				.HasRequired(x => x.Product)
+				.WithMany(x => x.InUserCart)
+				.HasForeignKey(x => x.ProductId);
+
+			modelBuilder.Entity<UserCart>()
+				.HasRequired(x => x.User)
+				.WithMany(x => x.Cart)
+				.HasForeignKey(x => x.UserId);
+
+
+
+			modelBuilder.Entity<Message>()
                 .HasMany(s => s.Senders)
                 .WithMany(u => u.SentMessages);
 
