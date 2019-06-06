@@ -10,7 +10,7 @@
                    xmlns:data="clr-namespace:SklepWPF.Models"
                    xmlns:enums = "clr-namespace:SklepWPF.Enums"
         mc:Ignorable="d"
-        Height="450" Width="800">
+        d:DesignHeight="600" d:DesignWidth="800">
 
     <UserControl.DataContext>
         <vm:OrderViewModel/>

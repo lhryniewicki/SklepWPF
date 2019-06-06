@@ -9,7 +9,7 @@
                    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
                    xmlns:data="clr-namespace:SklepWPF.Models"
         mc:Ignorable="d"
-         Height="450" Width="800">
+        d:DesignHeight="600" d:DesignWidth="800">
 
     <UserControl.DataContext>
         <vm:CartViewModel/>

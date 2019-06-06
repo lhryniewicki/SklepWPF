@@ -10,7 +10,7 @@
                    xmlns:data="clr-namespace:SklepWPF.Models"
              xmlns:enums = "clr-namespace:SklepWPF.Enums"
         mc:Ignorable="d"
-        Height="550" Width="800">
+        d:DesignHeight="600" d:DesignWidth="800">
     
     <UserControl.DataContext>
         <vm:ProductListViewModel/>
@@ -189,9 +189,9 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 
-                <Button Grid.Column="0" Margin="50, 5" FontSize="15" Command="{Binding PreviousPageCommand, Mode=OneWay}">Poprzednia</Button>
+                <Button Grid.Column="0" Margin="50, 10" FontSize="15" Command="{Binding PreviousPageCommand, Mode=OneWay}">Poprzednia</Button>
                 <Label Grid.Column="1" Margin="0, 5"  FontSize="23" Content="{Binding Page, Mode=OneWay}"></Label>
-                <Button Grid.Column="2" Margin="50, 5" FontSize="15" Command="{Binding NextPageCommand, Mode=OneWay}">Następna</Button>
+                <Button Grid.Column="2" Margin="50, 10" FontSize="15" Command="{Binding NextPageCommand, Mode=OneWay}">Następna</Button>
 
             </Grid>
 

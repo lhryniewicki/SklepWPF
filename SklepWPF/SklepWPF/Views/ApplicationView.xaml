@@ -7,7 +7,7 @@
         xmlns:vm="clr-namespace:SklepWPF.ViewModels"
         xmlns:all="clr-namespace:SklepWPF"
         mc:Ignorable="d"
-        Title="Sklep internetowy" Height="700" Width="600"
+        Title="Sklep internetowy" Height="600" Width="800"
         WindowStartupLocation="CenterScreen"
 >
     <Window.Resources>

@@ -8,7 +8,7 @@
       mc:Ignorable="d" 
       xmlns:vm = "clr-namespace:SklepWPF.ViewModels"
       xmlns:all="clr-namespace:SklepWPF"
-      d:DesignHeight="700" d:DesignWidth="600">
+      d:DesignHeight="600" d:DesignWidth="800">
 
     <UserControl.DataContext>
         <vm:ProductsViewModel/>
@@ -25,10 +25,10 @@
             <ColumnDefinition Width="2*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.035*" />
-            <RowDefinition Height="0.08*" />
-            <RowDefinition Height="0.9*" />
-            <RowDefinition Height="0.1*" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
         <!--<Image Grid.Column="0" Grid.Row="1" Source=""></Image>-->
         <Label Grid.Column="0" Grid.Row="1" >LOGO PLACEHOLDER</Label>

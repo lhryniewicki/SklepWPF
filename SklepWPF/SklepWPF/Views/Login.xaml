@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:SklepWPF" 
              xmlns:v1="clr-namespace:SklepWPF.Views"
              mc:Ignorable="d"
-             Height="200" Width="400">
+             d:DesignHeight="600" d:DesignWidth="800">
 
     <UserControl.DataContext>
         <vm:LoginViewModel/>
@@ -17,8 +17,8 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"></ColumnDefinition>

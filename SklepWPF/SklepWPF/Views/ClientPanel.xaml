@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         xmlns:vm = "clr-namespace:SklepWPF.ViewModels"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-        Height="600" Width="800">
+        d:DesignHeight="450" d:DesignWidth="800">
 
     <UserControl.DataContext>
         <vm:ClientPanelViewModel/>

@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:SklepWPF"
               xmlns:vm="clr-namespace:SklepWPF.ViewModels"
       mc:Ignorable="d" 
-      d:DesignHeight="700" d:DesignWidth="600">
+      d:DesignHeight="600" d:DesignWidth="800">
 
     <Grid>
         <Grid.Resources>
