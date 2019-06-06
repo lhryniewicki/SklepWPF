@@ -134,9 +134,6 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-
-                <Button Grid.Column="0" FontSize="20" Width="150" Height="35" Margin="20,10">Filtruj</Button>
-                <Button Grid.Column="1" FontSize="20" Width="150" Height="35" Margin="20,10">Usuń Filtry</Button>
             </Grid>
         </Grid>
 
@@ -185,14 +182,20 @@
                 </ListBox.ItemTemplate>
             </ListBox>
 
-            <StackPanel Orientation="Horizontal" Grid.Row="2">
-                <Button Command="{Binding PreviousPageCommand, Mode=OneWay}" HorizontalContentAlignment="Right" Padding="5" Margin="130,15,10,15" Grid.Column="0" Grid.Row="3">Poprzednia</Button>
-                <Label Margin="3" FontSize="30" HorizontalAlignment="Right" DockPanel.Dock="Right" Content="{Binding Page, Mode=OneWay}"  ></Label>
-                <Button  HorizontalContentAlignment="Left" Margin="10,15,150,15" Grid.Column="1" Grid.Row="3" Command="{Binding NextPageCommand, Mode=OneWay}">Następna</Button>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                
+                <Button Grid.Column="0" Margin="50, 5" FontSize="15" Command="{Binding PreviousPageCommand, Mode=OneWay}">Poprzednia</Button>
+                <Label Grid.Column="1" Margin="0, 5"  FontSize="23" Content="{Binding Page, Mode=OneWay}"></Label>
+                <Button Grid.Column="2" Margin="50, 5" FontSize="15" Command="{Binding NextPageCommand, Mode=OneWay}">Następna</Button>
 
-            </StackPanel>
+            </Grid>
 
-            <Button Grid.Row="3" Name="powrotZEdycji" Grid.Column="0" FontSize="20" Width="150" Height="35" Margin="20,10">Powrót</Button>
+            <Button Grid.Row="3" Name="powrotZEdycji" Grid.Column="0" FontSize="20" Width="150" Height="35" Margin="20,10" Command="{Binding BackCommand}">Powrót</Button>
         </Grid>
 
     </Grid>

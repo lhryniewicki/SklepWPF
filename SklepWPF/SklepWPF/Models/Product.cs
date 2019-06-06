@@ -14,7 +14,7 @@ namespace SklepWPF.Models
 		[Required]
 		public string Description { get; set; }
 		[Required]
-		public string Price { get; set; }
+		public double Price { get; set; }
 		[Required]
 		public string Brand { get; set; }
 		[Required]
@@ -30,7 +30,7 @@ namespace SklepWPF.Models
 
         }
 
-        public Product(string name, string description, string price, string brand, int quantity, Category category)
+        public Product(string name, string description, double price, string brand, int quantity, Category category)
         {
             Name = name;
             Description = description;

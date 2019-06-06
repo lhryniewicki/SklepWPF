@@ -25,7 +25,7 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" FontFamily="Verdana" FontSize="20" Margin="0,10" VerticalAlignment="Top" HorizontalContentAlignment="Center">Lista zarejestrowanych użytkowników</Label>
+        <Label Grid.Row="0" FontFamily="Verdana" FontSize="20" FontWeight="Bold" Margin="0,10" VerticalAlignment="Top" HorizontalContentAlignment="Center">Lista zarejestrowanych użytkowników</Label>
 
         <ComboBox SelectedIndex="0" Grid.Row="1" ItemsSource="{Binding Source={enums:EnumBindingSource {x:Type enums:ClientListSortingClients}}}" SelectedItem="{Binding SortedClients}" Width="200" Height="35"
                   VerticalContentAlignment="Center" HorizontalAlignment="Right" Margin="15,0" FontSize="18">
@@ -36,7 +36,7 @@
             </i:Interaction.Triggers>
         </ComboBox>
 
-        <ListBox Grid.Row="2" Name="osobyListBox" Grid.Column="1" FontSize="18" Margin="15" ItemsSource="{Binding Users}">
+        <ListBox Grid.Row="2" Name="osobyListBox" Grid.Column="1" FontSize="15" Margin="15" ItemsSource="{Binding Users}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>
@@ -49,24 +49,30 @@
                         </Grid.ColumnDefinitions>
 
                         <!--<Image DockPanel.Dock="Right"></Image>-->
-                        <Label Grid.Column="0" Margin="10" Content="{Binding Nickname}"></Label>
-                        <Label Grid.Column="1" Margin="10" Content="{Binding Name}"></Label>
-                        <Label Grid.Column="2" Margin="10" Content="{Binding Surname}"></Label>
-                        <Label Grid.Column="3" Margin="10" Content="{Binding Email}"></Label>
-                        <Label Grid.Column="4" Margin="10" Content="{Binding PhoneNumber}"></Label>
+                        <Label Grid.Column="0" Margin="5, 0" Content="{Binding Nickname}"></Label>
+                        <Label Grid.Column="1" Margin="5, 0" Content="{Binding Name}"></Label>
+                        <Label Grid.Column="2" Margin="5, 0" Content="{Binding Surname}"></Label>
+                        <Label Grid.Column="3" Margin="5, 0" Content="{Binding Email}"></Label>
+                        <Label Grid.Column="4" Margin="5, 0" Content="{Binding PhoneNumber}"></Label>
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="3">
-            <Button Command="{Binding PreviousPageCommand, Mode=OneWay}" HorizontalContentAlignment="Right" Padding="5" Margin="130,15,10,15" Grid.Column="0" Grid.Row="3">Poprzednia</Button>
-            <Label Margin="3" FontSize="30" HorizontalAlignment="Right" DockPanel.Dock="Right" Content="{Binding Page, Mode=OneWay}"  ></Label>
-            <Button  HorizontalContentAlignment="Left" Margin="10,15,150,15" Grid.Column="1" Grid.Row="3" Command="{Binding NextPageCommand, Mode=OneWay}">Następna</Button>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
 
-        </StackPanel>
+            <Button Grid.Column="0" Margin="125, 5" FontSize="15" Command="{Binding PreviousPageCommand, Mode=OneWay}">Poprzednia</Button>
+            <Label Grid.Column="1" Margin="0, 5"  FontSize="23" Content="{Binding Page, Mode=OneWay}"></Label>
+            <Button Grid.Column="2" Margin="125, 5" FontSize="15" Command="{Binding NextPageCommand, Mode=OneWay}">Następna</Button>
 
-        <Button Grid.Row="4" Name="powrotZEdycji" Grid.Column="0" FontSize="20" Width="150" Height="35" Margin="20,10">Powrót</Button>
+        </Grid>
+
+        <Button Grid.Row="4" Name="powrotZEdycji" Grid.Column="0" FontSize="20" Width="150" Height="35" Margin="20,10" Command="{Binding BackCommand}">Powrót</Button>
 
     </Grid>
 </UserControl>

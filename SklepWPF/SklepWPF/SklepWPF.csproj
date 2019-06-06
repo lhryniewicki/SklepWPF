@@ -104,9 +104,9 @@
     <Compile Include="Data\Migrations\201906012152334_AddedObservedProductsAndOrderModification.Designer.cs">
       <DependentUpon>201906012152334_AddedObservedProductsAndOrderModification.cs</DependentUpon>
     </Compile>
-    <Compile Include="Data\Migrations\201906061644037_MessageModelModifications2.cs" />
-    <Compile Include="Data\Migrations\201906061644037_MessageModelModifications2.Designer.cs">
-      <DependentUpon>201906061644037_MessageModelModifications2.cs</DependentUpon>
+    <Compile Include="Data\Migrations\201906062017488_MergedMigrations.cs" />
+    <Compile Include="Data\Migrations\201906062017488_MergedMigrations.Designer.cs">
+      <DependentUpon>201906062017488_MergedMigrations.cs</DependentUpon>
     </Compile>
     <Compile Include="Data\Migrations\201906062013324_ManyToManyUserCart.cs" />
     <Compile Include="Data\Migrations\201906062013324_ManyToManyUserCart.Designer.cs">
@@ -139,6 +139,7 @@
     <Compile Include="ViewModels\DisplayMessageViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MessageBoxViewModel.cs" />
+    <Compile Include="ViewModels\OrderViewModel.cs" />
     <Compile Include="ViewModels\ProductDetailsViewModel.cs" />
     <Compile Include="ViewModels\ProductListViewModel.cs" />
     <Compile Include="ViewModels\ProductsViewModel.cs" />
@@ -294,8 +295,8 @@
     <EmbeddedResource Include="Data\Migrations\201906012152334_AddedObservedProductsAndOrderModification.resx">
       <DependentUpon>201906012152334_AddedObservedProductsAndOrderModification.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Data\Migrations\201906061644037_MessageModelModifications2.resx">
-      <DependentUpon>201906061644037_MessageModelModifications2.cs</DependentUpon>
+    <EmbeddedResource Include="Data\Migrations\201906062017488_MergedMigrations.resx">
+      <DependentUpon>201906062017488_MergedMigrations.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Data\Migrations\201906062013324_ManyToManyUserCart.resx">
       <DependentUpon>201906062013324_ManyToManyUserCart.cs</DependentUpon>

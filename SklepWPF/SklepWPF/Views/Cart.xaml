@@ -3,16 +3,50 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SklepWPF"
+        xmlns:local="clr-namespace:SklepWPF.Views"
+                   xmlns:vm = "clr-namespace:SklepWPF.ViewModels"
+                   xmlns:all="clr-namespace:SklepWPF"
+                   xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                   xmlns:data="clr-namespace:SklepWPF.Models"
         mc:Ignorable="d"
          Height="450" Width="800">
+
+    <UserControl.DataContext>
+        <vm:CartViewModel/>
+    </UserControl.DataContext>
+
     <Grid>
+        <Grid.Resources>
+            <all:Proxy x:Key="Proxy" Data="{Binding}" />
+            <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+        </Grid.Resources>
+        
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        
-        <ListBox Grid.Row="0"></ListBox>
+
+        <ListBox Grid.Row="0" Name="cartListBox" FontSize="15" FlowDirection="LeftToRight" ItemsSource="{Binding ProductsInCart}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Column="0" Content="{Binding Name}"/>
+                        <Label Grid.Column="1" Content="{Binding Description}"/>
+                        <Label Grid.Column="2" Content="{Binding Brand}"/>
+                        <Label Grid.Column="3" Content="{Binding Price}"/>
+                        <Button Grid.Column="4" HorizontalAlignment="Right" Background="IndianRed" Command="{Binding Source={StaticResource Proxy}, Path=Data.DeleteFromCartCommand}" CommandParameter="{Binding Id}">USUŃUSUŃUSUŃ</Button>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
         
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -21,11 +55,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" Margin="40,10" Padding="10">Powrót</Button>
-            <Button Grid.Column="1" Margin="40,10" Padding="10">Usuń z koszyka</Button>
-            <Button Grid.Column="2" Margin="40,10" Padding="10">Realizuj zamówienie</Button>
-            
-            
+            <Button Grid.Column="2" Margin="40,10" Padding="10" Command="{Binding FinalizeOrderCommand}">Realizuj zamówienie</Button>
         </Grid>
     </Grid>
 </UserControl>

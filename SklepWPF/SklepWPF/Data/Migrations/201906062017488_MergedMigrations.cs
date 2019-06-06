@@ -3,7 +3,7 @@ namespace SklepWPF.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class MessageModelModifications2 : DbMigration
+    public partial class MergedMigrations : DbMigration
     {
         public override void Up()
         {
@@ -38,9 +38,18 @@ namespace SklepWPF.Migrations
                 .Index(t => t.User_Id);
             
             AddColumn("dbo.Users", "IsAdmin", c => c.Boolean(nullable: false));
+            AddColumn("dbo.Orders", "Name", c => c.String());
+            AddColumn("dbo.Orders", "Surname", c => c.String());
+            AddColumn("dbo.Orders", "StreetName", c => c.String());
+            AddColumn("dbo.Orders", "PostalCode", c => c.String());
+            AddColumn("dbo.Orders", "City", c => c.String());
+            AddColumn("dbo.Orders", "PhoneNumber", c => c.String());
+            AddColumn("dbo.Orders", "PaymentMethod", c => c.Int(nullable: false));
+            AddColumn("dbo.Orders", "DeliveryMethod", c => c.Int(nullable: false));
             AddColumn("dbo.Messages", "LastModified", c => c.DateTime(nullable: false));
             AddColumn("dbo.Messages", "ClientSeen", c => c.Boolean(nullable: false));
             AddColumn("dbo.Messages", "AdminSeen", c => c.Boolean(nullable: false));
+            AlterColumn("dbo.Products", "Price", c => c.Double(nullable: false));
             AlterColumn("dbo.Messages", "AuthorId", c => c.Int(nullable: false));
             DropColumn("dbo.Messages", "ReceiverFullName");
             DropColumn("dbo.Messages", "ReceiverId");
@@ -59,9 +68,18 @@ namespace SklepWPF.Migrations
             DropIndex("dbo.MessageUsers", new[] { "User_Id" });
             DropIndex("dbo.MessageUsers", new[] { "Message_Id" });
             AlterColumn("dbo.Messages", "AuthorId", c => c.Int());
+            AlterColumn("dbo.Products", "Price", c => c.String(nullable: false));
             DropColumn("dbo.Messages", "AdminSeen");
             DropColumn("dbo.Messages", "ClientSeen");
             DropColumn("dbo.Messages", "LastModified");
+            DropColumn("dbo.Orders", "DeliveryMethod");
+            DropColumn("dbo.Orders", "PaymentMethod");
+            DropColumn("dbo.Orders", "PhoneNumber");
+            DropColumn("dbo.Orders", "City");
+            DropColumn("dbo.Orders", "PostalCode");
+            DropColumn("dbo.Orders", "StreetName");
+            DropColumn("dbo.Orders", "Surname");
+            DropColumn("dbo.Orders", "Name");
             DropColumn("dbo.Users", "IsAdmin");
             DropTable("dbo.MessageUser1");
             DropTable("dbo.MessageUsers");

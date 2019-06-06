@@ -16,17 +16,22 @@
     <UserControl.Resources>
         <DataTemplate x:Key="OrdersTemplate">
             <DockPanel Margin="5 4 5 4">
-                <TextBlock Margin="5" Text="{Binding Id}"></TextBlock>
-                <TextBlock Margin="5" Text="{Binding Created, StringFormat=dd-MM-yyyy}"></TextBlock>
+                <TextBlock Margin="5" Text="{Binding Created, StringFormat=dd-MM-yyyy HH:mm}"></TextBlock>
+                <TextBlock Margin="5" Text="{Binding PaymentMethod}"></TextBlock>
+                <TextBlock Margin="5" Text="{Binding DeliveryMethod}"></TextBlock>
                 <TextBlock Margin="5" Text="{Binding OrderStatus}"></TextBlock>
             </DockPanel>
         </DataTemplate>
 
         <DataTemplate x:Key="ProductsTemplate">
-            <DockPanel Margin="5 4 5 4">
-                <TextBlock Margin="5" Text="{Binding Name}"></TextBlock>
-                <TextBlock Margin="5" Text="{Binding Brand}"></TextBlock>
-                <TextBlock Margin="5" Text="{Binding Price}"></TextBlock>
+            <DockPanel Margin="5 4">
+                <Button Command="{Binding DataContext.ViewProductCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding Id}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Margin="5" Text="{Binding Name}"></TextBlock>
+                        <TextBlock Margin="5" Text="{Binding Brand}"></TextBlock>
+                        <TextBlock Margin="5" Text="{Binding Price}"></TextBlock>
+                    </StackPanel>
+                </Button>
             </DockPanel>
         </DataTemplate>
     </UserControl.Resources>
@@ -98,7 +103,7 @@
                 <RowDefinition/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            
+
             <ListView Grid.RowSpan="7" Padding="10" Margin="10 0 10 0" BorderBrush="Black" BorderThickness="2 0 2 0" HorizontalContentAlignment="Stretch">
                 <ListView.Style>
                     <Style TargetType="{x:Type ListView}">

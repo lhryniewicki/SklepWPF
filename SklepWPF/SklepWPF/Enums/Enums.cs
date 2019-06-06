@@ -12,7 +12,20 @@ namespace SklepWPF.Enums
         [Description("Kartą")]
         ByCard,
         [Description("Gotówką")]
-        ByCash
+        ByCash,
+        [Description("Przelew")]
+        ByBank,
+    }
+
+    [TypeConverter(typeof(EnumDescriptionTypeConverter))]
+    public enum DeliveryMethod
+    {
+        [Description("Pocztex")]
+        ByPocztex,
+        [Description("Odbiór osobisty")]
+        ByYourself,
+        [Description("Paczkomat")]
+        ByInpost,
     }
 
     [TypeConverter(typeof(EnumDescriptionTypeConverter))]

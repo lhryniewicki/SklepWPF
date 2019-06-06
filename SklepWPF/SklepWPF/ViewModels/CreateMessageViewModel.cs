@@ -103,7 +103,7 @@ namespace SklepWPF.ViewModels
                 message.LastModified = message.Created;
                 newContent.Append(MessageContent)
                     .AppendLine().AppendLine()
-                    .Append(message.AuthorFullName + " ").Append(message.LastModified.ToLongDateString() + " ").Append(message.LastModified.ToShortDateString())
+                    .Append(message.AuthorFullName + " ").Append(message.LastModified.ToLongDateString() + " ").Append(message.LastModified.ToLongTimeString())
                     .AppendLine().AppendLine();
                 _db.Messages.Add(message);
             }

@@ -58,6 +58,10 @@
         <DataTemplate DataType="{x:Type vm:ClientListViewModel}">
             <local:ClientList />
         </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vm:OrderViewModel}">
+            <local:Order />
+        </DataTemplate>
     </Window.Resources>
 
     <Grid>
@@ -97,7 +101,7 @@
 
                     </MenuItem>
 
-                    <MenuItem DataContext="{Binding Source={x:Static vm:ApplicationViewModel.Instance}}" Visibility="{Binding IsUserLogged, Converter={StaticResource BoolToVis},FallbackValue=Hidden}" Command="{Binding Source={StaticResource Proxy}, Path=Data.ChangePageCommand}" CommandParameter="Cart" Header="Koszyk">
+                    <MenuItem DataContext="{Binding Source={x:Static vm:ApplicationViewModel.Instance}}" Visibility="{Binding IsUserLogged, Converter={StaticResource BoolToVis},FallbackValue=Hidden}" Command="{Binding CartCommand}" Header="Koszyk">
 
                     </MenuItem>
 

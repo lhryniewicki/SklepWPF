@@ -294,5 +294,18 @@ namespace SklepWPF.ViewModels
                 ObservedProducts.Add(o);
             }
         }
+
+        public ICommand ViewProductCommand
+        {
+            get
+            {
+                return new RelayCommand(p => ViewProduct((int)p));
+            }
+        }
+
+        private void ViewProduct(int id)
+        {
+            ApplicationViewModel.Instance.CurrentPageViewModel = new ProductDetailsViewModel(id);
+        }
     }
 }
