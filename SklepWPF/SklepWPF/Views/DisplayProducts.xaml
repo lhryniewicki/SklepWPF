@@ -64,12 +64,10 @@
 
                     <DockPanel>
                         <!--<Image DockPanel.Dock="Right"></Image>-->
-                        
+
                         <Label DockPanel.Dock="Right">IMG</Label>
 
-                       
-                        
-                            <Button Command="{Binding Source={StaticResource Proxy}, Path=Data.AddItemToCartCommand}" CommandParameter="{Binding Id}" Visibility="{Binding Source={StaticResource Proxy}, Path=Data.ShowButton, Converter={StaticResource BoolToVis},FallbackValue=Hidden}"  Background="IndianRed" Padding="5" Margin="10,0,0,0">
+                        <Button Command="{Binding Source={StaticResource Proxy}, Path=Data.AddItemToCartCommand}" CommandParameter="{Binding Id}" Visibility="{Binding Source={StaticResource Proxy}, Path=Data.ShowButton, Converter={StaticResource BoolToVis},FallbackValue=Hidden}"  Background="IndianRed" Padding="5" Margin="10,0,0,0">
                                 Dodaj do koszyka
                             </Button>
                             <Button Command="{Binding Source={StaticResource Proxy}, Path=Data.ObserveItemCommand}" CommandParameter="{Binding Id}" Visibility="{Binding Source={StaticResource Proxy}, Path=Data.ShowButton, Converter={StaticResource BoolToVis},FallbackValue=Hidden}"  Background="LightGoldenrodYellow" Padding="5" Margin="1,0,0,0">

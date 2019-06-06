@@ -109,16 +109,29 @@ namespace SklepWPF.ViewModels
 		}
 		public void AddItemToCart(int id)
 		{
-			var nickname = RunTimeInfo.Instance.Username;
+			
 
 			var user = _db.Users.
 				Include(x=>x.Cart)
-				.SingleOrDefault(x=>x.Nickname == nickname);
+				.SingleOrDefault(x=>x.Nickname == RunTimeInfo.Instance.Username);
 
 			var item = _db.Products
 				.SingleOrDefault(x=>x.Id == id);
 
-			user.Cart.Add(item);
+			var userCartExists = _db.UsersCart
+				.SingleOrDefault(x => x.UserId == user.Id && item.Id == x.ProductId);
+
+			if(userCartExists == null)
+			{
+				var userCart = new UserCart { Product = item, User = user };
+				_db.UsersCart.Add(userCart);
+			}
+			else
+			{
+				userCartExists.Quantity++;
+			}
+
+			
 			_db.SaveChanges();
 
 

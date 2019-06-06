@@ -108,9 +108,14 @@
     <Compile Include="Data\Migrations\201906061644037_MessageModelModifications2.Designer.cs">
       <DependentUpon>201906061644037_MessageModelModifications2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Data\Migrations\201906062013324_ManyToManyUserCart.cs" />
+    <Compile Include="Data\Migrations\201906062013324_ManyToManyUserCart.Designer.cs">
+      <DependentUpon>201906062013324_ManyToManyUserCart.cs</DependentUpon>
+    </Compile>
     <Compile Include="Data\MyDbContext.cs" />
     <Compile Include="Enums\EnumBindingSourceExtension.cs" />
     <Compile Include="Enums\EnumDescriptionTypeConverter.cs" />
+    <Compile Include="Models\UserCart.cs" />
     <Compile Include="ReverseBooleanToVisibilityConverter.cs" />
     <Compile Include="IPageViewModel.cs" />
     <Compile Include="Data\Migrations\Configuration.cs" />
@@ -291,6 +296,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Data\Migrations\201906061644037_MessageModelModifications2.resx">
       <DependentUpon>201906061644037_MessageModelModifications2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Data\Migrations\201906062013324_ManyToManyUserCart.resx">
+      <DependentUpon>201906062013324_ManyToManyUserCart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

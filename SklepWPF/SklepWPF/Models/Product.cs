@@ -21,7 +21,7 @@ namespace SklepWPF.Models
 		public int Quantity { get; set; }
 
 		public ICollection<Category> Categories { get; set;}
-		public ICollection<User> InUserCart { get; set; }
+		public ICollection<UserCart> InUserCart { get; set; }
         public ICollection<User> ObservingUsers { get; set; }
         public ICollection<OrderProduct> Orders { get; set; }
 
