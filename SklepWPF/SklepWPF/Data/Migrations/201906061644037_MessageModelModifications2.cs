@@ -3,7 +3,7 @@ namespace SklepWPF.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class MessageModificationAndAdminFieldInUsers : DbMigration
+    public partial class MessageModelModifications2 : DbMigration
     {
         public override void Up()
         {
@@ -39,7 +39,8 @@ namespace SklepWPF.Migrations
             
             AddColumn("dbo.Users", "IsAdmin", c => c.Boolean(nullable: false));
             AddColumn("dbo.Messages", "LastModified", c => c.DateTime(nullable: false));
-            AddColumn("dbo.Messages", "Seen", c => c.Boolean(nullable: false));
+            AddColumn("dbo.Messages", "ClientSeen", c => c.Boolean(nullable: false));
+            AddColumn("dbo.Messages", "AdminSeen", c => c.Boolean(nullable: false));
             AlterColumn("dbo.Messages", "AuthorId", c => c.Int(nullable: false));
             DropColumn("dbo.Messages", "ReceiverFullName");
             DropColumn("dbo.Messages", "ReceiverId");
@@ -58,7 +59,8 @@ namespace SklepWPF.Migrations
             DropIndex("dbo.MessageUsers", new[] { "User_Id" });
             DropIndex("dbo.MessageUsers", new[] { "Message_Id" });
             AlterColumn("dbo.Messages", "AuthorId", c => c.Int());
-            DropColumn("dbo.Messages", "Seen");
+            DropColumn("dbo.Messages", "AdminSeen");
+            DropColumn("dbo.Messages", "ClientSeen");
             DropColumn("dbo.Messages", "LastModified");
             DropColumn("dbo.Users", "IsAdmin");
             DropTable("dbo.MessageUser1");

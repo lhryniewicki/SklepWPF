@@ -129,6 +129,7 @@ namespace SklepWPF.ViewModels
                 var receiver = _db.Users.Find(message.AuthorId);
                 if (!message.Receivers.Contains(receiver))
                     message.Receivers.Add(receiver);
+                message.ClientSeen = false;
             }
             else
             {
@@ -138,6 +139,7 @@ namespace SklepWPF.ViewModels
                     if(!u.ReceivedMessages.Contains(message))
                         u.ReceivedMessages.Add(message);
                 }
+                message.AdminSeen = false;
             }
 
             _db.SaveChanges();

@@ -97,8 +97,19 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <DockPanel Margin="5 4 5 4">
-                                <TextBlock Margin="5" Text="{Binding Seen}" DockPanel.Dock="Right"/>
-                                <TextBlock Margin="5" Text="{Binding Title}"></TextBlock>
+                                <TextBlock Margin="5" DockPanel.Dock="Right">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Text" Value="{Binding AdminSeen}"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding DataContext.CanCreate, RelativeSource={RelativeSource AncestorType=UserControl}}" Value="True">
+                                                    <Setter Property="Text" Value="{Binding ClientSeen}"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                                <TextBlock Margin="5" Text="{Binding Title}"/>
                                 <TextBlock Margin="5" Text="{Binding}"/>
                                 <TextBlock Margin="5" Text="{Binding Created, StringFormat=dd-MM-yyyy}"/>
                             </DockPanel>

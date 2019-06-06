@@ -35,7 +35,18 @@ namespace SklepWPF.ViewModels
             messageId = message.Id;
             var user = _db.Users.Where(n => n.Name == RunTimeInfo.Instance.Username).SingleOrDefault();
             if (user != null)
+            {
                 userId = user.Id;
+                if(user.IsAdmin)
+                {
+                    _db.Messages.Find(messageId).AdminSeen = true;
+                }
+                else
+                {
+                    _db.Messages.Find(messageId).ClientSeen = true;
+                }
+                _db.SaveChanges();
+            }
             MessageContent = message.Content;
             AuthorFullName = message.AuthorFullName;
             Title = message.Title;

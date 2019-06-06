@@ -28,7 +28,21 @@ namespace SklepWPF.ViewModels
 
         private int messagePage;
 
-        public bool CanCreate { get; set; }
+        private bool canCreate;
+
+        public bool CanCreate
+        {
+            get
+            {
+                return canCreate;
+            }
+            set
+            {
+                if (canCreate != value)
+                    canCreate = value;
+                OnPropertyChanged("CanCreate");
+            }
+        }
 
         public string MessageSearchQuery { get; set; }
 
@@ -55,6 +69,8 @@ namespace SklepWPF.ViewModels
                 userId = user.Id;
                 if (!user.IsAdmin)
                     CanCreate = true;
+                else
+                    CanCreate = false;
             }
             messagePage = 1;
             messagePageSize = 14;
@@ -237,7 +253,7 @@ namespace SklepWPF.ViewModels
                 messages = messages.Where(m => m.Title.Contains(MessageSearchQuery));
             }
 
-            var _messages = messages.OrderBy(d => d.Created).ThenBy(s => s.Seen).Skip((messagePage - 1) * messagePageSize)
+            var _messages = messages.OrderByDescending(d => d.LastModified).Skip((messagePage - 1) * messagePageSize)
                     .Take(messagePageSize + 1).ToList();
 
             if (_messages.Count == messagePageSize + 1)

@@ -16,7 +16,9 @@ namespace SklepWPF.Models
         public string AuthorFullName { get; set; }
         public ICollection<User> Receivers { get; set; }
         public ICollection<User> Senders { get; set; }
-        public bool Seen { get; set; }
+        public bool ClientSeen { get; set; }
+
+        public bool AdminSeen { get; set; }
 
         public override string ToString()
         {

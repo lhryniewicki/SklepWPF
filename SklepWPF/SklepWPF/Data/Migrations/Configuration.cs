@@ -91,7 +91,8 @@
                 Content = "lalalal \n\nŁukasz Hryniewicki " + DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + "\n\n",
                 Created = DateTime.Now,
                 LastModified = DateTime.Now,
-                AuthorFullName = "Łukasz Hryniewicki"
+                AuthorFullName = "Łukasz Hryniewicki",
+                ClientSeen = true
             });
 
             _db.Messages.AddOrUpdate(new Message
@@ -104,7 +105,8 @@
                 Content = "lalalaxxxxxxl \n\nŁukasz Hryniewicki " + DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + "\n\n",
                 Created = DateTime.Now,
                 LastModified = DateTime.Now,
-                AuthorFullName = "Łukasz Hryniewicki"
+                AuthorFullName = "Łukasz Hryniewicki",
+                ClientSeen = true
             });
 
             _db.Messages.AddOrUpdate(new Message
@@ -117,7 +119,8 @@
                 Content = "lalasadfsdasdasdlal \n\nŁukasz Hryniewicki " + DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + "\n\n",
                 Created = DateTime.Now,
                 LastModified = DateTime.Now,
-                AuthorFullName = "Łukasz Hryniewicki"
+                AuthorFullName = "Łukasz Hryniewicki",
+                ClientSeen = true
             });
 
             _db.Messages.AddOrUpdate(new Message
@@ -130,7 +133,8 @@
                 Content = "lalalasdsadasddwwal \n\nŁukasz Hryniewicki " + DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + "\n\n",
                 Created = DateTime.Now,
                 LastModified = DateTime.Now,
-                AuthorFullName = "Łukasz Hryniewicki"
+                AuthorFullName = "Łukasz Hryniewicki",
+                ClientSeen = true
             });
 
             _db.Messages.AddOrUpdate(new Message
@@ -143,7 +147,8 @@
                 Content = "lalalawdwdqdqwdqwal \n\nŁukasz Hryniewicki " + DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + "\n\n",
                 Created = DateTime.Now,
                 LastModified = DateTime.Now,
-                AuthorFullName = "Łukasz Hryniewicki"
+                AuthorFullName = "Łukasz Hryniewicki",
+                ClientSeen = true
             });
 
             _db.Messages.AddOrUpdate(new Message
@@ -156,7 +161,8 @@
                 Content = "lalalaasdasdasasdasdasdasdl \n\nŁukasz Hryniewicki " + DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + "\n\n",
                 Created = DateTime.Now,
                 LastModified = DateTime.Now,
-                AuthorFullName = "Łukasz Hryniewicki"
+                AuthorFullName = "Łukasz Hryniewicki",
+                ClientSeen = true
             });
 
             _db.Products.AddOrUpdate(new Product {
