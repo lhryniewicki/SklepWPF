@@ -25,7 +25,7 @@ namespace SklepWPF.ViewModels
 
 		public ICollection<Category> Categories { get; set; }
 
-		private bool _showCartButon = false;
+		private bool _showButton = false;
 
 		private Product _product;
 		public ProductDetailsViewModel(int id)
@@ -41,21 +41,21 @@ namespace SklepWPF.ViewModels
 			Categories = _product.Categories;
 
 		}
-		public bool ShowCartButton
+		public bool ShowButton
 		{
 			get
 			{
 				var username = new RunTimeInfo().UsernameCodeValue;
-				if (username != "Konto") ShowCartButton = true;
+				if (username != "Konto") ShowButton = true;
 
-				return _showCartButon;
+				return _showButton;
 			}
 			set
 			{
-				if (_showCartButon != value)
+				if (_showButton != value)
 				{
-					_showCartButon = value;
-					OnPropertyChanged("ShowCartButton");
+					_showButton = value;
+					OnPropertyChanged("ShowButton");
 				}
 
 			}
@@ -65,8 +65,7 @@ namespace SklepWPF.ViewModels
 		{
 			_product = _db.Products
 				.Include(x => x.Categories)
-				.Where(x => x.Id == id)
-				.SingleOrDefault();		
+				.SingleOrDefault(x => x.Id == id);		
 		}
 	}
 }

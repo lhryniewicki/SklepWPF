@@ -23,12 +23,12 @@ namespace SklepWPF.ViewModels
 		private readonly int _pageSize;
 		private int _productsQuantity;
 		private int _page;
-        private bool _showCartButon = false;
+		private bool _showButton=false;
 
 		public ICollection<Category> ChosenCategories { get; set; } 
 		public ICollection<Category> Categories { get; set; }
 		public ICollection<Product> Products { get; set; }
-		public List<Product> _products { get; set; }
+		private List<Product> _products { get; set; }
 
 		public ProductsViewModel()
 		{
@@ -48,20 +48,20 @@ namespace SklepWPF.ViewModels
 
 		}
 
-		public bool ShowCartButton
+		public bool ShowButton
 		{
 			get {
 				var username = new RunTimeInfo().UsernameCodeValue;
-				if (username != "Konto") ShowCartButton = true;
+				if (username != "Konto") ShowButton = true;
 
-				return _showCartButon;
+				return _showButton;
 			}
 			set
 			{
-				if(_showCartButon != value)
+				if(_showButton != value)
 				{
-					_showCartButon = value;
-					OnPropertyChanged("ShowCartButton");
+					_showButton = value;
+					OnPropertyChanged("ShowButton");
 				}
 
 			}
@@ -77,6 +77,28 @@ namespace SklepWPF.ViewModels
 			foreach (var item in categories) Categories.Add(item);
 
 		}
+		public ICommand ObserveItemCommand
+		{
+			get
+			{
+				return new RelayCommand(p => ObserveItem((int)p));
+			}
+		}
+		private void ObserveItem(int id)
+		{
+			var nickname = RunTimeInfo.Instance.Username;
+
+			var user = _db.Users.
+				Include(x => x.ObservedProducts)
+				.SingleOrDefault(x => x.Nickname == nickname);
+
+			var item = _db.Products
+				.SingleOrDefault(x=>x.Id == id);
+
+			user.ObservedProducts.Add(item);
+			_db.SaveChanges();
+		}
+
 
 		public ICommand AddItemToCartCommand
 		{
@@ -88,16 +110,14 @@ namespace SklepWPF.ViewModels
 
 		public void AddItemToCart(int id)
 		{
-			var Nickname = RunTimeInfo.Instance.Username;
+			var nickname = RunTimeInfo.Instance.Username;
 
 			var user = _db.Users.
 				Include(x=>x.Cart)
-				.Where(x => x.Nickname == Nickname)
-				.SingleOrDefault();
+				.SingleOrDefault(x=>x.Nickname == nickname);
 
 			var item = _db.Products
-				.Where(x => x.Id == id)
-				.SingleOrDefault();
+				.SingleOrDefault(x=>x.Id == id);
 
 			user.Cart.Add(item);
 			_db.SaveChanges();
@@ -105,7 +125,7 @@ namespace SklepWPF.ViewModels
 				.Include(x=>x.Cart)
 				.Where(x => x.Nickname == Nickname)
 				.SingleOrDefault();
-		}
+
 
 		public ICommand NextPageCommand
 		{
@@ -195,15 +215,13 @@ namespace SklepWPF.ViewModels
 		{
 			Page = 1;
 			var alreadyInCategories = ChosenCategories
-				.Where(x => x.Name == categoryName)
-				.SingleOrDefault();
+				.SingleOrDefault(x => x.Name == categoryName);
 
 			if(alreadyInCategories== null)
 			{
 
 				var category = _db.Categories
-					.Where(x => x.Name == categoryName)
-					.SingleOrDefault();
+					.SingleOrDefault(x => x.Name == categoryName);
 
 				ChosenCategories.Add(category);
 			}

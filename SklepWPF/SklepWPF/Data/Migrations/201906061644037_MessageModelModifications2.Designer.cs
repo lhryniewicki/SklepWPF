@@ -7,13 +7,13 @@ namespace SklepWPF.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class AddedIsAdminFieldToUser : IMigrationMetadata
+    public sealed partial class MessageModelModifications2 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedIsAdminFieldToUser));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(MessageModelModifications2));
         
         string IMigrationMetadata.Id
         {
-            get { return "201906051920127_AddedIsAdminFieldToUser"; }
+            get { return "201906061644037_MessageModelModifications2"; }
         }
         
         string IMigrationMetadata.Source

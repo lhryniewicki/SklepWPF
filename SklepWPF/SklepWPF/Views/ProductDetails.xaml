@@ -72,7 +72,7 @@
                 </ListBox>
                 
             </StackPanel>
-            <Button Visibility="{Binding ShowCartButton, Converter={StaticResource BoolToVis},FallbackValue=Hidden}" Background="IndianRed" Padding="5" Width="150" HorizontalAlignment="Left" >Dodaj do koszyka</Button>
+            <Button Visibility="{Binding ShowButton, Converter={StaticResource BoolToVis},FallbackValue=Hidden}" Background="IndianRed" Padding="5" Width="150" HorizontalAlignment="Left" >Dodaj do koszyka</Button>
 
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="4" Margin="30,0,30,0">

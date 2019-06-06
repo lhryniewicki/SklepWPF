@@ -104,13 +104,9 @@
     <Compile Include="Data\Migrations\201906012152334_AddedObservedProductsAndOrderModification.Designer.cs">
       <DependentUpon>201906012152334_AddedObservedProductsAndOrderModification.cs</DependentUpon>
     </Compile>
-    <Compile Include="Data\Migrations\201906051853490_MessageModification.cs" />
-    <Compile Include="Data\Migrations\201906051853490_MessageModification.Designer.cs">
-      <DependentUpon>201906051853490_MessageModification.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Migrations\201906051920127_AddedIsAdminFieldToUser.cs" />
-    <Compile Include="Data\Migrations\201906051920127_AddedIsAdminFieldToUser.Designer.cs">
-      <DependentUpon>201906051920127_AddedIsAdminFieldToUser.cs</DependentUpon>
+    <Compile Include="Data\Migrations\201906061644037_MessageModelModifications2.cs" />
+    <Compile Include="Data\Migrations\201906061644037_MessageModelModifications2.Designer.cs">
+      <DependentUpon>201906061644037_MessageModelModifications2.cs</DependentUpon>
     </Compile>
     <Compile Include="Data\Migrations\201906061055075_ChangedProductModel.cs" />
     <Compile Include="Data\Migrations\201906061055075_ChangedProductModel.Designer.cs">
@@ -302,11 +298,8 @@
     <EmbeddedResource Include="Data\Migrations\201906012152334_AddedObservedProductsAndOrderModification.resx">
       <DependentUpon>201906012152334_AddedObservedProductsAndOrderModification.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Data\Migrations\201906051853490_MessageModification.resx">
-      <DependentUpon>201906051853490_MessageModification.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Data\Migrations\201906051920127_AddedIsAdminFieldToUser.resx">
-      <DependentUpon>201906051920127_AddedIsAdminFieldToUser.cs</DependentUpon>
+    <EmbeddedResource Include="Data\Migrations\201906061644037_MessageModelModifications2.resx">
+      <DependentUpon>201906061644037_MessageModelModifications2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Data\Migrations\201906061055075_ChangedProductModel.resx">
       <DependentUpon>201906061055075_ChangedProductModel.cs</DependentUpon>
