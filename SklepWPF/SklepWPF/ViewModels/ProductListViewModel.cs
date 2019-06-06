@@ -17,12 +17,12 @@ namespace SklepWPF.ViewModels
         private int productId;
 
         //dane produktu
-        public string name { get; set; }
-        public string description { get; set; }
-        public string price { get; set; }
-        public string brand { get; set; }
-        public int quantity { get; set; }
-        public string category { get; set; }
+        private string name;
+        private string description;
+        private double price;
+        private string brand;
+        private int quantity;
+        private string category;
 
         public string Name
         {
@@ -52,7 +52,7 @@ namespace SklepWPF.ViewModels
             }
         }
 
-        public string Price
+        public double Price
         {
             get
             {
@@ -183,7 +183,7 @@ namespace SklepWPF.ViewModels
                 product2.Name = Name;
                 product2.Description = Description;
                 product2.Brand = Brand;
-                product2.Price = Price;
+                product2.Price = Math.Round(Price,2);
                 product2.Quantity = Quantity;
 
                 var cat = _db.Categories.Where(p => p.Name == Category).ToList();
@@ -225,10 +225,10 @@ namespace SklepWPF.ViewModels
             }
         }
 
-        public void AddNewProduct(string name, string description, string price, string brand, int quantity, string category)
+        public void AddNewProduct(string name, string description, double price, string brand, int quantity, string category)
         {
             var cat = _db.Categories.Where(p => p.Name == category).SingleOrDefault();
-            var newProduct = new Product(name, description, price, brand, quantity, cat);
+            var newProduct = new Product(name, description, Math.Round(price, 2), brand, quantity, cat);
 
             _db.Products.Add(newProduct);
             _db.SaveChanges();
@@ -240,7 +240,6 @@ namespace SklepWPF.ViewModels
         {
             if (String.IsNullOrEmpty(Name) ||
                 String.IsNullOrEmpty(Description) ||
-                String.IsNullOrEmpty(Price) ||
                 String.IsNullOrEmpty(Brand))
             {
                 return false;
@@ -422,6 +421,19 @@ namespace SklepWPF.ViewModels
             var takeProducts = products.Skip(_pageSize * (Page - 1)).Take(_pageSize);
 
             foreach (var item in takeProducts) Products.Add(item);
+        }
+
+        public ICommand BackCommand
+        {
+            get
+            {
+                return new RelayCommand(p => Back());
+            }
+        }
+
+        private void Back()
+        {
+            ApplicationViewModel.Instance.CurrentPageViewModel = ApplicationViewModel.Instance.PageViewModels.SingleOrDefault(n => n.Name == "AdminPanel");
         }
     }
 }

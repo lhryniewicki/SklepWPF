@@ -16,8 +16,9 @@
     <UserControl.Resources>
         <DataTemplate x:Key="OrdersTemplate">
             <DockPanel Margin="5 4 5 4">
-                <TextBlock Margin="5" Text="{Binding Id}"></TextBlock>
-                <TextBlock Margin="5" Text="{Binding Created, StringFormat=dd-MM-yyyy}"></TextBlock>
+                <TextBlock Margin="5" Text="{Binding Created, StringFormat=dd-MM-yyyy HH:mm}"></TextBlock>
+                <TextBlock Margin="5" Text="{Binding PaymentMethod}"></TextBlock>
+                <TextBlock Margin="5" Text="{Binding DeliveryMethod}"></TextBlock>
                 <TextBlock Margin="5" Text="{Binding OrderStatus}"></TextBlock>
             </DockPanel>
         </DataTemplate>

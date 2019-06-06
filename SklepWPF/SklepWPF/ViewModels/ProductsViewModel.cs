@@ -11,7 +11,7 @@ using System.Windows.Input;
 
 namespace SklepWPF.ViewModels
 {
-	class ProductsViewModel :ObservableObject, IPageViewModel
+	class ProductsViewModel : ObservableObject, IPageViewModel
 	{
 		public string Name { get; set; }
 
@@ -23,7 +23,7 @@ namespace SklepWPF.ViewModels
 		private readonly int _pageSize;
 		private int _productsQuantity;
 		private int _page;
-		private bool _showCartButon=false;
+        private bool _showCartButon = false;
 
 		public ICollection<Category> ChosenCategories { get; set; } 
 		public ICollection<Category> Categories { get; set; }
@@ -77,6 +77,7 @@ namespace SklepWPF.ViewModels
 			foreach (var item in categories) Categories.Add(item);
 
 		}
+
 		public ICommand AddItemToCartCommand
 		{
 			get
@@ -84,6 +85,7 @@ namespace SklepWPF.ViewModels
 				return new RelayCommand(p => AddItemToCart((int)p));
 			}
 		}
+
 		public void AddItemToCart(int id)
 		{
 			var Nickname = RunTimeInfo.Instance.Username;
@@ -103,9 +105,8 @@ namespace SklepWPF.ViewModels
 				.Include(x=>x.Cart)
 				.Where(x => x.Nickname == Nickname)
 				.SingleOrDefault();
-
-
 		}
+
 		public ICommand NextPageCommand
 		{
 			get
@@ -125,6 +126,7 @@ namespace SklepWPF.ViewModels
 			Page++;
 			RefreshProducts(_products);
 		}
+
 		public ICommand PreviousPageCommand
 		{
 			get
@@ -133,6 +135,7 @@ namespace SklepWPF.ViewModels
 					p => IsValidPrevious());
 			}
 		}
+
 		private bool IsValidPrevious()
 		{
 			return (Page-1) > 0; 
@@ -144,6 +147,7 @@ namespace SklepWPF.ViewModels
 			RefreshProducts(_products);
 
 		}
+
 		public ICommand DisplayProductCommand
 		{
 			get
@@ -151,6 +155,7 @@ namespace SklepWPF.ViewModels
 				return new RelayCommand(p => DisplayProduct((int)p));
 			}
 		}
+
 		public void DisplayProduct(int id)
 		{
 			ApplicationViewModel.Instance.CurrentPageViewModel = new ProductDetailsViewModel(id);

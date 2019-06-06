@@ -42,8 +42,6 @@ namespace SklepWPF.ViewModels
 
                 new RegisterViewModel { Name = "Register" },
 
-                new CartViewModel { Name = "Cart" },
-
                 new ClientPanelViewModel { Name = "Account" },
 
                 new MessageBoxViewModel { Name = "MessageBox" },
@@ -56,7 +54,20 @@ namespace SklepWPF.ViewModels
 			CurrentPageViewModel = PageViewModels[0];
 		}
 
-		public ICommand LogOutCommand
+        public ICommand CartCommand
+        {
+            get
+            {
+                return new RelayCommand(p => Cart());
+            }
+        }
+
+        public void Cart()
+        {
+            ApplicationViewModel.Instance.CurrentPageViewModel = new CartViewModel();
+        }
+
+        public ICommand LogOutCommand
 		{
 			get
 			{

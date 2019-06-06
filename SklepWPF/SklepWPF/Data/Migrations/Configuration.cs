@@ -152,7 +152,7 @@
 				Brand = "Audi",
 				Description = "Audi nówka sztuka nie klepana",
 				Name = "Audi nówka sztuka nie klepana",
-				Price = "5000zł",
+				Price = 5000,
 				Quantity = 1,
 				Categories = new List<Category> { carCategory } });
 
@@ -162,7 +162,7 @@
 				Brand = "Volvo",
 				Description = "Volvo nówka sztuka nie klepana",
 				Name = "Volvo nówka sztuka nie klepana",
-				Price = "2000zł",
+				Price = 2000,
 				Quantity = 1,
 				Categories = new List<Category> { carCategory }
 			});
@@ -173,7 +173,7 @@
 				Brand = "Fiat",
 				Description = "Fiat nówka sztuka nie klepana",
 				Name = "Fiat nówka sztuka nie klepana",
-				Price = "3000zł",
+				Price = 3000,
 				Quantity = 1,
 				Categories = new List<Category> { carCategory }
 			});
@@ -183,7 +183,7 @@
 				Brand = "JK Rowling",
 				Description = "bardzo fajna ksiazka",
 				Name = "Heri pota",
-				Price = "15zł",
+				Price = 15,
 				Quantity = 1,
 				Categories = new List<Category> { bookCategory }
 			});
@@ -193,7 +193,7 @@
 				Brand = "JK Rowling",
 				Description = "jeszcze fajniejsza ksiazka",
 				Name = "Hari peta",
-				Price = "30zł",
+				Price = 30,
 				Quantity = 1,
 				Categories = new List<Category> { bookCategory }
 			});
@@ -203,56 +203,7 @@
 				Brand = "JK Rowling",
 				Description = "jeszcze fajniejsza ksiazka",
 				Name = "Hari peta",
-				Price = "30zł",
-				Quantity = 1,
-				Categories = new List<Category> { bookCategory }
-			});
-			_db.Products.AddOrUpdate(new Product
-			{
-				Id = 7,
-				Brand = "JK Rowling",
-				Description = "jeszcze fajniejsza ksiazka",
-				Name = "Hari peta",
-				Price = "30zł",
-				Quantity = 1,
-				Categories = new List<Category> { bookCategory }
-			});
-			_db.Products.AddOrUpdate(new Product
-			{
-				Id = 8,
-				Brand = "JK Rowling",
-				Description = "jeszcze fajniejsza ksiazka",
-				Name = "Hari peta",
-				Price = "30zł",
-				Quantity = 1,
-				Categories = new List<Category> { bookCategory }
-			});
-			_db.Products.AddOrUpdate(new Product
-			{
-				Id = 9,
-				Brand = "JK Rowling",
-				Description = "jeszcze fajniejsza ksiazka",
-				Name = "Hari peta",
-				Price = "30zł",
-				Quantity = 1,
-				Categories = new List<Category> { bookCategory }
-			});
-			_db.Products.AddOrUpdate(new Product
-			{
-				Id = 10,
-				Brand = "JK Rowling",
-				Description = "jeszcze fajniejsza ksiazka",
-				Name = "Hari peta",
-				Price = "30zł",
-				Quantity = 1,
-				Categories = new List<Category> { bookCategory }
-			}); _db.Products.AddOrUpdate(new Product
-			{
-				Id = 11,
-				Brand = "JK Rowling",
-				Description = "jeszcze fajniejsza ksiazka",
-				Name = "Hari peta",
-				Price = "30zł",
+				Price = 30,
 				Quantity = 1,
 				Categories = new List<Category> { bookCategory }
 			});

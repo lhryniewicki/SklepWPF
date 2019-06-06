@@ -25,6 +25,7 @@ namespace SklepWPF.ViewModels
 
         public ICollection<User> Users { get; set; }
         public List<User> _users { get; set; }
+        public ClientListSortingClients SortedClient { get; set; }
 
         private readonly int _pageSize;
         private int _productsQuantity;
@@ -37,23 +38,59 @@ namespace SklepWPF.ViewModels
             Users = new ObservableCollection<User>();
             _users = new List<User>();
 
-            _pageSize = 25;
+            _pageSize = 6;
             Page = 1;
 
             LoadData();
         }
 
-        public ICommand DisplayUserListCommand
+        public ICommand SortClientListCommand
         {
             get
             {
-                return new RelayCommand(p => DisplayUserList());
+                return new RelayCommand(p => SortUserList((int)p));
             }
         }
 
-        public void DisplayUserList()
+        public void SortUserList(int index)
         {
+            List<User> users;
+            switch (index)
+            {
+                case (int)ClientListSortingClients.NicknameDesc:
+                    users = Users.OrderByDescending(u => u.Nickname).ToList();
+                    break;
+                case (int)ClientListSortingClients.NicknameAsc:
+                    users = Users.OrderBy(u => u.Nickname).ToList();
+                    break;
+                case (int)ClientListSortingClients.NameDesc:
+                    users = Users.OrderByDescending(u => u.Name).ToList();
+                    break;
+                case (int)ClientListSortingClients.NameAsc:
+                    users = Users.OrderBy(u => u.Name).ToList();
+                    break;
+                case (int)ClientListSortingClients.SurnameDesc:
+                    users = Users.OrderByDescending(u => u.Surname).ToList();
+                    break;
+                case (int)ClientListSortingClients.SurnameAsc:
+                    users = Users.OrderBy(u => u.Surname).ToList();
+                    break;
+                case (int)ClientListSortingClients.EmailDesc:
+                    users = Users.OrderByDescending(u => u.Email).ToList();
+                    break;
+                case (int)ClientListSortingClients.EmailAsc:
+                    users = Users.OrderBy(u => u.Email).ToList();
+                    break;
+                default:
+                    users = _users.ToList();
+                    break;
+            }
 
+            Users.Clear();
+            foreach (User u in users)
+            {
+                Users.Add(u);
+            }
         }
 
         public int Page
@@ -122,7 +159,21 @@ namespace SklepWPF.ViewModels
             _productsQuantity = users.Count;
             var loadUsers = users.Skip(_pageSize * (Page - 1)).Take(_pageSize);
 
-            foreach (var item in loadUsers) Users.Add(item);
+            foreach (var item in loadUsers)
+                Users.Add(item);
+        }
+
+        public ICommand BackCommand
+        {
+            get
+            {
+                return new RelayCommand(p => Back());
+            }
+        }
+
+        private void Back()
+        {
+            ApplicationViewModel.Instance.CurrentPageViewModel = ApplicationViewModel.Instance.PageViewModels.SingleOrDefault(n => n.Name == "AdminPanel");
         }
     }
 }

@@ -17,7 +17,7 @@ namespace SklepWPF.Views
     /// <summary>
     /// Interaction logic for RealizacjaZamowienia.xaml
     /// </summary>
-    public partial class Order : Window
+    public partial class Order : UserControl
     {
         public Order()
         {

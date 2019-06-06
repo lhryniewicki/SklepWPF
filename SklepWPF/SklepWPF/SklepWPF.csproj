@@ -112,6 +112,14 @@
     <Compile Include="Data\Migrations\201906051920127_AddedIsAdminFieldToUser.Designer.cs">
       <DependentUpon>201906051920127_AddedIsAdminFieldToUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Data\Migrations\201906061055075_ChangedProductModel.cs" />
+    <Compile Include="Data\Migrations\201906061055075_ChangedProductModel.Designer.cs">
+      <DependentUpon>201906061055075_ChangedProductModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Migrations\201906061747119_UpdatedOrderModel.cs" />
+    <Compile Include="Data\Migrations\201906061747119_UpdatedOrderModel.Designer.cs">
+      <DependentUpon>201906061747119_UpdatedOrderModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Data\MyDbContext.cs" />
     <Compile Include="Enums\EnumBindingSourceExtension.cs" />
     <Compile Include="Enums\EnumDescriptionTypeConverter.cs" />
@@ -138,6 +146,7 @@
     <Compile Include="ViewModels\DisplayMessageViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MessageBoxViewModel.cs" />
+    <Compile Include="ViewModels\OrderViewModel.cs" />
     <Compile Include="ViewModels\ProductDetailsViewModel.cs" />
     <Compile Include="ViewModels\ProductListViewModel.cs" />
     <Compile Include="ViewModels\ProductsViewModel.cs" />
@@ -298,6 +307,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Data\Migrations\201906051920127_AddedIsAdminFieldToUser.resx">
       <DependentUpon>201906051920127_AddedIsAdminFieldToUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Data\Migrations\201906061055075_ChangedProductModel.resx">
+      <DependentUpon>201906061055075_ChangedProductModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Data\Migrations\201906061747119_UpdatedOrderModel.resx">
+      <DependentUpon>201906061747119_UpdatedOrderModel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

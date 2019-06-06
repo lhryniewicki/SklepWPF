@@ -22,6 +22,7 @@ namespace SklepWPF.Data
 		public DbSet<Product> Products { get; set; }
         public DbSet<Message> Messages { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderProduct> OrderProducts { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
