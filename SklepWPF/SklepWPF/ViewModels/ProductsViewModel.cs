@@ -108,24 +108,20 @@ namespace SklepWPF.ViewModels
 			}
 		}
 
-		public void AddItemToCart(int id)
-		{
-			var nickname = RunTimeInfo.Instance.Username;
+        public void AddItemToCart(int id)
+        {
+            var nickname = RunTimeInfo.Instance.Username;
 
-			var user = _db.Users.
-				Include(x=>x.Cart)
-				.SingleOrDefault(x=>x.Nickname == nickname);
+            var user = _db.Users.
+                Include(x => x.Cart)
+                .SingleOrDefault(x => x.Nickname == nickname);
 
-			var item = _db.Products
-				.SingleOrDefault(x=>x.Id == id);
+            var item = _db.Products
+                .SingleOrDefault(x => x.Id == id);
 
-			user.Cart.Add(item);
-			_db.SaveChanges();
-			var user2 = _db.Users
-				.Include(x=>x.Cart)
-				.Where(x => x.Nickname == Nickname)
-				.SingleOrDefault();
-
+            user.Cart.Add(item);
+            _db.SaveChanges();
+        }
 
 		public ICommand NextPageCommand
 		{
