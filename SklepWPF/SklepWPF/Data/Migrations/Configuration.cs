@@ -84,66 +84,78 @@
             _db.Messages.AddOrUpdate(new Message
             {
                 Id = 1,
-                AuthorId = 3,
+                AuthorId = user3.Id,
+                Senders = new List<User> { user3 },
                 Receivers = new List<User> { user1, user2 },
                 Title = "sranie do mordy",
-                Content = "lalalal",
-                Created = new DateTime(2012, 1, 11),
+                Content = "lalalal \n\nŁukasz Hryniewicki " + DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + "\n\n",
+                Created = DateTime.Now,
+                LastModified = DateTime.Now,
                 AuthorFullName = "Łukasz Hryniewicki"
             });
 
             _db.Messages.AddOrUpdate(new Message
             {
                 Id = 2,
-                AuthorId = 3,
+                AuthorId = user3.Id,
+                Senders = new List<User> { user3 },
                 Receivers = new List<User> { user1, user2 },
                 Title = "sranie do mordy2",
-                Content = "lalalaxxxxxxl",
-                Created = new DateTime(2012, 1, 12),
+                Content = "lalalaxxxxxxl \n\nŁukasz Hryniewicki " + DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + "\n\n",
+                Created = DateTime.Now,
+                LastModified = DateTime.Now,
                 AuthorFullName = "Łukasz Hryniewicki"
             });
 
             _db.Messages.AddOrUpdate(new Message
             {
                 Id = 3,
-                AuthorId = 3,
+                AuthorId = user3.Id,
+                Senders = new List<User> { user3 },
                 Receivers = new List<User> { user1, user2 },
                 Title = "sranie do mordy3",
-                Content = "lalasadfsdasdasdlal",
-                Created = new DateTime(2012, 1, 14),
+                Content = "lalasadfsdasdasdlal \n\nŁukasz Hryniewicki " + DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + "\n\n",
+                Created = DateTime.Now,
+                LastModified = DateTime.Now,
                 AuthorFullName = "Łukasz Hryniewicki"
             });
 
             _db.Messages.AddOrUpdate(new Message
             {
                 Id = 4,
-                AuthorId = 3,
+                AuthorId = user3.Id,
+                Senders = new List<User> { user3 },
                 Receivers = new List<User> { user1, user2 },
                 Title = "sranie do mordy4",
-                Content = "lalalasdsadasddwwal",
-                Created = new DateTime(2012, 1, 17),
+                Content = "lalalasdsadasddwwal \n\nŁukasz Hryniewicki " + DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + "\n\n",
+                Created = DateTime.Now,
+                LastModified = DateTime.Now,
                 AuthorFullName = "Łukasz Hryniewicki"
             });
 
             _db.Messages.AddOrUpdate(new Message
             {
                 Id = 5,
-                AuthorId = 3,
+                AuthorId = user3.Id,
+                Senders = new List<User> { user3 },
                 Receivers = new List<User> { user1, user2 },
                 Title = "sranie do mordy5",
-                Content = "lalalawdwdqdqwdqwal",
-                Created = new DateTime(2012, 1, 16),
+                Content = "lalalawdwdqdqwdqwal \n\nŁukasz Hryniewicki " + DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + "\n\n",
+                Created = DateTime.Now,
+                LastModified = DateTime.Now,
                 AuthorFullName = "Łukasz Hryniewicki"
             });
 
             _db.Messages.AddOrUpdate(new Message
             {
                 Id = 6,
-                AuthorId = 3,
+                AuthorId = user3.Id,
+                Senders = new List<User> { user3 },
                 Receivers = new List<User> { user1, user2 },
                 Title = "sranie do mordy6",
-                Content = "lalalaasdasdasasdasdasdasdl",
-                Created = new DateTime(2012, 1, 18),
+                Content = "lalalaasdasdasasdasdasdasdl \n\nŁukasz Hryniewicki " + DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + "\n\n",
+                Created = DateTime.Now,
+                LastModified = DateTime.Now,
                 AuthorFullName = "Łukasz Hryniewicki"
             });
 

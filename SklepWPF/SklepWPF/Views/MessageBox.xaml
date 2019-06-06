@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SklepWPF.Views"
              xmlns:vm = "clr-namespace:SklepWPF.ViewModels"
+             xmlns:all="clr-namespace:SklepWPF"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:enums = "clr-namespace:SklepWPF.Enums"
              mc:Ignorable="d" 
@@ -33,9 +34,13 @@
                 </Grid.RowDefinitions>
 
                 <Grid Grid.Row="6" Grid.ColumnSpan="3">
+                    <Grid.Resources>
+                        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+                    </Grid.Resources>
                     <Border BorderBrush="Black" BorderThickness="1" Margin="5 0 5 0">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <Button Padding="5" Margin="5" Content="Utwórz" Command="{Binding CreateMessageCommand}"></Button>
+                            <Button Padding="5" Margin="5" Content="Utwórz" Command="{Binding CreateMessageCommand}" Visibility="{Binding CanCreate, Converter={StaticResource BoolToVis},FallbackValue=Visible}">
+                            </Button>
                             <Button Padding="5" Margin="5" Content="Podgląd" Command="{Binding DisplayMessageCommand}" CommandParameter="{Binding SelectedItem, ElementName=messages}">
                                 <Button.Style>
                                     <Style TargetType="Button">

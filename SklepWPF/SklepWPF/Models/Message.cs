@@ -11,10 +11,11 @@ namespace SklepWPF.Models
         public string Title { get; set; }
         public string Content { get; set; }
         public DateTime Created { get; set; }
-        public int? AuthorId { get; set; }
-        public User Author { get; set; }
+        public DateTime LastModified { get; set; }
+        public int AuthorId { get; set; }
         public string AuthorFullName { get; set; }
         public ICollection<User> Receivers { get; set; }
+        public ICollection<User> Senders { get; set; }
         public bool Seen { get; set; }
 
         public override string ToString()

@@ -19,28 +19,24 @@ namespace SklepWPF.ViewModels
 
         private readonly int messageId;
 
+        private readonly bool wasSent;
+
         public string MessageContent { get; set; }
 
         public string AuthorFullName { get; set; }
 
         public string Title { get; set; }
 
-        public bool CanReply { get; set; }
-
-        public DisplayMessageViewModel(Message message)
+        public DisplayMessageViewModel(Message message, bool wasSent)
         {
             Name = "DisplayMessage";
             _db = MyDbContext.Create();
+            this.wasSent = wasSent;
             messageId = message.Id;
             var user = _db.Users.Where(n => n.Name == RunTimeInfo.Instance.Username).SingleOrDefault();
             if (user != null)
                 userId = user.Id;
-            if(message.AuthorId != userId)
-                CanReply = true;
-            else
-                CanReply = false;
             MessageContent = message.Content;
-            var author = _db.Users.Find(message.AuthorId);
             AuthorFullName = message.AuthorFullName;
             Title = message.Title;
         }
@@ -55,7 +51,7 @@ namespace SklepWPF.ViewModels
 
         private void Reply()
         {
-            ApplicationViewModel.Instance.CurrentPageViewModel = new CreateMessageViewModel(messageId);
+            ApplicationViewModel.Instance.CurrentPageViewModel = new CreateMessageViewModel(messageId, wasSent);
         }
 
         public ICommand DeleteMessageCommand
@@ -68,28 +64,20 @@ namespace SklepWPF.ViewModels
 
         private void DeleteMessage()
         {
-            var msg = _db.Messages.Include(rm => rm.Receivers).SingleOrDefault(m => m.Id == messageId);
-            if(msg.AuthorId == userId)
+            var msg = _db.Messages.Include(rm => rm.Receivers).Include(sm => sm.Senders).SingleOrDefault(m => m.Id == messageId);
+
+            if(wasSent)
             {
-                if(msg.Receivers.Count == 0)
-                {
-                    _db.Messages.Remove(msg);
-                }
-                else
-                {
-                    msg.AuthorId = null;
-                }
+                msg.Senders.Remove(_db.Users.Find(userId));
             }
             else
             {
-                if (msg.Receivers.Count == 1 && msg.AuthorId == null)
-                {
-                    _db.Messages.Remove(msg);
-                }
-                else
-                {
-                    msg.Receivers.Remove(_db.Users.Find(userId));
-                }
+                msg.Receivers.Remove(_db.Users.Find(userId));
+            }
+
+            if (msg.Senders.Count + msg.Receivers.Count == 0)
+            {
+                _db.Messages.Remove(msg);
             }
 
             _db.SaveChanges();

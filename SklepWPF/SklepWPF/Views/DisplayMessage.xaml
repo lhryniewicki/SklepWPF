@@ -55,16 +55,6 @@
                 <Button Margin="10" Padding="10" Content="Powrót" Command="{Binding BackCommand}"/>
                 <Button Margin="10" Padding="10" Content="Usuń" Command="{Binding DeleteMessageCommand}"/>
                 <Button Margin="10" Padding="10" Content="Odpisz" Command="{Binding ReplyCommand}">
-                    <Button.Style>
-                        <Style TargetType="Button">
-                            <Setter Property="Visibility" Value="Visible" />
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding CanReply}" Value="False">
-                                    <Setter Property="Visibility" Value="Collapsed" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
                 </Button>
             </StackPanel>
         </Border>

@@ -25,14 +25,9 @@ namespace SklepWPF.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //HasOptional w wiadomościach z tego względu, aby użytkownik mógł usunąć wiadomość ze swojej skrzynki. Wiadomość wtedy nadal pozostanie po stronie nadawcy/odbiorcy.
-            //Jeżeli oboje usuną wiadomość ze swoich skrzynek, ta wiadomość nadal pozostanie w bazie bez autora i nadawcy. W przypadku usuwania należy to sprawdzić i usunąć wiadomość
-            //ręcznie z bazy.
             modelBuilder.Entity<Message>()
-                .HasOptional(a => a.Author)
-                .WithMany(u => u.SentMessages)
-                .HasForeignKey(a => a.AuthorId)
-                .WillCascadeOnDelete(false);
+                .HasMany(s => s.Senders)
+                .WithMany(u => u.SentMessages);
 
             modelBuilder.Entity<Message>()
                 .HasMany(r => r.Receivers)
