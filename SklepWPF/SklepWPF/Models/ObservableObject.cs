@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SklepWPF.Models
 {
-	class ObservableObject : INotifyPropertyChanged
+	 class ObservableObject : INotifyPropertyChanged
 	{
 		public event PropertyChangedEventHandler PropertyChanged;
 
