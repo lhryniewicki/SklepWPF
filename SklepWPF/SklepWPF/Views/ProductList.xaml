@@ -110,8 +110,12 @@
                 <Button Name="editButton" Command="{Binding UpdateSelectedProductCommand}" CommandParameter="{Binding ElementName=produktyListBox, Path=SelectedIndex}" Grid.Column="2" FontSize="20" Margin="20,10"
                         Background="MediumAquamarine">Edytuj</Button>
             </Grid>
+            <StackPanel HorizontalAlignment="Right" Grid.Row="3" Orientation="Horizontal">
+                <Button Background="LightYellow" Height="30" Width="50" Content="Zdjecie" Command="{Binding Path=GetPhotoCommand}"></Button>
+                <TextBox Text="{Binding SelectedPath}" IsReadOnly="True"  Width="100" Height="30"></TextBox>
 
-            <Label Grid.Row="3" FontFamily="Verdana" FontSize="25" Margin="0,10" FontWeight="Bold" VerticalContentAlignment="Bottom">Filtry</Label>
+            </StackPanel>
+            <Label  Grid.Row="3" FontFamily="Verdana" FontSize="25" Margin="0,10,155,10" FontWeight="Bold" VerticalContentAlignment="Bottom">Filtry</Label>
 
             <Grid Grid.Row="4">
                 <Grid.ColumnDefinitions>

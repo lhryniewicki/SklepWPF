@@ -10,6 +10,8 @@ using System.Windows.Controls;
 using System.Data.Entity;
 using System.Windows.Input;
 using System.ComponentModel.DataAnnotations;
+using System.Windows.Forms;
+using System.IO;
 
 namespace SklepWPF.ViewModels
 {
@@ -24,8 +26,24 @@ namespace SklepWPF.ViewModels
         private string brand;
         private int quantity;
         private string category;
+		private string _selectedPath = "";
+		private string _importPath = "";
+		private string _destinationPath = "";
 
-        [Required(ErrorMessage = "Pole nie może być puste")]
+		public string SelectedPath
+		{
+			get { return _selectedPath; }
+			set
+			{
+				if (_selectedPath != value)
+				{
+					_selectedPath = value;
+					OnPropertyChanged("SelectedPath");
+				}
+			}
+		}
+
+		[Required(ErrorMessage = "Pole nie może być puste")]
         public string Name
         {
             get
@@ -148,7 +166,37 @@ namespace SklepWPF.ViewModels
             LoadData();
         }
 
-        private void ValidateProperty<T>(T value, string name)
+		public ICommand GetPhotoCommand
+		{
+			get
+			{
+				return new RelayCommand(p => GetPhoto());
+			}
+		}
+		private void GetPhoto()
+		{
+			OpenFileDialog fileDialog = new OpenFileDialog();
+			fileDialog.DefaultExt = ".png";
+			fileDialog.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
+
+
+
+			if (fileDialog.ShowDialog() == DialogResult.OK)
+			{
+				SelectedPath = fileDialog.SafeFileName;
+				_importPath = fileDialog.FileName;
+				_destinationPath = AppDomain.CurrentDomain.BaseDirectory + "Images\\";
+				_destinationPath = _destinationPath.Replace("\\", "/");
+				_destinationPath = _destinationPath.Replace("/bin/Debug", "") + fileDialog.SafeFileName;
+
+			}
+			else
+			{
+				SelectedPath = "";
+			}
+		}
+
+		private void ValidateProperty<T>(T value, string name)
         {
             Validator.ValidateProperty(value, new ValidationContext(this, null, null)
             {
@@ -242,19 +290,35 @@ namespace SklepWPF.ViewModels
         {
             get
             {
-                return new RelayCommand(p => AddNewProduct(Name, Description, Price, Brand, Quantity, Category));
+                return new RelayCommand(p => AddNewProduct(Name, Description, Price, Brand, Quantity, Category),
+					p=> IsValid());
             }
         }
+		private bool IsValid()
+		{
+			return (!string.IsNullOrEmpty(SelectedPath) &&
+				!string.IsNullOrEmpty(Name) &&
+				!string.IsNullOrEmpty(Description) &&
+				!string.IsNullOrEmpty(Brand) &&
+				!string.IsNullOrEmpty(Category) &&
+				(quantity != 0)
+				);
+		}
 
         public void AddNewProduct(string name, string description, double price, string brand, int quantity, string category)
         {
             var cat = _db.Categories.Where(p => p.Name == category).SingleOrDefault();
             var newProduct = new Product(name, description, Math.Round(price, 2), brand, quantity, cat);
 
-            _db.Products.Add(newProduct);
+			newProduct.ImagePath = _destinationPath;
+
+			_db.Products.Add(newProduct);
             _db.SaveChanges();
 
-            LoadData();
+			File.Copy(_importPath, _destinationPath, true);
+
+
+			LoadData();
         }
 
         private bool IsProductValid()

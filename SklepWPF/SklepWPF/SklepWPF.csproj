@@ -108,6 +108,10 @@
     <Compile Include="Data\Migrations\201906070827280_UserCartAndMergedMigration.Designer.cs">
       <DependentUpon>201906070827280_UserCartAndMergedMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Data\Migrations\201906072124199_ProductImage.cs" />
+    <Compile Include="Data\Migrations\201906072124199_ProductImage.Designer.cs">
+      <DependentUpon>201906072124199_ProductImage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Data\MyDbContext.cs" />
     <Compile Include="Enums\EnumBindingSourceExtension.cs" />
     <Compile Include="Enums\EnumDescriptionTypeConverter.cs" />
@@ -293,6 +297,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Data\Migrations\201906070827280_UserCartAndMergedMigration.resx">
       <DependentUpon>201906070827280_UserCartAndMergedMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Data\Migrations\201906072124199_ProductImage.resx">
+      <DependentUpon>201906072124199_ProductImage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

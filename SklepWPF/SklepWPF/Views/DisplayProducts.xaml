@@ -59,9 +59,7 @@
 
                 <DataTemplate  >
                     <DockPanel>
-                        <!--<Image DockPanel.Dock="Right"></Image>-->
-
-                        <Label DockPanel.Dock="Right">IMG</Label>
+                        <Image MaxHeight="40" MaxWidth="40" Source="{Binding ImagePath}"  DockPanel.Dock="Right"></Image>
 
                         <Button Command="{Binding Source={StaticResource Proxy}, Path=Data.AddItemToCartCommand}" CommandParameter="{Binding Id}"
                                  Visibility="{Binding Source={StaticResource Proxy}, Path=Data.ShowButton, Converter={StaticResource BoolToVis},FallbackValue=Hidden}"
