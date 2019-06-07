@@ -6,6 +6,7 @@ using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Windows;
+using System.Windows.Navigation;
 
 namespace SklepWPF
 {
@@ -17,11 +18,10 @@ namespace SklepWPF
 		protected override void OnStartup(StartupEventArgs e)
 		{
 			base.OnStartup(e);
-
-			ApplicationView app = new ApplicationView();
-			ApplicationViewModel context = ApplicationViewModel.Instance;
-			app.DataContext = context;
-			app.Show();
-		}
-	}
+            ApplicationView app = new ApplicationView();
+            ApplicationViewModel context = ApplicationViewModel.Instance;
+            app.DataContext = context;
+            app.Show();
+        }
+    }
 }

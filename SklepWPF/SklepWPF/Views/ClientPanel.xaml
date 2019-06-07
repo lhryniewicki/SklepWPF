@@ -14,6 +14,9 @@
     </UserControl.DataContext>
 
     <UserControl.Resources>
+
+        
+        
         <DataTemplate x:Key="OrdersTemplate">
             <DockPanel Margin="5 4 5 4">
                 <TextBlock Margin="5" Text="{Binding Created, StringFormat=dd-MM-yyyy HH:mm}"></TextBlock>
@@ -129,7 +132,7 @@
             </Grid>
         </Grid>
 
-        <GroupBox Grid.Row="1" Header="Dane" Grid.ColumnSpan="3" Grid.RowSpan="3" Margin="10, 0" BorderBrush="Black" BorderThickness="2">
+        <GroupBox Padding="10" Grid.Row="1" Header="Dane" Grid.ColumnSpan="3" Grid.RowSpan="3" Margin="10, 0" BorderBrush="Black" BorderThickness="2">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -148,15 +151,15 @@
                 </Grid.RowDefinitions>
 
                 <Label Content="Imię:" VerticalAlignment="Center"></Label>
-                <TextBox Name="Username" Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.ColumnSpan="2" Margin="5,7"></TextBox>
+                <TextBox Name="Username" Text="{Binding UserName, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" Validation.ErrorTemplate="{StaticResource errorTemplate}" Grid.Column="1" Grid.ColumnSpan="2" Margin="10"></TextBox>
                 <Label Content="Nazwisko:" Grid.Row="1" VerticalAlignment="Center"></Label>
-                <TextBox Name="Surname" Text="{Binding Surname, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Margin="5,7"></TextBox>
+                <TextBox Name="Surname" Text="{Binding Surname, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" Validation.ErrorTemplate="{StaticResource errorTemplate}" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Margin="10"></TextBox>
                 <Label Content="Email:" Grid.Row="2" VerticalAlignment="Center"></Label>
-                <TextBox Name="Email" Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Margin="5,7"></TextBox>
+                <TextBox Name="Email" Text="{Binding Email, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" Validation.ErrorTemplate="{StaticResource errorTemplate}" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Margin="10"></TextBox>
                 <Label Content="Numer kontaktowy:" Grid.Row="3" VerticalAlignment="Center"></Label>
-                <TextBox Name="PhoneNumber" Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Margin="5,7"></TextBox>
+                <TextBox Name="PhoneNumber" Text="{Binding PhoneNumber, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" Validation.ErrorTemplate="{StaticResource errorTemplate}" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Margin="10"></TextBox>
                 <Label Content="Miasto:" Grid.Row="4" VerticalAlignment="Center"></Label>
-                <TextBox Name="City" Text="{Binding City, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" Margin="5,7"></TextBox>
+                <TextBox Name="City" Text="{Binding City, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" Validation.ErrorTemplate="{StaticResource errorTemplate}" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" Margin="10"></TextBox>
 
                 <Grid Grid.Row="5" Grid.ColumnSpan="3">
                     <Grid.ColumnDefinitions>
@@ -168,7 +171,7 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Label Content="Ulica:" VerticalAlignment="Center"></Label>
-                    <TextBox Name="StreetName" Text="{Binding StreetName, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" Grid.ColumnSpan="2" Margin="5,7"></TextBox>
+                    <TextBox Name="StreetName" Text="{Binding StreetName, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" Validation.ErrorTemplate="{StaticResource errorTemplate}" Grid.Column="2" Grid.ColumnSpan="2" Margin="10"></TextBox>
 
                     <Grid Grid.Column="4" Grid.ColumnSpan="2">
                         <Grid.ColumnDefinitions>
@@ -178,12 +181,12 @@
                         </Grid.ColumnDefinitions>
 
                         <Label Grid.ColumnSpan="2" Content="Kod pocztowy:" VerticalAlignment="Center"></Label>
-                        <TextBox Name="PostalCode" Text="{Binding PostalCode, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" Margin="0,7"></TextBox>
+                        <TextBox Name="PostalCode" Text="{Binding PostalCode, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" Validation.ErrorTemplate="{StaticResource errorTemplate}" Grid.Column="2" Margin="0 10"></TextBox>
                     </Grid>
                 </Grid>
 
                 <Label Content="Sposób płatności:" Grid.Row="6" VerticalAlignment="Center"></Label>
-                <ComboBox ItemsSource="{Binding Source={enums:EnumBindingSource {x:Type enums:PaymentMethod}}}" SelectedItem="{Binding PaymentMethod}" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Margin="5,7">
+                <ComboBox ItemsSource="{Binding Source={enums:EnumBindingSource {x:Type enums:PaymentMethod}}}" SelectedItem="{Binding PaymentMethod}" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Margin="10">
                 </ComboBox>
 
                 <StackPanel Grid.Row="7" Orientation="Horizontal" Grid.ColumnSpan="3">

@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 using System.Data.Entity;
+using System.ComponentModel.DataAnnotations;
 
 namespace SklepWPF.ViewModels
 {
@@ -20,19 +21,132 @@ namespace SklepWPF.ViewModels
 
         //Dane osobowe
 
-        public string UserName { get; set; }
-        
-        public string Surname { get; set; }
-        
-        public string Email { get; set; }
-        
-        public string StreetName { get; set; }
-        
-        public string City { get; set; }
-        
-        public string PostalCode { get; set; }
+        private string username;
 
-        public string PhoneNumber { get; set; }
+        [Required(ErrorMessage = "Pole nie może być puste")]
+        [StringLength(10, MinimumLength = 5, ErrorMessage = "Nazwa użytkownika musi mieć co najmniej 5 znaków")]
+        public string UserName
+        {
+            get
+            {
+                return username;
+            }
+            set
+            {
+                if(username != value)
+                    username = value;
+                OnPropertyChanged("UserName");
+                ValidateProperty(value, "UserName");
+            }
+        }
+
+        private string surname;
+
+        [Required(ErrorMessage = "Pole nie może być puste")]
+        [StringLength(10, MinimumLength = 5, ErrorMessage = "Nazwisko musi mieć co najmniej 3 znaki")]
+        public string Surname
+        {
+            get
+            {
+                return surname;
+            }
+            set
+            {
+                if(surname != value)
+                    surname = value;
+                OnPropertyChanged("Surname");
+                ValidateProperty(value, "Surname");
+            }
+        }
+
+        private string email;
+
+        [Required(ErrorMessage = "Pole nie może być puste")]
+        public string Email
+        {
+            get
+            {
+                return email;
+            }
+            set
+            {
+                if(email != value)
+                    email = value;
+                OnPropertyChanged("Email");
+                ValidateProperty(value, "Email");
+            }
+        }
+
+        private string streetName;
+
+        [Required(ErrorMessage = "Pole nie może być puste")]
+        public string StreetName
+        {
+            get
+            {
+                return streetName;
+            }
+            set
+            {
+                if(streetName != value)
+                    streetName = value;
+                OnPropertyChanged("StreetName");
+                ValidateProperty(value, "StreetName");
+            }
+        }
+
+        private string city;
+
+        [Required(ErrorMessage = "Pole nie może być puste")]
+        public string City
+        {
+            get
+            {
+                return city;
+            }
+            set
+            {
+                if(city != value)
+                    city = value;
+                OnPropertyChanged("City");
+                ValidateProperty(value, "City");
+            }
+        }
+
+        private string postalCode;
+
+        [Required(ErrorMessage = "Pole nie może być puste")]
+        public string PostalCode
+        {
+            get
+            {
+                return postalCode;
+            }
+            set
+            {
+                if(postalCode != value)
+                    postalCode = value;
+                OnPropertyChanged("PostalCode");
+                ValidateProperty(value, "PostalCode");
+            }
+        }
+
+        private string phoneNumber;
+
+        [Required(ErrorMessage = "Pole nie może być puste")]
+        public string PhoneNumber
+        {
+            get
+            {
+                return phoneNumber;
+            }
+            set
+            {
+                phoneNumber = value;
+                OnPropertyChanged("PhoneNumber");
+                ValidateProperty(value, "PhoneNumber");
+            }
+        }
         
         public PaymentMethod PaymentMethod { get; set; }
 
@@ -80,6 +194,14 @@ namespace SklepWPF.ViewModels
             LoadOrders();
         }
 
+        private void ValidateProperty<T>(T value, string name)
+        {
+            Validator.ValidateProperty(value, new ValidationContext(this, null, null)
+            {
+                MemberName = name
+            });
+        }
+
         public ICommand SaveUserDataCommand
         {
             get
@@ -115,6 +237,13 @@ namespace SklepWPF.ViewModels
                 String.IsNullOrEmpty(PhoneNumber))
             {
                 return false;
+            }
+            else
+            {
+                if (UserName.Length < 5 || Surname.Length < 5)
+                {
+                    return false;
+                }
             }
 
             return true;

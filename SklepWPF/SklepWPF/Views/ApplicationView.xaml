@@ -11,6 +11,7 @@
         WindowStartupLocation="CenterScreen"
 >
     <Window.Resources>
+
         <DataTemplate DataType="{x:Type vm:ProductsViewModel}">
             <local:DisplayProducts />
         </DataTemplate>

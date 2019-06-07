@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Input;
 using System.Data.Entity;
+using System.ComponentModel.DataAnnotations;
 
 namespace SklepWPF.ViewModels
 {
@@ -21,7 +22,23 @@ namespace SklepWPF.ViewModels
 
         private string title;
 
-        public string MessageContent { get; set; }
+        private string messageContent;
+
+        [Required(ErrorMessage = "Pole nie może być puste")]
+        public string MessageContent
+        {
+            get
+            {
+                return messageContent;
+            }
+            set
+            {
+                if (messageContent != value)
+                    messageContent = value;
+                OnPropertyChanged("MessageContent");
+                ValidateProperty(value, "MessageContent");
+            }
+        }
 
         private string replyingMessageContent;
 
@@ -39,6 +56,7 @@ namespace SklepWPF.ViewModels
             }
         }
 
+        [Required(ErrorMessage = "Pole nie może być puste")]
         public string Title
         {
             get
@@ -50,6 +68,7 @@ namespace SklepWPF.ViewModels
                 if (title != value)
                     title = value;
                 OnPropertyChanged("Title");
+                ValidateProperty(value, "Title");
             }
         }
 
@@ -80,12 +99,30 @@ namespace SklepWPF.ViewModels
             }
         }
 
+        private void ValidateProperty<T>(T value, string name)
+        {
+            Validator.ValidateProperty(value, new ValidationContext(this, null, null)
+            {
+                MemberName = name
+            });
+        }
+
         public ICommand SendMessageCommand
         {
             get
             {
-                return new RelayCommand(p => SendMessage());
+                return new RelayCommand(p => SendMessage(), p => IsFormValid());
             }
+        }
+
+        private bool IsFormValid()
+        {
+            if(String.IsNullOrEmpty(messageContent) || String.IsNullOrEmpty(title))
+            {
+                return false;
+            }
+
+            return true;
         }
 
         private void SendMessage()
