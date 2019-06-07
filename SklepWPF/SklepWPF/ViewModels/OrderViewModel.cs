@@ -108,10 +108,10 @@ namespace SklepWPF.ViewModels
         {
             var user = _db.Users.Include(c => c.Cart).SingleOrDefault(n => n.Name == RunTimeInfo.Instance.Username);
 
-            //foreach (Product p in user.Cart)
-            //{
-            //    _orderedProducts.Add(_db.Products.Where(u => u.Id == p.Id).FirstOrDefault());
-            //}
+            foreach (UserCart p in user.Cart)
+            {
+                _orderedProducts.Add(_db.Products.Where(u => u.Id == p.ProductId).FirstOrDefault());
+            }
 
             RefreshProducts(_orderedProducts);
         }

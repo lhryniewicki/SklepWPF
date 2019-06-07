@@ -46,10 +46,10 @@
         <ListBox ItemsSource="{Binding Categories}" Grid.Column="0" Grid.Row="2" Margin="10,10,0,50" >
             <ListBox.Resources>
                 <DataTemplate DataType="{x:Type data:Category}">
-                    <CheckBox Content="{Binding Path=Name,Mode=TwoWay}" 
+                    <CheckBox FlowDirection="LeftToRight" Content="{Binding Path=Name,Mode=TwoWay}" 
                               
                  CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}" 
-                 Command="{Binding DataContext.QueryByCategoriesCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" FlowDirection="RightToLeft" />
+                 Command="{Binding DataContext.QueryByCategoriesCommand, RelativeSource={RelativeSource AncestorType=ListBox}}"/>
                 </DataTemplate>
             </ListBox.Resources>
         </ListBox>
@@ -67,12 +67,14 @@
 
                         <Label DockPanel.Dock="Right">IMG</Label>
 
-                        <Button Command="{Binding Source={StaticResource Proxy}, Path=Data.AddItemToCartCommand}" CommandParameter="{Binding Id}" Visibility="{Binding Source={StaticResource Proxy}, Path=Data.ShowButton, Converter={StaticResource BoolToVis},FallbackValue=Hidden}"  Background="IndianRed" Padding="5" Margin="10,0,0,0">
-                                Dodaj do koszyka
-                            </Button>
-                            <Button Command="{Binding Source={StaticResource Proxy}, Path=Data.ObserveItemCommand}" CommandParameter="{Binding Id}" Visibility="{Binding Source={StaticResource Proxy}, Path=Data.ShowButton, Converter={StaticResource BoolToVis},FallbackValue=Hidden}"  Background="LightGoldenrodYellow" Padding="5" Margin="1,0,0,0">
-                                Obserwuj
-                            </Button>
+                        <Button Command="{Binding Source={StaticResource Proxy}, Path=Data.AddItemToCartCommand}" CommandParameter="{Binding Id}" Visibility="{Binding Source={StaticResource Proxy}, Path=Data.ShowButton, Converter={StaticResource BoolToVis},FallbackValue=Hidden}"
+                                BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
+                            <Image Source="/Images/shopping_cart_add.png" RenderOptions.BitmapScalingMode="Fant"/>
+                        </Button>
+                        
+                        <Button Command="{Binding Source={StaticResource Proxy}, Path=Data.ObserveItemCommand}" CommandParameter="{Binding Id}" Visibility="{Binding Source={StaticResource Proxy}, Path=Data.ShowButton, Converter={StaticResource BoolToVis},FallbackValue=Hidden}"  Background="LightGoldenrodYellow" Padding="5" Margin="1,0,0,0">
+                            Obserwuj
+                        </Button>
                        
                         <Button Command="{Binding Source={StaticResource Proxy}, Path=Data.DisplayProductCommand}" CommandParameter="{Binding Id}" Background="White" BorderBrush="Black" Padding="5" HorizontalContentAlignment="Center"   Content="{Binding Name}" Margin="0,0,10,0"  >
                         </Button>
