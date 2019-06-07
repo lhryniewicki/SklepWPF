@@ -12,6 +12,14 @@
         <vm:AdminPanelViewModel/>
     </UserControl.DataContext>
 
+    <UserControl.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="Azure" Offset="0" />
+            <!-- replace my:CoolControl with your namespace declaration and UserControl name -->
+            <GradientStop Color="BlueViolet" Offset="1" />
+        </LinearGradientBrush>
+    </UserControl.Background>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -25,17 +33,17 @@
 
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
                 <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="*"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
             <Image Grid.Column="0" Source="/Images/goods.png" Margin="20"/>
-            <Label Grid.Column="1" VerticalAlignment="Center" FontSize="30" FontFamily="Verdana">Towarów</Label>
+            <Label Grid.Column="1" VerticalAlignment="Center" FontSize="30" Margin="0" FontFamily="Verdana">Towarów</Label>
 
             <Image Grid.Column="2" Source="/Images/user_list.png" Margin="20"/>
-            <Label Grid.Column="3" VerticalAlignment="Center" FontSize="30" FontFamily="Verdana">Klientów</Label>
+            <Label Grid.Column="3" VerticalAlignment="Center" FontSize="30" Margin="0" FontFamily="Verdana">Klientów</Label>
         </Grid>
 
         <Grid Grid.Row="3">
@@ -44,8 +52,8 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" Name="productListButton" Margin="75 100" FontSize="25" Command="{Binding EditProductsCommand}">Lista Produktów</Button>
-            <Button Grid.Column="1" Name="clientListButton" Margin="75 100" FontSize="25" Command="{Binding UserListCommand}">Lista Klientów</Button>
+            <Button Grid.Column="0" Name="productListButton" Width="200" Height="50" FontSize="25" Command="{Binding EditProductsCommand}">Lista Produktów</Button>
+            <Button Grid.Column="1" Name="clientListButton" Width="200" Height="50" FontSize="25" Command="{Binding UserListCommand}">Lista Klientów</Button>
         </Grid>
     </Grid>
 </UserControl>

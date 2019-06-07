@@ -317,5 +317,14 @@
     <Resource Include="Images\shopping_cart_add.png" />
     <Resource Include="Images\shopping_cart_remove.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\observe_product.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\allebro_logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\error_message.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
