@@ -113,8 +113,8 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <Button Grid.Column="1" Grid.Row="2" Margin="40,10" Padding="10" Background="Aquamarine" Command="{Binding BackCommand}">Powrót</Button>
-        <Button Grid.Column="0" Grid.Row="2" Margin="40,10" Padding="10" Command="{Binding SaveOrderCommand}">Realizuj</Button>
+        <Button Grid.Column="1" Grid.Row="2" Margin="40,10" Padding="10" FontWeight="Bold" Background="Aquamarine" Command="{Binding BackCommand}">Powrót</Button>
+        <Button Grid.Column="0" Grid.Row="2" Margin="40,10" Padding="10" FontWeight="Bold" Background="DarkGoldenrod" Command="{Binding SaveOrderCommand}">Realizuj</Button>
 
 
     </Grid>

@@ -62,7 +62,64 @@
         <DataTemplate DataType="{x:Type vm:OrderViewModel}">
             <local:Order />
         </DataTemplate>
+
+        <Style TargetType="{x:Type TextBox}">
+            <Style.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Style.Resources>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Padding" Value="5 0 0 0"/>
+        </Style>
+
+        <Style TargetType="{x:Type PasswordBox}">
+            <Style.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Style.Resources>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Padding" Value="5 0 0 0"/>
+        </Style>
+
+        <Style TargetType="{x:Type ListBox}">
+            <Style.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="12"/>
+                </Style>
+            </Style.Resources>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="2"/>
+        </Style>
+
+        <Style TargetType="{x:Type Button}">
+            <Style.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Style.Resources>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="DarkGray" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </Window.Resources>
+
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="Azure" Offset="0" />
+            <!-- replace my:CoolControl with your namespace declaration and UserControl name -->
+            <GradientStop Color="BlueViolet" Offset="1" />
+        </LinearGradientBrush>
+    </Window.Background>
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -74,7 +131,6 @@
         </Grid.RowDefinitions>
 
         <Grid.Resources>
-            
             <BooleanToVisibilityConverter x:Key="BoolToVis"/>
             <all:Proxy x:Key="Proxy" Data="{Binding}" />
             <all:ReverseBooleanToVisibilityConverter x:Key="ReverseVisibility" />

@@ -10,8 +10,8 @@
                    xmlns:data="clr-namespace:SklepWPF.Models"
              xmlns:enums = "clr-namespace:SklepWPF.Enums"
         mc:Ignorable="d"
-        d:DesignHeight="600" d:DesignWidth="800">
-    
+        d:DesignHeight="600" d:DesignWidth="850">
+
     <UserControl.DataContext>
         <vm:ProductListViewModel/>
     </UserControl.DataContext>
@@ -49,22 +49,22 @@
                 </Grid.ColumnDefinitions>
 
                 <Label FontSize="16" Grid.Row="0" Grid.Column="0">Nazwa</Label>
-                <TextBox Grid.Row="0" Grid.Column="1" Name="nazwaTextBox" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" FontSize="16" Margin="3"></TextBox>
+                <TextBox Grid.Row="0" Grid.Column="1" Name="nazwaTextBox" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" FontSize="16" Margin="3 3 20 3"></TextBox>
 
                 <Label FontSize="16" Grid.Row="1" Grid.Column="0">Opis</Label>
-                <TextBox Grid.Row="1" Grid.Column="1" Name="opisTextBox" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" FontSize="16" Margin="3"></TextBox>
+                <TextBox Grid.Row="1" Grid.Column="1" Name="opisTextBox" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" FontSize="16" Margin="3 3 20 3"></TextBox>
 
                 <Label FontSize="16" Grid.Row="2" Grid.Column="0">Cena</Label>
-                <TextBox Grid.Row="2" Grid.Column="1" Name="cenaTextBox" Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}" FontSize="16"  Margin="3"></TextBox>
+                <TextBox Grid.Row="2" Grid.Column="1" Name="cenaTextBox" Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}" FontSize="16"  Margin="3 3 20 3"></TextBox>
 
                 <Label FontSize="16" Grid.Row="3" Grid.Column="0">Firma xd</Label>
-                <TextBox Grid.Row="3" Grid.Column="1" Name="markaTextBox" Text="{Binding Brand, UpdateSourceTrigger=PropertyChanged}" FontSize="16"  Margin="3"></TextBox>
+                <TextBox Grid.Row="3" Grid.Column="1" Name="markaTextBox" Text="{Binding Brand, UpdateSourceTrigger=PropertyChanged}" FontSize="16"  Margin="3 3 20 3"></TextBox>
 
                 <Label FontSize="16" Grid.Row="4" Grid.Column="0">Ilość</Label>
-                <TextBox Grid.Row="4" Grid.Column="1" Name="iloscTextBox" Text="{Binding Quantity, UpdateSourceTrigger=PropertyChanged}" FontSize="16"  Margin="3"></TextBox>
+                <TextBox Grid.Row="4" Grid.Column="1" Name="iloscTextBox" Text="{Binding Quantity, UpdateSourceTrigger=PropertyChanged}" FontSize="16"  Margin="3 3 20 3"></TextBox>
 
                 <Label FontSize="16" Grid.Row="5" Grid.Column="0">Kategoria</Label>
-                <ComboBox Name="CategoryComboBox" Grid.Row="5" Grid.Column="1" Margin="3" ItemsSource="{Binding Categories}" SelectedValue="{Binding Category}" SelectedValuePath="Name" DisplayMemberPath="Name" FontSize="16">
+                <ComboBox Name="CategoryComboBox" Grid.Row="5" Grid.Column="1" Margin="3 3 20 3" ItemsSource="{Binding Categories}" SelectedValue="{Binding Category}" SelectedValuePath="Name" DisplayMemberPath="Name" FontSize="16">
                     <ComboBox.Resources>
                         <DataTemplate DataType="{x:Type data:Category}">
                             <Label Content="{Binding Path=Name}"/>
@@ -80,20 +80,35 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <Button Name="dodajButton" Command="{Binding AddNewProductCommand}" Grid.Column="0" FontSize="20" Margin="20,10">Dodaj
+                <Button Name="dodajButton" Background="LawnGreen" Command="{Binding AddNewProductCommand}" Grid.Column="0" FontSize="20" Margin="20,10">Dodaj
                     <Button.Style>
                         <Style TargetType="Button">
+                            <Style.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="5"/>
+                                </Style>
+                            </Style.Resources>
                             <Setter Property="IsEnabled" Value="False" />
+                            <Setter Property="BorderThickness" Value="2"/>
+                            <Setter Property="BorderBrush" Value="Transparent"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding ElementName=produktyListBox, Path=SelectedItems.Count}" Value="0">
                                     <Setter Property="IsEnabled" Value="True" />
                                 </DataTrigger>
+                                
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="DarkGreen" />
+                                </Trigger>
+
                             </Style.Triggers>
                         </Style>
                     </Button.Style>
                 </Button>
-                <Button Name="usunButton" Command="{Binding DeleteSelectedProductCommand}" CommandParameter="{Binding ElementName=produktyListBox, Path=SelectedIndex}" Grid.Column="1" FontSize="20" Margin="20,10">Usuń</Button>
-                <Button Name="editButton" Command="{Binding UpdateSelectedProductCommand}" CommandParameter="{Binding ElementName=produktyListBox, Path=SelectedIndex}" Grid.Column="2" FontSize="20" Margin="20,10">Edytuj</Button>
+                <Button Name="usunButton" Command="{Binding DeleteSelectedProductCommand}" CommandParameter="{Binding ElementName=produktyListBox, Path=SelectedIndex}" Grid.Column="1" FontSize="20" Margin="20,10"
+                        Background="IndianRed">Usuń</Button>
+                <Button Name="editButton" Command="{Binding UpdateSelectedProductCommand}" CommandParameter="{Binding ElementName=produktyListBox, Path=SelectedIndex}" Grid.Column="2" FontSize="20" Margin="20,10"
+                        Background="MediumAquamarine">Edytuj</Button>
             </Grid>
 
             <Label Grid.Row="3" FontFamily="Verdana" FontSize="25" Margin="0,10" FontWeight="Bold" VerticalContentAlignment="Bottom">Filtry</Label>
@@ -101,7 +116,7 @@
             <Grid Grid.Row="4">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
@@ -109,7 +124,7 @@
                 </Grid.RowDefinitions>
                 
                 <Label Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" FontSize="16" FontWeight="Bold">Sortuj:</Label>
-                <ComboBox SelectedIndex="0" Grid.Column="1"  Grid.Row="1" VerticalAlignment="Top" VerticalContentAlignment="Center" FontSize="16" Margin="10" Height="30" ItemsSource="{Binding Source={enums:EnumBindingSource {x:Type enums:ProductListSortingProducts}}}" SelectedItem="{Binding SortedProducts}">
+                <ComboBox SelectedIndex="0" Grid.Column="1"  Grid.Row="1" VerticalAlignment="Top" VerticalContentAlignment="Center" FontSize="16" Margin="3 10 20 3" Height="30" Width="200" ItemsSource="{Binding Source={enums:EnumBindingSource {x:Type enums:ProductListSortingProducts}}}" SelectedItem="{Binding SortedProducts}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="SelectionChanged">
                             <i:InvokeCommandAction Command="{Binding SortProductListCommand}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ComboBox}, Path=SelectedIndex}" />
@@ -118,12 +133,17 @@
                 </ComboBox>
 
                 <Label Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" FontSize="16" FontWeight="Bold">Filtruj po kategorii:</Label>
-                <ListBox Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Categories}" Margin="10">
+                <ListBox Grid.Row="1" Grid.Column="0" BorderBrush="Transparent" Background="Transparent" ItemsSource="{Binding Categories}" Margin="10">
                     <ListBox.Resources>
                         <DataTemplate DataType="{x:Type data:Category}">
-                            <CheckBox Content="{Binding Path=Name, Mode=TwoWay}" 
+                            <CheckBox FlowDirection="LeftToRight"
+                                      Content="{Binding Path=Name, Mode=TwoWay}" 
                                       Command="{Binding DataContext.QueryByCategoriesCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" 
-                                      CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}" FlowDirection="LeftToRight"/>
+                                      CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}">
+                                <CheckBox.LayoutTransform>
+                                    <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                                </CheckBox.LayoutTransform>
+                            </CheckBox>
                         </DataTemplate>
                     </ListBox.Resources>
                 </ListBox>
@@ -157,27 +177,24 @@
                 <Label Height="43" Width="75" Grid.Column="2" FontSize="15">Ilość</Label>
             </Grid>
 
-            <ListBox MouseDown="produktyListBox_MouseDown" Grid.Row="1" Name="produktyListBox" Grid.Column="1" FontSize="15" FlowDirection="LeftToRight" ItemsSource="{Binding Products, Mode=OneWay}">
+            <ListBox MouseDown="produktyListBox_MouseDown" Grid.Row="1" Name="produktyListBox" Grid.Column="1" FontSize="15" FlowDirection="LeftToRight" HorizontalContentAlignment="Stretch" 
+                     ItemsSource="{Binding Products, Mode=OneWay}">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SelectionChanged">
                         <i:InvokeCommandAction Command="{Binding ChangeDisplayedItemCommand}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListBox}, Path=SelectedIndex}"/>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
-                
+
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="auto"/>
-                                <ColumnDefinition Width="auto"/>
-                            </Grid.ColumnDefinitions>
+                        <DockPanel>
 
-                            <!--<Image DockPanel.Dock="Right"></Image>-->
-                            <Label Grid.Column="0" Width="243" Content="{Binding Name}"></Label>
-                            <Label Grid.Column="1" Width="75" Content="{Binding Price}"></Label>
-                            <Label Grid.Column="2" Width="75" Content="{Binding Quantity}"></Label>
-                        </Grid>
+
+                            <Label DockPanel.Dock="Right" Width="70" Content="{Binding Quantity}"></Label>
+                            <Label DockPanel.Dock="Right" Width="70" Content="{Binding Price}"></Label>
+                            <Label Content="{Binding Name}"></Label>
+                            
+                        </DockPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
