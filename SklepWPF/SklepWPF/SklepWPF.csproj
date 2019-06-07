@@ -307,6 +307,15 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\user_list.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\goods.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\shopping_cart_add.png" />
+    <Resource Include="Images\shopping_cart_remove.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

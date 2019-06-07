@@ -195,7 +195,7 @@
 
             </Grid>
 
-            <Button Grid.Row="3" Name="powrotZEdycji" Grid.Column="0" FontSize="20" Width="150" Height="35" Margin="20,10" Command="{Binding BackCommand}">Powrót</Button>
+            <Button Grid.Row="3" Name="powrotZEdycji" Grid.Column="0" Background="Aquamarine" FontSize="20" Width="150" Height="35" Margin="20,10" Command="{Binding BackCommand}">Powrót</Button>
         </Grid>
 
     </Grid>
