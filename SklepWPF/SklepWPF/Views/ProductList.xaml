@@ -49,25 +49,25 @@
                 </Grid.ColumnDefinitions>
 
                 <Label FontSize="16" Grid.Row="0" Grid.Column="0">Nazwa</Label>
-                <TextBox Grid.Row="0" Grid.Column="1" Name="nazwaTextBox" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" FontSize="16" Margin="3 3 20 3"></TextBox>
+                <TextBox Grid.Row="0" Grid.Column="1" Name="nazwaTextBox" Text="{Binding Name, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" Validation.ErrorTemplate="{StaticResource errorTemplate}" FontSize="16" Margin="10 3 20 3"></TextBox>
 
                 <Label FontSize="16" Grid.Row="1" Grid.Column="0">Opis</Label>
-                <TextBox Grid.Row="1" Grid.Column="1" Name="opisTextBox" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" FontSize="16" Margin="3 3 20 3"></TextBox>
+                <TextBox Grid.Row="1" Grid.Column="1" Name="opisTextBox" Text="{Binding Description, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" Validation.ErrorTemplate="{StaticResource errorTemplate}" FontSize="16" Margin="10 3 20 3"></TextBox>
 
                 <Label FontSize="16" Grid.Row="2" Grid.Column="0">Cena</Label>
-                <TextBox Grid.Row="2" Grid.Column="1" Name="cenaTextBox" Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}" FontSize="16"  Margin="3 3 20 3"></TextBox>
+                <TextBox Grid.Row="2" Grid.Column="1" Name="cenaTextBox" Text="{Binding Price, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" Validation.ErrorTemplate="{StaticResource errorTemplate}" FontSize="16"  Margin="10 3 20 3"></TextBox>
 
                 <Label FontSize="16" Grid.Row="3" Grid.Column="0">Firma xd</Label>
-                <TextBox Grid.Row="3" Grid.Column="1" Name="markaTextBox" Text="{Binding Brand, UpdateSourceTrigger=PropertyChanged}" FontSize="16"  Margin="3 3 20 3"></TextBox>
+                <TextBox Grid.Row="3" Grid.Column="1" Name="markaTextBox" Text="{Binding Brand, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" Validation.ErrorTemplate="{StaticResource errorTemplate}" FontSize="16"  Margin="10 3 20 3"></TextBox>
 
                 <Label FontSize="16" Grid.Row="4" Grid.Column="0">Ilość</Label>
-                <TextBox Grid.Row="4" Grid.Column="1" Name="iloscTextBox" Text="{Binding Quantity, UpdateSourceTrigger=PropertyChanged}" FontSize="16"  Margin="3 3 20 3"></TextBox>
+                <TextBox Grid.Row="4" Grid.Column="1" Name="iloscTextBox" Text="{Binding Quantity, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" Validation.ErrorTemplate="{StaticResource errorTemplate}" FontSize="16"  Margin="10 3 20 3"></TextBox>
 
                 <Label FontSize="16" Grid.Row="5" Grid.Column="0">Kategoria</Label>
-                <ComboBox Name="CategoryComboBox" Grid.Row="5" Grid.Column="1" Margin="3 3 20 3" ItemsSource="{Binding Categories}" SelectedValue="{Binding Category}" SelectedValuePath="Name" DisplayMemberPath="Name" FontSize="16">
+                <ComboBox Name="CategoryComboBox" Grid.Row="5" Grid.Column="1" Margin="10 3 20 3" ItemsSource="{Binding Categories}" SelectedValue="{Binding Category}" SelectedValuePath="Name" DisplayMemberPath="Name" FontSize="16">
                     <ComboBox.Resources>
                         <DataTemplate DataType="{x:Type data:Category}">
-                            <Label Content="{Binding Path=Name}"/>
+                            <Label Content="{Binding Path=Name, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" Validation.ErrorTemplate="{StaticResource errorTemplate}"/>
                         </DataTemplate>
                     </ComboBox.Resources>
                 </ComboBox>

@@ -1,30 +1,161 @@
 ﻿using SklepWPF.Data;
 using SklepWPF.Models;
+using System;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace SklepWPF.ViewModels
 {
-	class RegisterViewModel : IPageViewModel
+	class RegisterViewModel : ObservableObject, IPageViewModel
 	{
 		public string Name { get; set; }//Nazwa viewmodelu
 
-		public string Nickname { get; set; }
+        private string nickname;
+        [Required(ErrorMessage = "Pole nie może być puste")]
+        [StringLength(10, MinimumLength = 5, ErrorMessage = "Nazwa użytkownika musi mieć co najmniej 5 znaków")]
+        public string Nickname
+        {
+            get
+            {
+                return nickname;
+            }
+            set
+            {
+                if (nickname != value)
+                    nickname = value;
+                OnPropertyChanged("Nickname");
+                ValidateProperty(value, "Nickname");
+            }
+        }
 
-		public string UserName { get; set; }
-		
-		public string Surname { get; set; }
+        private string username;
 
-		public string StreetName { get; set; }
-		
-		public string City { get; set; }
-		
-		public string PostalCode { get; set; }
+        [Required(ErrorMessage = "Pole nie może być puste")]
+        public string UserName
+        {
+            get
+            {
+                return username;
+            }
+            set
+            {
+                if (username != value)
+                    username = value;
+                OnPropertyChanged("UserName");
+                ValidateProperty(value, "UserName");
+            }
+        }
 
-		public string Email { get; set; }
+        private string surname;
 
-		private readonly MyDbContext _db;
+        [Required(ErrorMessage = "Pole nie może być puste")]
+        public string Surname
+        {
+            get
+            {
+                return surname;
+            }
+            set
+            {
+                if (surname != value)
+                    surname = value;
+                OnPropertyChanged("Surname");
+                ValidateProperty(value, "Surname");
+            }
+        }
+
+        private string email;
+
+        [Required(ErrorMessage = "Pole nie może być puste")]
+        public string Email
+        {
+            get
+            {
+                return email;
+            }
+            set
+            {
+                if (email != value)
+                    email = value;
+                OnPropertyChanged("Email");
+                ValidateProperty(value, "Email");
+            }
+        }
+
+        private string streetName;
+
+        [Required(ErrorMessage = "Pole nie może być puste")]
+        public string StreetName
+        {
+            get
+            {
+                return streetName;
+            }
+            set
+            {
+                if (streetName != value)
+                    streetName = value;
+                OnPropertyChanged("StreetName");
+                ValidateProperty(value, "StreetName");
+            }
+        }
+
+        private string city;
+
+        [Required(ErrorMessage = "Pole nie może być puste")]
+        public string City
+        {
+            get
+            {
+                return city;
+            }
+            set
+            {
+                if (city != value)
+                    city = value;
+                OnPropertyChanged("City");
+                ValidateProperty(value, "City");
+            }
+        }
+
+        private string postalCode;
+
+        [Required(ErrorMessage = "Pole nie może być puste")]
+        public string PostalCode
+        {
+            get
+            {
+                return postalCode;
+            }
+            set
+            {
+                if (postalCode != value)
+                    postalCode = value;
+                OnPropertyChanged("PostalCode");
+                ValidateProperty(value, "PostalCode");
+            }
+        }
+
+        private string phoneNumber;
+
+        [Required(ErrorMessage = "Pole nie może być puste")]
+        public string PhoneNumber
+        {
+            get
+            {
+                return phoneNumber;
+            }
+            set
+            {
+                phoneNumber = value;
+                OnPropertyChanged("PhoneNumber");
+                ValidateProperty(value, "PhoneNumber");
+            }
+        }
+
+        private readonly MyDbContext _db;
 
 		private ICommand _RegisterUserCommand { get; set; }
 
@@ -61,24 +192,36 @@ namespace SklepWPF.ViewModels
 
 		private bool IsValid(PasswordBox passwordBox)
 		{
-			var isNicknameTaken = _db.Users
-				.SingleOrDefault(x => x.Nickname == Nickname);
+            if (String.IsNullOrEmpty(Nickname) ||
+                String.IsNullOrEmpty(UserName) ||
+                String.IsNullOrEmpty(Surname) ||
+                String.IsNullOrEmpty(Email) ||
+                String.IsNullOrEmpty(StreetName) ||
+                String.IsNullOrEmpty(City) ||
+                String.IsNullOrEmpty(PostalCode) ||
+                String.IsNullOrEmpty(passwordBox.Password) ||
+                String.IsNullOrEmpty(PhoneNumber))
+            {
+                return false;
+            }
 
-			if (isNicknameTaken != null) return false;
+            else
+            {
+                if(Nickname.Length < 5)
+                {
+                    return false;
+                }
 
-			return !string.IsNullOrEmpty(Nickname) &&
-				!string.IsNullOrEmpty(UserName) &&
-				!string.IsNullOrEmpty(Surname) &&
-				!string.IsNullOrEmpty(StreetName) &&
-				!string.IsNullOrEmpty(City) && 
-				!string.IsNullOrEmpty(passwordBox.Password) &&
-				!string.IsNullOrEmpty(PostalCode) &&
-				!string.IsNullOrEmpty(Email) 
-				;
-						
+                return true;
+            }
+        }
 
-		}
-
-
-	}
+        private void ValidateProperty<T>(T value, string name)
+        {
+            Validator.ValidateProperty(value, new ValidationContext(this, null, null)
+            {
+                MemberName = name
+            });
+        }
+    }
 }
