@@ -174,10 +174,10 @@
                 
                 <Label Height="43" Grid.Column="0" FontSize="15">Nazwa produktu</Label>
                 <Label Height="43" Width="75" Grid.Column="1" FontSize="15">Cena</Label>
-                <Label Height="43" Width="75" Grid.Column="2" FontSize="15">Ilość</Label>
+                <Label Height="43" Width="75" Grid.Column="2" FontSize="15" Margin="0 0 10 0">Ilość</Label>
             </Grid>
 
-            <ListBox MouseDown="produktyListBox_MouseDown" Grid.Row="1" Name="produktyListBox" Grid.Column="1" FontSize="15" FlowDirection="LeftToRight" HorizontalContentAlignment="Stretch" 
+            <ListBox MouseDown="produktyListBox_MouseDown" Grid.Row="1" Name="produktyListBox" Grid.Column="1" FontSize="15" Margin="0 0 10 0" FlowDirection="LeftToRight" HorizontalContentAlignment="Stretch" 
                      ItemsSource="{Binding Products, Mode=OneWay}">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SelectionChanged">
@@ -188,12 +188,9 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <DockPanel>
-
-
                             <Label DockPanel.Dock="Right" Width="70" Content="{Binding Quantity}"></Label>
                             <Label DockPanel.Dock="Right" Width="70" Content="{Binding Price}"></Label>
                             <Label Content="{Binding Name}"></Label>
-                            
                         </DockPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
@@ -206,10 +203,9 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 
-                <Button Grid.Column="0" Margin="50, 10" FontSize="15" Command="{Binding PreviousPageCommand, Mode=OneWay}">Poprzednia</Button>
+                <Button Grid.Column="0" Margin="50, 10" FontSize="16" Command="{Binding PreviousPageCommand, Mode=OneWay}">Poprzednia</Button>
                 <Label Grid.Column="1" Margin="0, 5"  FontSize="23" Content="{Binding Page, Mode=OneWay}"></Label>
-                <Button Grid.Column="2" Margin="50, 10" FontSize="15" Command="{Binding NextPageCommand, Mode=OneWay}">Następna</Button>
-
+                <Button Grid.Column="2" Margin="50, 10" FontSize="16" Command="{Binding NextPageCommand, Mode=OneWay}">Następna</Button>
             </Grid>
 
             <Button Grid.Row="3" Name="powrotZEdycji" Grid.Column="0" Background="Aquamarine" FontSize="20" Width="150" Height="35" Margin="20,10" Command="{Binding BackCommand}">Powrót</Button>
