@@ -39,5 +39,11 @@ namespace SklepWPF.Views
                 ShowReplyingMessageButton.Content = "Pokaż wiadomość";
             }
         }
+
+        private void MessageTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            BindingExpression be = MessageTextBox.GetBindingExpression(TextBox.TextProperty);
+            be.UpdateSource();
+        }
     }
 }
