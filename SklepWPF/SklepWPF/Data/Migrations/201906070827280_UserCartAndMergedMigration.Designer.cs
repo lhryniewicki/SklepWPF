@@ -7,13 +7,13 @@ namespace SklepWPF.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class MergedMigrations : IMigrationMetadata
+    public sealed partial class UserCartAndMergedMigration : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(MergedMigrations));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(UserCartAndMergedMigration));
         
         string IMigrationMetadata.Id
         {
-            get { return "201906062017488_MergedMigrations"; }
+            get { return "201906070827280_UserCartAndMergedMigration"; }
         }
         
         string IMigrationMetadata.Source
