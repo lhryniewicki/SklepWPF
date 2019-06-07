@@ -59,7 +59,7 @@
                 PostalCode = "111",
                 PaymentMethod = Enums.PaymentMethod.ByCash,
                 StreetName = "123",
-                IsAdmin = true
+                IsAdmin = true,
             };
 
             User user3 = new User

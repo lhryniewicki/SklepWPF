@@ -123,8 +123,8 @@ namespace SklepWPF.ViewModels
 
 			if(userCartExists == null)
 			{
-				var userCart = new UserCart { Product = item, User = user };
-				_db.UsersCart.Add(userCart);
+				var userCart = new UserCart { Product = item, User = user,Quantity=1 };
+				user.Cart.Add(userCart);
 			}
 			else
 			{

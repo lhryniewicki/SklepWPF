@@ -38,12 +38,12 @@ namespace SklepWPF.ViewModels
         private void LoadData()
         {
             var user = _db.Users.Include(c => c.Cart).SingleOrDefault(n => n.Name == RunTimeInfo.Instance.Username);
-
+/*
             foreach (Product p in user.Cart)
             {
                 _productsInCart.Add(_db.Products.Where(u => u.Id == p.Id).FirstOrDefault());
             }
-
+			*/
             RefreshProducts(_productsInCart);
         }
 
@@ -68,7 +68,7 @@ namespace SklepWPF.ViewModels
             var product = ProductsInCart.Where(u => u.Id == index).FirstOrDefault();
             var user = _db.Users.Include(c => c.Cart).SingleOrDefault(n => n.Name == RunTimeInfo.Instance.Username);
 
-            user.Cart.Remove(product);
+            //user.Cart.Remove(product);
             ProductsInCart.Remove(product);
 
             _db.SaveChanges();
