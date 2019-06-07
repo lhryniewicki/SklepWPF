@@ -9,15 +9,33 @@ using System.Windows.Input;
 
 namespace SklepWPF.ViewModels
 {
-	public class LoginViewModel : IPageViewModel
+	 class LoginViewModel :ObservableObject, IPageViewModel
 	{
 		public string Name { get; set; }
 
 		public string Username { get; set; }
 
+		public string ErrorMessage
+		{
+			get
+			{
+				return _errorMessage;
+			}
+
+			set
+			{
+				if(_errorMessage != value)
+				{
+
+					_errorMessage = value;
+					OnPropertyChanged("ErrorMessage");
+				}
+			}
+		} 
+
 		private ICommand _loginCommand { get; set; }
 		private readonly MyDbContext _db;
-
+		private string _errorMessage { get; set; } = "";
 		public LoginViewModel()
 		{
 			_db = MyDbContext.Create();
@@ -58,8 +76,23 @@ namespace SklepWPF.ViewModels
 		}
 		private bool IsValid(PasswordBox passwordBox)
 		{
+			ErrorMessage = ValidateLogin(passwordBox).ToString();
 			return !string.IsNullOrEmpty(Username)
 				&&!string.IsNullOrEmpty(passwordBox.Password);
+		}
+		private StringBuilder ValidateLogin(PasswordBox pb)
+		{
+			StringBuilder errorMessage = new StringBuilder();
+
+			if (string.IsNullOrEmpty(Username)) errorMessage.Append("Pole login jest wymagane!"+ Environment.NewLine);
+			if (pb == null)
+			{
+				errorMessage.Append("Pole hasło jest wymagane!"+ Environment.NewLine);
+				return errorMessage;
+			}
+			
+			if (string.IsNullOrEmpty(pb.Password)) errorMessage.Append("Pole hasło jest wymagane!"+Environment.NewLine);
+			return errorMessage;
 		}
 	}
 }
