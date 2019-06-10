@@ -34,7 +34,7 @@
 
         <DockPanel Height="40" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
             <Button DockPanel.Dock="Right" Background="LawnGreen" Padding="10" Margin="0,0,10,0" Command="{Binding SearchCommand, Mode=OneWay}"  >Wyszukaj</Button>
-            <TextBox Text="{Binding Query}"  x:Name="textBox" Margin="10 0 10 0" DockPanel.Dock="Left" >
+            <TextBox VerticalContentAlignment="Center" Text="{Binding Query}"  x:Name="textBox" Margin="10 0 10 0" DockPanel.Dock="Left" >
             </TextBox>
         </DockPanel>
 

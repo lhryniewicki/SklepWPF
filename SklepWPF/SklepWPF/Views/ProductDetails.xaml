@@ -14,48 +14,47 @@
         </Grid.Resources>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="196*" />
-            <ColumnDefinition Width="189*" />
-            <ColumnDefinition Width="168*" />
-            <ColumnDefinition Width="247*" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="auto" />
+
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="30" />
-            <RowDefinition Height="50" />
-            <RowDefinition Height="auto" />
+            <RowDefinition Height="62" />
+            <RowDefinition MaxHeight="800" Height="auto" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
-        <Image Grid.Column="0" Grid.Row="1" Source="/Images/allebro_logo.png" Margin="10 3 0 5"></Image>
+        <Image Width="200" Grid.Column="0" Grid.Row="0" Source="/Images/allebro_logo.png" Margin="10 3 0 5"></Image>
 
-        <Image Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Source="{Binding ImagePath}" Margin="10,0,1,3" />
+        <Image HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Source="{Binding ImagePath}" Margin="10,0,1,3" />
 
-        <DockPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,1,0,2">
+        <DockPanel Height="40" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,1,0,2">
             <Button DockPanel.Dock="Right" Background="LawnGreen" Padding="10" Margin="0,0,10,0">Wyszukaj</Button>
-            <TextBox Margin="10,0,0,0" DockPanel.Dock="Left" >
+            <TextBox VerticalContentAlignment="Center"  Margin="10,0,0,0" DockPanel.Dock="Left" >
             </TextBox>
         </DockPanel>
 
 
 
-        <StackPanel Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" MaxHeight="230">
-            <Label HorizontalAlignment="Left" FontSize="40" Content="{Binding ProductName}"></Label>
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Cena"></Label>
+        <StackPanel Grid.Column="2" Grid.Row="1"  HorizontalAlignment="Left"  VerticalAlignment="Top">
+            <Label  FontSize="25" Content="{Binding ProductName}"></Label>
+            <StackPanel   Orientation="Horizontal">
+                <Label  FontWeight="Bold" Content="Cena"></Label>
                 <Label Content="{Binding Price}"></Label>
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Firma"></Label>
+            <StackPanel  Orientation="Horizontal">
+                <Label FontWeight="Bold" Content="Firma"></Label>
                 <Label Content="{Binding Brand}"></Label>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
-                <Label Content="Ilość sztuk w magazynie"></Label>
+                <Label FontWeight="Bold" Content="Ilość sztuk w magazynie"></Label>
                 <Label Content="{Binding Quantity}"></Label>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
-                <Label Content="Kategorie"></Label>
+                <Label FontWeight="Bold" Content="Kategorie"></Label>
                 <ListBox ItemsSource="{Binding Categories}">
                     <ListBox.ItemTemplate>
 
@@ -69,8 +68,9 @@
             <Button Visibility="{Binding ShowButton, Converter={StaticResource BoolToVis},FallbackValue=Hidden}" Background="IndianRed" Padding="5" Width="150" HorizontalAlignment="Left" >Dodaj do koszyka</Button>
 
         </StackPanel>
-        <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="4" Margin="30,0,30,0">
-            <TextBlock x:Name="subHeaderText" 
+        
+        <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" Margin="10,0,30,0">
+            <TextBlock 
                    FontSize="20" 
                    TextWrapping="Wrap" 
                    Foreground="Black"
