@@ -68,6 +68,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BooleanToEnvelopeImageConverter.cs" />
     <Compile Include="Data\Migrations\201905241711060_init.cs" />
     <Compile Include="Data\Migrations\201905241711060_init.Designer.cs">
       <DependentUpon>201905241711060_init.cs</DependentUpon>
@@ -332,6 +333,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\error_message.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\closed_envelope.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\opened_envelope.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
