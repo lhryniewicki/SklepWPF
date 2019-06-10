@@ -171,6 +171,7 @@
 				Description = "Audi nówka sztuka nie klepana",
 				Name = "Audi nówka sztuka nie klepana",
 				Price = 5000,
+				ImagePath = "/Images/goods.png",
 				Quantity = 1,
 				Categories = new List<Category> { carCategory } });
 
@@ -181,6 +182,7 @@
 				Description = "Volvo nówka sztuka nie klepana",
 				Name = "Volvo nówka sztuka nie klepana",
 				Price = 2000,
+				ImagePath= "/Images/goods.png",
 				Quantity = 1,
 				Categories = new List<Category> { carCategory }
 			});
@@ -192,6 +194,7 @@
 				Description = "Fiat nówka sztuka nie klepana",
 				Name = "Fiat nówka sztuka nie klepana",
 				Price = 3000,
+				ImagePath = "/Images/goods.png",
 				Quantity = 1,
 				Categories = new List<Category> { carCategory }
 			});
@@ -202,6 +205,7 @@
 				Description = "bardzo fajna ksiazka",
 				Name = "Heri pota",
 				Price = 15,
+				ImagePath = "/Images/goods.png",
 				Quantity = 1,
 				Categories = new List<Category> { bookCategory }
 			});
@@ -212,6 +216,7 @@
 				Description = "jeszcze fajniejsza ksiazka",
 				Name = "Hari peta",
 				Price = 30,
+				ImagePath = "/Images/goods.png",
 				Quantity = 1,
 				Categories = new List<Category> { bookCategory }
 			});
@@ -222,6 +227,7 @@
 				Description = "jeszcze fajniejsza ksiazka",
 				Name = "Hari peta",
 				Price = 30,
+				ImagePath = "/Images/goods.png",
 				Quantity = 1,
 				Categories = new List<Category> { bookCategory }
 			});

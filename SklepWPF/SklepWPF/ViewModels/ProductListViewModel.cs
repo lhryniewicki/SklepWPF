@@ -9,6 +9,9 @@ using System.Text;
 using System.Windows.Controls;
 using System.Data.Entity;
 using System.Windows.Input;
+using System.ComponentModel.DataAnnotations;
+using System.Windows.Forms;
+using System.IO;
 
 namespace SklepWPF.ViewModels
 {
@@ -23,7 +26,24 @@ namespace SklepWPF.ViewModels
         private string brand;
         private int quantity;
         private string category;
+		private string _selectedPath = "";
+		private string _importPath = "";
+		private string _destinationPath = "";
 
+		public string SelectedPath
+		{
+			get { return _selectedPath; }
+			set
+			{
+				if (_selectedPath != value)
+				{
+					_selectedPath = value;
+					OnPropertyChanged("SelectedPath");
+				}
+			}
+		}
+
+		[Required(ErrorMessage = "Pole nie może być puste")]
         public string Name
         {
             get
@@ -35,9 +55,11 @@ namespace SklepWPF.ViewModels
                 if (name != value)
                     name = value;
                 OnPropertyChanged("Name");
+                ValidateProperty(value, "Name");
             }
         }
 
+        [Required(ErrorMessage = "Pole nie może być puste")]
         public string Description
         {
             get
@@ -49,9 +71,11 @@ namespace SklepWPF.ViewModels
                 if (description != value)
                     description = value;
                 OnPropertyChanged("Description");
+                ValidateProperty(value, "Description");
             }
         }
 
+        [Required(ErrorMessage = "Cena musi być większa niż 0")]
         public double Price
         {
             get
@@ -63,9 +87,11 @@ namespace SklepWPF.ViewModels
                 if (price != value)
                     price = value;
                 OnPropertyChanged("Price");
+                ValidateProperty(value, "Price");
             }
         }
 
+        [Required(ErrorMessage = "Pole nie może być puste")]
         public string Brand
         {
             get
@@ -77,9 +103,11 @@ namespace SklepWPF.ViewModels
                 if (brand != value)
                     brand = value;
                 OnPropertyChanged("Brand");
+                ValidateProperty(value, "Brand");
             }
         }
 
+        [Required(ErrorMessage = "Ilość nie może być mniejsza od zera")]
         public int Quantity
         {
             get
@@ -91,9 +119,11 @@ namespace SklepWPF.ViewModels
                 if (quantity != value)
                     quantity = value;
                 OnPropertyChanged("Quantity");
+                ValidateProperty(value, "Quantity");
             }
         }
 
+        [Required(ErrorMessage = "Produkt musi należeć do kategorii")]
         public string Category
         {
             get
@@ -105,6 +135,7 @@ namespace SklepWPF.ViewModels
                 if (category != value)
                     category = value;
                 OnPropertyChanged("Category");
+                ValidateProperty(value, "Category");
             }
         }
 
@@ -135,6 +166,44 @@ namespace SklepWPF.ViewModels
             LoadData();
         }
 
+		public ICommand GetPhotoCommand
+		{
+			get
+			{
+				return new RelayCommand(p => GetPhoto());
+			}
+		}
+		private void GetPhoto()
+		{
+			OpenFileDialog fileDialog = new OpenFileDialog();
+			fileDialog.DefaultExt = ".png";
+			fileDialog.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
+
+
+
+			if (fileDialog.ShowDialog() == DialogResult.OK)
+			{
+				SelectedPath = fileDialog.SafeFileName;
+				_importPath = fileDialog.FileName;
+				_destinationPath = AppDomain.CurrentDomain.BaseDirectory + "Images\\";
+				_destinationPath = _destinationPath.Replace("\\", "/");
+				_destinationPath = _destinationPath.Replace("/bin/Debug", "") + fileDialog.SafeFileName;
+
+			}
+			else
+			{
+				SelectedPath = "";
+			}
+		}
+
+		private void ValidateProperty<T>(T value, string name)
+        {
+            Validator.ValidateProperty(value, new ValidationContext(this, null, null)
+            {
+                MemberName = name
+            });
+        }
+
         public ICommand ChangeDisplayedItemCommand
         {
             get
@@ -145,7 +214,7 @@ namespace SklepWPF.ViewModels
 
         public void ChangeDisplayedItem(int index)
         {
-            if(index >= 0)
+            if (index >= 0)
             {
                 var product = Products.ElementAt(index);
                 if (product != null)
@@ -156,8 +225,8 @@ namespace SklepWPF.ViewModels
                     Brand = product.Brand;
                     Quantity = product.Quantity;
                     var pom = product.Categories.SingleOrDefault();
-                    if(pom != null)
-                    Category = pom.Name;
+                    if (pom != null)
+                        Category = pom.Name;
                 }
             }
         }
@@ -183,7 +252,7 @@ namespace SklepWPF.ViewModels
                 product2.Name = Name;
                 product2.Description = Description;
                 product2.Brand = Brand;
-                product2.Price = Math.Round(Price,2);
+                product2.Price = Math.Round(Price, 2);
                 product2.Quantity = Quantity;
 
                 var cat = _db.Categories.Where(p => p.Name == Category).ToList();
@@ -221,31 +290,56 @@ namespace SklepWPF.ViewModels
         {
             get
             {
-                return new RelayCommand(p => AddNewProduct(Name, Description, Price, Brand, Quantity, Category));
+                return new RelayCommand(p => AddNewProduct(Name, Description, Price, Brand, Quantity, Category),
+					p=> IsValid());
             }
         }
+		private bool IsValid()
+		{
+			return (!string.IsNullOrEmpty(SelectedPath) &&
+				!string.IsNullOrEmpty(Name) &&
+				!string.IsNullOrEmpty(Description) &&
+				!string.IsNullOrEmpty(Brand) &&
+				!string.IsNullOrEmpty(Category) &&
+				(quantity != 0)
+				);
+		}
 
         public void AddNewProduct(string name, string description, double price, string brand, int quantity, string category)
         {
             var cat = _db.Categories.Where(p => p.Name == category).SingleOrDefault();
             var newProduct = new Product(name, description, Math.Round(price, 2), brand, quantity, cat);
 
-            _db.Products.Add(newProduct);
+			newProduct.ImagePath = _destinationPath;
+
+			_db.Products.Add(newProduct);
             _db.SaveChanges();
 
-            LoadData();
+			File.Copy(_importPath, _destinationPath, true);
+
+
+			LoadData();
         }
 
         private bool IsProductValid()
         {
             if (String.IsNullOrEmpty(Name) ||
                 String.IsNullOrEmpty(Description) ||
-                String.IsNullOrEmpty(Brand))
+                String.IsNullOrEmpty(Brand) ||
+                String.IsNullOrEmpty(Category))
             {
                 return false;
             }
 
-            return true;
+            else
+            {
+                if(Price <= 0 || Quantity < 0)
+                {
+                    return false;
+                }
+
+                return true;
+            }
         }
 
         public ICommand SortProductListCommand

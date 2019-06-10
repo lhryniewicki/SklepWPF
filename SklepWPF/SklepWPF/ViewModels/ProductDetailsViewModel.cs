@@ -23,6 +23,8 @@ namespace SklepWPF.ViewModels
 
 		public int Quantity { get; set; }
 
+		public string ImagePath { get; set; }
+
 		public ICollection<Category> Categories { get; set; }
 
 		private bool _showButton = false;
@@ -39,6 +41,7 @@ namespace SklepWPF.ViewModels
 			Brand = _product.Brand;
 			Quantity = _product.Quantity;
 			Categories = _product.Categories;
+			ImagePath = _product.ImagePath;
 
 		}
 		public bool ShowButton

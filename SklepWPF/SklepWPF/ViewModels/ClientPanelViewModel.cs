@@ -24,7 +24,6 @@ namespace SklepWPF.ViewModels
         private string username;
 
         [Required(ErrorMessage = "Pole nie może być puste")]
-        [StringLength(10, MinimumLength = 5, ErrorMessage = "Nazwa użytkownika musi mieć co najmniej 5 znaków")]
         public string UserName
         {
             get
@@ -43,7 +42,6 @@ namespace SklepWPF.ViewModels
         private string surname;
 
         [Required(ErrorMessage = "Pole nie może być puste")]
-        [StringLength(10, MinimumLength = 5, ErrorMessage = "Nazwisko musi mieć co najmniej 3 znaki")]
         public string Surname
         {
             get
@@ -237,13 +235,6 @@ namespace SklepWPF.ViewModels
                 String.IsNullOrEmpty(PhoneNumber))
             {
                 return false;
-            }
-            else
-            {
-                if (UserName.Length < 5 || Surname.Length < 5)
-                {
-                    return false;
-                }
             }
 
             return true;

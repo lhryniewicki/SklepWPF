@@ -12,30 +12,25 @@ namespace SklepWPF.ViewModels
 	 class LoginViewModel :ObservableObject, IPageViewModel
 	{
 		public string Name { get; set; }
-
 		public string Username { get; set; }
 
-		public string ErrorMessage
-		{
-			get
-			{
-				return _errorMessage;
-			}
-
-			set
-			{
-				if(_errorMessage != value)
-				{
-
-					_errorMessage = value;
-					OnPropertyChanged("ErrorMessage");
-				}
-			}
-		} 
+        private string wrongLoginCredentials;
+        public string WrongLoginCredentials
+        {
+            get
+            {
+                return wrongLoginCredentials;
+            }
+            set
+            {
+                if (wrongLoginCredentials != value)
+                    wrongLoginCredentials = value;
+                OnPropertyChanged("WrongLoginCredentials");
+            }
+        }
 
 		private ICommand _loginCommand { get; set; }
 		private readonly MyDbContext _db;
-		private string _errorMessage { get; set; } = "";
 		public LoginViewModel()
 		{
 			_db = MyDbContext.Create();
@@ -49,8 +44,7 @@ namespace SklepWPF.ViewModels
 				if (_loginCommand == null)
 				{
 					_loginCommand = new RelayCommand(
-						p => Login(Username,(PasswordBox)p),
-						p=>IsValid((PasswordBox)p));
+						p => Login(Username,(PasswordBox)p));
 				}
 
 				return _loginCommand;
@@ -64,7 +58,11 @@ namespace SklepWPF.ViewModels
 				.SingleOrDefault(x => x.Nickname == username &&
 				x.Password == passwordBox.Password);
 
-			if (user == null) return;
+			if (user == null)
+            {
+                WrongLoginCredentials = "Zły login lub hasło";
+            }
+
 			else
 			{
 				RunTimeInfo.Instance.Username = username;
@@ -73,26 +71,6 @@ namespace SklepWPF.ViewModels
 
 			}
 
-		}
-		private bool IsValid(PasswordBox passwordBox)
-		{
-			ErrorMessage = ValidateLogin(passwordBox).ToString();
-			return !string.IsNullOrEmpty(Username)
-				&&!string.IsNullOrEmpty(passwordBox.Password);
-		}
-		private StringBuilder ValidateLogin(PasswordBox pb)
-		{
-			StringBuilder errorMessage = new StringBuilder();
-
-			if (string.IsNullOrEmpty(Username)) errorMessage.Append("Pole login jest wymagane!"+ Environment.NewLine);
-			if (pb == null)
-			{
-				errorMessage.Append("Pole hasło jest wymagane!"+ Environment.NewLine);
-				return errorMessage;
-			}
-			
-			if (string.IsNullOrEmpty(pb.Password)) errorMessage.Append("Pole hasło jest wymagane!"+Environment.NewLine);
-			return errorMessage;
 		}
 	}
 }

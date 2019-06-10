@@ -41,7 +41,7 @@
 
 
 
-        <ListBox ItemsSource="{Binding Categories}" Grid.Column="0" Grid.Row="2" Margin="10,10,0,50" >
+        <ListBox ItemsSource="{Binding Categories}" BorderBrush="Transparent" Background="Transparent" Grid.Column="0" Grid.Row="2" Margin="10 10 0 50" >
             <ListBox.Resources>
                 <DataTemplate DataType="{x:Type data:Category}">
                     <CheckBox FlowDirection="LeftToRight" Content="{Binding Path=Name,Mode=TwoWay}" 
@@ -56,14 +56,10 @@
         <ListBox HorizontalContentAlignment="Stretch"  Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Margin="10" FlowDirection="RightToLeft" ItemsSource="{Binding Products, Mode=OneWay}">
             
             <ListBox.ItemTemplate>
-                
-                    <DataTemplate  >
 
-
+                <DataTemplate  >
                     <DockPanel>
-                        <!--<Image DockPanel.Dock="Right"></Image>-->
-
-                        <Label DockPanel.Dock="Right">IMG</Label>
+                        <Image MaxHeight="40" MaxWidth="40" Source="{Binding ImagePath}"  DockPanel.Dock="Right"></Image>
 
                         <Button Command="{Binding Source={StaticResource Proxy}, Path=Data.AddItemToCartCommand}" CommandParameter="{Binding Id}"
                                  Visibility="{Binding Source={StaticResource Proxy}, Path=Data.ShowButton, Converter={StaticResource BoolToVis},FallbackValue=Hidden}"
