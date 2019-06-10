@@ -49,16 +49,16 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <GroupBox Grid.Column="3" Grid.ColumnSpan="2" FontSize="16" Grid.Row="1" Grid.RowSpan="3" Header="Opcje" Margin="10, 0" Padding="10" BorderBrush="Black" BorderThickness="2">
+            <GroupBox Grid.Column="3" Grid.ColumnSpan="2" FontSize="16" Header="Opcje" Margin="10, 0" Padding="10" BorderBrush="Black" BorderThickness="2">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
@@ -82,7 +82,7 @@
                 </Grid>
             </GroupBox>
 
-            <Grid Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="2" Grid.RowSpan="3">
+            <Grid Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2">
 
             <Grid.RowDefinitions>
                 <RowDefinition/>
@@ -90,12 +90,9 @@
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
-            <ListView Grid.RowSpan="7" Padding="10" Margin="10 0 10 0" BorderBrush="Black" BorderThickness="2 2 2 0" HorizontalContentAlignment="Stretch">
+            <ListView Grid.RowSpan="5" Padding="10" Margin="10 0 10 0" BorderBrush="Black" BorderThickness="2 2 2 0" HorizontalContentAlignment="Stretch">
                 <ListView.Style>
                     <Style TargetType="{x:Type ListView}">
                         <Setter Property="ItemsSource" Value="{Binding Orders}"/>
@@ -109,29 +106,14 @@
                     </Style>
                 </ListView.Style>
             </ListView>
-            <Grid Grid.Row="8" Margin="10 0 10 10">
-                <Border BorderBrush="Black" BorderThickness="2 2 2 2">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-
-                        <Button Grid.Column="0" Margin="10" FontSize="16" Command="{Binding PreviousPageCommand}">Poprzednia</Button>
-                        <Label Grid.Column="1" VerticalAlignment="Center"  FontSize="23" Content="{Binding OrdPrdPage}"></Label>
-                        <Button Grid.Column="2" Margin="10" FontSize="16" Command="{Binding NextPageCommand}">Następna</Button>
-                    </Grid>
-                </Border>
-            </Grid>
         </Grid>
 
-        <GroupBox FontSize="16" Padding="10" Grid.Row="1" Header="Dane" Grid.ColumnSpan="3" Grid.RowSpan="3" Margin="10 0" BorderBrush="Black" BorderThickness="2">
+        <GroupBox FontSize="16" Padding="10" Header="Dane" Grid.ColumnSpan="3" Grid.RowSpan="3" Margin="10 0" BorderBrush="Black" BorderThickness="2">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
@@ -161,19 +143,46 @@
                 <Label FontSize="16" Grid.Row="5" Content="Ulica:" VerticalAlignment="Center"></Label>
                 <TextBox Grid.Row="5" FontSize="16" Name="StreetName" Text="{Binding StreetName, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" Validation.ErrorTemplate="{StaticResource errorTemplate}" Grid.Column="1" Grid.ColumnSpan="2" Margin="10"></TextBox>
 
-                <Label FontSize="16" Margin="10 0" Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="1" Content="Kod pocztowy:" VerticalAlignment="Center"></Label>
-                <TextBox FontSize="16" Grid.Row="6" Name="PostalCode" Text="{Binding PostalCode, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" Validation.ErrorTemplate="{StaticResource errorTemplate}" Grid.Column="2" Margin="10 0"></TextBox>
+                <Label FontSize="16" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="1" Content="Kod pocztowy:" VerticalAlignment="Center"></Label>
+                <TextBox FontSize="16" Grid.Row="6" Name="PostalCode" Text="{Binding PostalCode, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" Validation.ErrorTemplate="{StaticResource errorTemplate}" Grid.Column="1" Grid.ColumnSpan="2" Margin="10"></TextBox>
 
 
                 <Label FontSize="16" Content="Sposób płatności:" Grid.Row="7" VerticalAlignment="Center"></Label>
                 <ComboBox FontSize="16" ItemsSource="{Binding Source={enums:EnumBindingSource {x:Type enums:PaymentMethod}}}" SelectedItem="{Binding PaymentMethod}" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" Margin="10">
                 </ComboBox>
 
-                <StackPanel Grid.Row="8" Orientation="Horizontal" Grid.ColumnSpan="3">
-                    <Button FontSize="16" Margin="5" Padding="5" Content="Zapisz" Command="{Binding SaveUserDataCommand}"></Button>
-                    <Button FontSize="16" Margin="5" Padding="5" Content="Wyczyść" Click="ClearPersonalData_Click"></Button>
-                </StackPanel>
             </Grid>
         </GroupBox>
+
+        <Grid Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="2" Margin="10 0 10 50">
+            <Border BorderBrush="Black" BorderThickness="2 2 2 2" CornerRadius="0 0 5 5">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="0" Margin="10" Padding="5" FontSize="16" Command="{Binding PreviousPageCommand}">Poprzednia</Button>
+                    <Label HorizontalAlignment="Center" Grid.Column="1" VerticalAlignment="Center"  FontSize="23" Content="{Binding OrdPrdPage}"></Label>
+                    <Button Grid.Column="2" Margin="10" Padding="5" FontSize="16" Command="{Binding NextPageCommand}">Następna</Button>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <Grid Grid.Row="3" Grid.ColumnSpan="3" Margin="10 0 10 50">
+            <Border BorderBrush="Black" BorderThickness="2 2 2 2" CornerRadius="0 0 5 5">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="0" FontSize="16" Margin="10" Padding="5" Content="Zapisz" Command="{Binding SaveUserDataCommand}"></Button>
+                    <Button Grid.Column="1" FontSize="16" Margin="10" Padding="5" Content="Wyczyść" Click="ClearPersonalData_Click"></Button>
+                </Grid>
+            </Border>
+        </Grid>
+
     </Grid>
 </UserControl>

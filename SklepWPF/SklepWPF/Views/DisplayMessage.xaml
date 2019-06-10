@@ -10,25 +10,24 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.RowSpan="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -39,22 +38,25 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <Label Margin="5" Content="Autor:"/>
-            <Label Margin="5" Grid.Row="1" Content="Tytuł:"/>
-
-            <Label Margin="5" Grid.Column="1" Grid.ColumnSpan="5" Content="{Binding AuthorFullName}"/>
-            <Label Margin="5" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5" Content="{Binding Title}"/>
+            <StackPanel VerticalAlignment="Center" Grid.ColumnSpan="4" Orientation="Horizontal">
+                <Label FontSize="19" Margin="30 5 0 5" Content="Autor:"/>
+                <Label FontSize="16" Margin="0 7 0 0" Content="{Binding AuthorFullName}"/>
+            </StackPanel>
+            <StackPanel VerticalAlignment="Center" Grid.ColumnSpan="4" Grid.Row="1" Orientation="Horizontal">
+                <Label FontSize="19" Margin="30 5 0 5" Grid.Row="1" Content="Tytuł:"/>
+                <Label FontSize="16" Margin="0 7 0 0" Content="{Binding Title}"/>
+            </StackPanel>
         </Grid>
 
-        <Border Grid.Row="2" Grid.RowSpan="6" Grid.ColumnSpan="2" BorderBrush="Black" BorderThickness="2" Margin="10 0">
-            <TextBlock Padding="10" Text="{Binding MessageContent}"/>
+        <Border Grid.Row="2" Grid.RowSpan="6" Grid.ColumnSpan="2" BorderBrush="Black" BorderThickness="2" Margin="30 0 30 0" CornerRadius="5 5 0 0">
+            <TextBlock Background="Beige" Padding="10" Text="{Binding MessageContent}"/>
         </Border>
 
-        <Border Grid.Row="10" Grid.ColumnSpan="2" Margin="10 0 10 10" BorderBrush="Black" BorderThickness="2 0 2 2">
+        <Border Grid.Row="8" Grid.RowSpan="2"  Grid.ColumnSpan="2" Margin="30 0 30 30" BorderBrush="Black" BorderThickness="2 0 2 2" CornerRadius="0 0 5 5">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Margin="10" Padding="10" Content="Powrót" Background="Aquamarine" Command="{Binding BackCommand}"/>
-                <Button Margin="10" Padding="10" Content="Usuń" Background="IndianRed" Command="{Binding DeleteMessageCommand}"/>
-                <Button Margin="10" Padding="10" Content="Odpisz" Background="LawnGreen" Command="{Binding ReplyCommand}">
+                <Button Height="40" Margin="10" Padding="10" Content="Powrót" Background="Aquamarine" Command="{Binding BackCommand}"/>
+                <Button Height="40" Margin="10" Padding="10" Content="Usuń" Background="IndianRed" Command="{Binding DeleteMessageCommand}"/>
+                <Button Height="40" Margin="10" Padding="10" Content="Odpisz" Background="LawnGreen" Command="{Binding ReplyCommand}">
                 </Button>
             </StackPanel>
         </Border>
