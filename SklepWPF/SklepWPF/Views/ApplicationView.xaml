@@ -145,7 +145,8 @@
 
                     <MenuItem Command="{Binding Source={StaticResource Proxy}, Path=Data.ChangePageCommand}" CommandParameter="Products"  Header="Produkty"></MenuItem>
 
-                    <MenuItem Command="{Binding Source={StaticResource Proxy}, Path=Data.ChangePageCommand}" CommandParameter="AdminPanel" Header="Zarządzaj"></MenuItem>
+                    <MenuItem CommandParameter="AdminPanel" Header="Zarządzaj"
+                              Visibility="{Binding Source={StaticResource Proxy}, Path=Data.IsUserAdmin, Converter={StaticResource BoolToVis},FallbackValue=Collapsed}" Command="{Binding Source={StaticResource Proxy}, Path=Data.ChangePageCommand}"></MenuItem>
 
                 </MenuItem>
 

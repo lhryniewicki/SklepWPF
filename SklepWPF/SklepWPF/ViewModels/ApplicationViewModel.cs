@@ -21,6 +21,7 @@ namespace SklepWPF.ViewModels
 		public List<IPageViewModel> PageViewModels;
 
 		private bool _isUserLogged = false;
+        private bool _isUserAdmin = false;
 
 		public static ApplicationViewModel Instance
 		{
@@ -93,6 +94,7 @@ namespace SklepWPF.ViewModels
 
 			RunTimeInfo.Instance.Username = "Konto";
 			IsUserLogged = false;
+            IsUserAdmin = false;
 			CurrentPageViewModel = new LoginViewModel();
 		}
 
@@ -117,7 +119,24 @@ namespace SklepWPF.ViewModels
 				.SingleOrDefault(x => x.Name == name);
 		}
 
-		public bool IsUserLogged
+        public bool IsUserAdmin
+        {
+            get
+            {
+                return _isUserAdmin;
+            }
+            set
+            {
+                if (_isUserAdmin != value)
+                {
+
+                    _isUserAdmin = value;
+                    OnPropertyChanged("IsUserAdmin");
+                }
+            }
+        }
+
+        public bool IsUserLogged
 		{
 			get
 			{
