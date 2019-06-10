@@ -65,12 +65,14 @@
 
                         <Button Command="{Binding Source={StaticResource Proxy}, Path=Data.AddItemToCartCommand}" CommandParameter="{Binding Id}"
                                  Visibility="{Binding Source={StaticResource Proxy}, Path=Data.ShowButton, Converter={StaticResource BoolToVis},FallbackValue=Hidden}"
+                                ToolTip="Dodaj do koszyka"
                                 BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
                             <Image Source="/Images/shopping_cart_add.png" RenderOptions.BitmapScalingMode="Fant" Height="40" Width="40"/>
                         </Button>
                         
                         <Button Command="{Binding Source={StaticResource Proxy}, Path=Data.ObserveItemCommand}" CommandParameter="{Binding Id}" Padding="5" Margin="1,0,0,0"
                                 Visibility="{Binding Source={StaticResource Proxy}, Path=Data.ShowButton, Converter={StaticResource BoolToVis},FallbackValue=Hidden}"
+                                ToolTip="Dodaj do obserwowanych"
                                 BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
                             <Image Source="/Images/observe_product.png" RenderOptions.BitmapScalingMode="Fant" Height="40" Width="40"/>
                         </Button>

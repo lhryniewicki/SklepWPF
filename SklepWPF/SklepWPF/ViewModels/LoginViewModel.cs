@@ -67,6 +67,10 @@ namespace SklepWPF.ViewModels
 			{
 				RunTimeInfo.Instance.Username = username;
 				ApplicationViewModel.Instance.IsUserLogged = true;
+                if(user.IsAdmin)
+                {
+                    ApplicationViewModel.Instance.IsUserAdmin = true;
+                }
 				ApplicationViewModel.Instance.CurrentPageViewModel = new ProductsViewModel();
 
 			}
