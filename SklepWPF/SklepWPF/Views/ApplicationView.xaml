@@ -19,7 +19,7 @@
         <DataTemplate DataType="{x:Type vm:RegisterViewModel}">
             <local:Register />
         </DataTemplate>
-        
+
         <DataTemplate DataType="{x:Type vm:ProductDetailsViewModel}">
             <local:ProductDetails />
         </DataTemplate>
@@ -105,6 +105,7 @@
             <Setter Property="BorderThickness" Value="2"/>
             <Setter Property="BorderBrush" Value="Transparent"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Cursor" Value="Hand"/>
 
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
@@ -138,7 +139,7 @@
         </Grid.Resources>
 
         <DockPanel  Grid.Row="0">
-            
+
             <Menu DockPanel.Dock="Top" DataContext="{Binding PageViewModels}">
                 <MenuItem Header="Sklep"   >
 
@@ -179,7 +180,7 @@
                 </MenuItem>
 
             </Menu>
-            
+
         </DockPanel>
 
         <ContentControl Grid.Row="1" Content="{Binding CurrentPageViewModel}" />

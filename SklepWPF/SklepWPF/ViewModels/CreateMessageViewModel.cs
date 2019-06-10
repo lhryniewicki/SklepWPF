@@ -78,7 +78,6 @@ namespace SklepWPF.ViewModels
             _db = MyDbContext.Create();
             this.wasSent = wasSent;
             ReplyingMessageContent = "";
-            Title = "";
         }
 
         public CreateMessageViewModel(int messageId, bool wasSent)
@@ -92,10 +91,6 @@ namespace SklepWPF.ViewModels
             if((message.Title.Substring(0,3) != "Re:"))
             {
                 Title = $"Re: {message.Title}";
-            }
-            else
-            {
-                Title = message.Title;
             }
         }
 
@@ -177,6 +172,7 @@ namespace SklepWPF.ViewModels
                         u.ReceivedMessages.Add(message);
                 }
                 message.AdminSeen = false;
+                message.ClientSeen = true;
             }
 
             _db.SaveChanges();

@@ -45,5 +45,11 @@ namespace SklepWPF.Views
             BindingExpression be = MessageTextBox.GetBindingExpression(TextBox.TextProperty);
             be.UpdateSource();
         }
+
+        private void TitleTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            BindingExpression be = TitleTextBox.GetBindingExpression(TextBox.TextProperty);
+            be.UpdateSource();
+        }
     }
 }

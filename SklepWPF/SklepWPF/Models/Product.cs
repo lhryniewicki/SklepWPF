@@ -19,6 +19,8 @@ namespace SklepWPF.Models
 		public string Brand { get; set; }
 		[Required]
 		public int Quantity { get; set; }
+		[Required]
+		public string ImagePath { get; set; }
 
 		public ICollection<Category> Categories { get; set;}
 		public ICollection<UserCart> InUserCart { get; set; }

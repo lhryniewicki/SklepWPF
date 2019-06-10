@@ -14,6 +14,10 @@
             </StackPanel>
         </ControlTemplate>
 
+        <Style TargetType="{x:Type Border}">
+            <Setter Property="CornerRadius" Value="5"/>
+        </Style>
+
         <ControlTemplate x:Key="ComboBoxToggleButton" TargetType="{x:Type ToggleButton}">
             <Grid>
                 <Grid.ColumnDefinitions>

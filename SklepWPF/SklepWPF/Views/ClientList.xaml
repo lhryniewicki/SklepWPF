@@ -57,9 +57,9 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" Margin="125, 5" FontSize="15" Command="{Binding PreviousPageCommand, Mode=OneWay}">Poprzednia</Button>
-            <Label Grid.Column="1" Margin="0, 5"  FontSize="23" Content="{Binding Page, Mode=OneWay}"></Label>
-            <Button Grid.Column="2" Margin="125, 5" FontSize="15" Command="{Binding NextPageCommand, Mode=OneWay}">Następna</Button>
+            <Button Grid.Column="0" Margin="20, 10" Width="100" Height="30" FontSize="16" Command="{Binding PreviousPageCommand, Mode=OneWay}" HorizontalAlignment="Right">Poprzednia</Button>
+            <Label Grid.Column="1" Margin="10, 5"  FontSize="23" Content="{Binding Page, Mode=OneWay}"></Label>
+            <Button Grid.Column="2" Margin="20, 10" Width="100" Height="30" FontSize="16" Command="{Binding NextPageCommand, Mode=OneWay}" HorizontalAlignment="Left">Następna</Button>
 
         </Grid>
 
