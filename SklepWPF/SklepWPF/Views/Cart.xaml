@@ -20,7 +20,7 @@
             <all:Proxy x:Key="Proxy" Data="{Binding}" />
             <BooleanToVisibilityConverter x:Key="BoolToVis"/>
         </Grid.Resources>
-        
+
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="auto"/>
@@ -51,15 +51,15 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        
+
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="2" Margin="40 10" Padding="10" Background="LawnGreen" Command="{Binding FinalizeOrderCommand}">Realizuj zamówienie</Button>
+            <Button Grid.Column="2" Margin="40 10" Padding="10" Width="170" Height="40" Background="LawnGreen" Command="{Binding FinalizeOrderCommand}">Realizuj zamówienie</Button>
         </Grid>
     </Grid>
 </UserControl>

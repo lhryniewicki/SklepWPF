@@ -42,6 +42,7 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"/>
@@ -71,16 +72,26 @@
                         </DataTemplate>
                     </ComboBox.Resources>
                 </ComboBox>
+
+                <Grid Grid.Row="6" Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button Background="LightYellow" Grid.Column="0" Height="30" Width="50" Margin="10, 3" Content="Zdjecie" Command="{Binding Path=GetPhotoCommand}"></Button>
+                    <TextBox Text="{Binding SelectedPath}" Grid.Column="1" IsReadOnly="True"  Height="30" Margin="0 3 20 3"></TextBox>
+
+                </Grid>
             </Grid>
 
-            <Grid Grid.Row="2">
+            <Grid Grid.Row="2" HorizontalAlignment="Center">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
 
-                <Button Name="dodajButton" Background="LawnGreen" Command="{Binding AddNewProductCommand}" Grid.Column="0" FontSize="20" Margin="20,10">Dodaj
+                <Button Name="dodajButton" Background="LawnGreen" Command="{Binding AddNewProductCommand}" Grid.Column="0" FontSize="20" Margin="10,5" Width="100" Height="35" HorizontalAlignment="Right">Dodaj
                     <Button.Style>
                         <Style TargetType="Button">
                             <Style.Resources>
@@ -96,7 +107,7 @@
                                 <DataTrigger Binding="{Binding ElementName=produktyListBox, Path=SelectedItems.Count}" Value="0">
                                     <Setter Property="IsEnabled" Value="True" />
                                 </DataTrigger>
-                                
+
                                 <Trigger Property="IsMouseOver" Value="True">
                                     <Setter Property="Background" Value="DarkGreen" />
                                 </Trigger>
@@ -105,30 +116,25 @@
                         </Style>
                     </Button.Style>
                 </Button>
-                <Button Name="usunButton" Command="{Binding DeleteSelectedProductCommand}" CommandParameter="{Binding ElementName=produktyListBox, Path=SelectedIndex}" Grid.Column="1" FontSize="20" Margin="20,10"
-                        Background="IndianRed">Usuń</Button>
-                <Button Name="editButton" Command="{Binding UpdateSelectedProductCommand}" CommandParameter="{Binding ElementName=produktyListBox, Path=SelectedIndex}" Grid.Column="2" FontSize="20" Margin="20,10"
+                <Button Name="usunButton" Command="{Binding DeleteSelectedProductCommand}" CommandParameter="{Binding ElementName=produktyListBox, Path=SelectedIndex}" Grid.Column="1" FontSize="20" Margin="10 , 10"  Width="100" Height="35" HorizontalAlignment="Center"
+                        Background="IndianRed" >Usuń</Button>
+                <Button Name="editButton" Command="{Binding UpdateSelectedProductCommand}" CommandParameter="{Binding ElementName=produktyListBox, Path=SelectedIndex}" Grid.Column="2" FontSize="20" Margin="10 ,10"  Width="100" Height="35" HorizontalAlignment="Left"
                         Background="MediumAquamarine">Edytuj</Button>
             </Grid>
-            <StackPanel HorizontalAlignment="Right" Grid.Row="3" Orientation="Horizontal">
-                <Button Background="LightYellow" Height="30" Width="50" Content="Zdjecie" Command="{Binding Path=GetPhotoCommand}"></Button>
-                <TextBox Text="{Binding SelectedPath}" IsReadOnly="True"  Width="100" Height="30"></TextBox>
-
-            </StackPanel>
-            <Label  Grid.Row="3" FontFamily="Verdana" FontSize="25" Margin="0,10,155,10" FontWeight="Bold" VerticalContentAlignment="Bottom">Filtry</Label>
+            <Label  Grid.Row="3" FontFamily="Verdana" FontSize="25" Margin="0,10" FontWeight="Bold" VerticalContentAlignment="Bottom">Filtry</Label>
 
             <Grid Grid.Row="4">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
                     <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                
+
                 <Label Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" FontSize="16" FontWeight="Bold">Sortuj:</Label>
-                <ComboBox SelectedIndex="0" Grid.Column="1"  Grid.Row="1" VerticalAlignment="Top" VerticalContentAlignment="Center" FontSize="16" Margin="3 10 20 3" Height="30" Width="200" ItemsSource="{Binding Source={enums:EnumBindingSource {x:Type enums:ProductListSortingProducts}}}" SelectedItem="{Binding SortedProducts}">
+                <ComboBox SelectedIndex="0" Grid.Column="1"  Grid.Row="1" VerticalAlignment="Top" VerticalContentAlignment="Center" FontSize="16" Margin="5 10 20 3" Height="30" ItemsSource="{Binding Source={enums:EnumBindingSource {x:Type enums:ProductListSortingProducts}}}" SelectedItem="{Binding SortedProducts}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="SelectionChanged">
                             <i:InvokeCommandAction Command="{Binding SortProductListCommand}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ComboBox}, Path=SelectedIndex}" />
@@ -175,7 +181,7 @@
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
-                
+
                 <Label Height="43" Grid.Column="0" FontSize="15">Nazwa produktu</Label>
                 <Label Height="43" Width="75" Grid.Column="1" FontSize="15">Cena</Label>
                 <Label Height="43" Width="75" Grid.Column="2" FontSize="15" Margin="0 0 10 0">Ilość</Label>
@@ -206,10 +212,10 @@
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                
-                <Button Grid.Column="0" Margin="50, 10" FontSize="16" Command="{Binding PreviousPageCommand, Mode=OneWay}">Poprzednia</Button>
-                <Label Grid.Column="1" Margin="0, 5"  FontSize="23" Content="{Binding Page, Mode=OneWay}"></Label>
-                <Button Grid.Column="2" Margin="50, 10" FontSize="16" Command="{Binding NextPageCommand, Mode=OneWay}">Następna</Button>
+
+                <Button Grid.Column="0" Margin="20, 10" Width="100" Height="30" FontSize="16" Command="{Binding PreviousPageCommand, Mode=OneWay}" HorizontalAlignment="Right">Poprzednia</Button>
+                <Label Grid.Column="1" Margin="10, 5"  FontSize="23" Content="{Binding Page, Mode=OneWay}"></Label>
+                <Button Grid.Column="2"  Width="100" Height="30" Margin="10, 5" FontSize="16" Command="{Binding NextPageCommand, Mode=OneWay}" HorizontalAlignment="Left">Następna</Button>
             </Grid>
 
             <Button Grid.Row="3" Name="powrotZEdycji" Grid.Column="0" Background="Aquamarine" FontSize="20" Width="150" Height="35" Margin="20,10" Command="{Binding BackCommand}">Powrót</Button>
