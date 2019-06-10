@@ -94,27 +94,38 @@
                     </ComboBox>
                 </Grid>
                 <ListView Name="messages" ItemsSource="{Binding Messages}" Grid.Row="1" Grid.RowSpan="5" Grid.ColumnSpan="2" Margin="5 5 5 0" BorderBrush="Black" BorderThickness="1 1 1 0" HorizontalContentAlignment="Stretch">
+                    <ListView.Resources>
+
+                        <all:BooleanToEnvelopeImageConverter x:Key="BoolToEnv"/>
+                    </ListView.Resources>
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <DockPanel Margin="5 4 5 4">
-                                <TextBlock Margin="5" DockPanel.Dock="Right">
-                                    <TextBlock.Style>
-                                        <Style TargetType="TextBlock">
-                                            <Setter Property="Text" Value="{Binding AdminSeen}"/>
+                                <Image Margin="5" DockPanel.Dock="Right" VerticalAlignment="Center">
+                                    <Image.Style>
+                                        <Style TargetType="Image">
+                                            <Setter Property="Source" Value="{Binding AdminSeen, Converter={StaticResource BoolToEnv}}"/>
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Binding DataContext.CanCreate, RelativeSource={RelativeSource AncestorType=UserControl}}" Value="True">
-                                                    <Setter Property="Text" Value="{Binding ClientSeen}"/>
+                                                    <Setter Property="Source" Value="{Binding ClientSeen, Converter={StaticResource BoolToEnv}}"/>
                                                 </DataTrigger>
                                             </Style.Triggers>
                                         </Style>
-                                    </TextBlock.Style>
-                                </TextBlock>
-                                <TextBlock Margin="5" Text="{Binding Title}"/>
-                                <TextBlock Margin="5" Text="{Binding}"/>
-                                <TextBlock Margin="5" Text="{Binding Created, StringFormat=dd-MM-yyyy}"/>
+                                    </Image.Style>
+                                </Image>
+                                <TextBlock Margin="5" Text="{Binding Created, StringFormat=dd-MM-yyyy HH:mm}" DockPanel.Dock="Right" VerticalAlignment="Center" FontSize="12"/>
+                                <TextBlock Margin="5" Text="{Binding Title}" FontSize="16" VerticalAlignment="Center"/>
+                                <TextBlock Margin="5" Text="{Binding}" FontSize="10" VerticalAlignment="Center"/>
                             </DockPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
+                    <ListView.Style>
+                        <Style TargetType="ListView">
+                            <Style.Resources>
+                                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#FFB8B0B0" />
+                            </Style.Resources>
+                        </Style>
+                    </ListView.Style>
                 </ListView>
             </Grid>
         </GroupBox>
