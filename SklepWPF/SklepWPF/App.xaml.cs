@@ -20,15 +20,21 @@ namespace SklepWPF
 		protected override void OnStartup(StartupEventArgs e)
 		{
 			var db = MyDbContext.Create();
-			foreach (var overwritePath in db.Products)
-			{
-				var _destinationPath = AppDomain.CurrentDomain.BaseDirectory + "Images\\";
-				_destinationPath = _destinationPath.Replace("\\", "/");
-				_destinationPath = _destinationPath.Replace("/bin/Debug", "");
+			var _destinationPath = AppDomain.CurrentDomain.BaseDirectory + "Images\\";
+			_destinationPath = _destinationPath.Replace("\\", "/");
+			_destinationPath = _destinationPath.Replace("/bin/Debug", "");
+			var imagePath = db.Products.Select(x=>x.ImagePath).FirstOrDefault();
 
+			if(!_destinationPath.Contains(imagePath))
+			{
+
+				foreach (var overwritePath in db.Products)
 				overwritePath.ImagePath = _destinationPath + Path.GetFileName(overwritePath.ImagePath);
+
+				db.SaveChanges();
+
 			}
-			db.SaveChanges();
+			
 
 			base.OnStartup(e);
             ApplicationView app = new ApplicationView();
