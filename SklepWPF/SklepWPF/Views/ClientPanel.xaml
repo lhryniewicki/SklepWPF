@@ -15,8 +15,8 @@
 
     <UserControl.Resources>
 
-        
-        
+
+
         <DataTemplate x:Key="OrdersTemplate">
             <DockPanel Margin="5 4 5 4">
                 <TextBlock Margin="5" Text="{Binding Created, StringFormat=dd-MM-yyyy HH:mm}"></TextBlock>
@@ -56,33 +56,33 @@
         </Grid.RowDefinitions>
 
         <GroupBox Grid.Column="3" Grid.ColumnSpan="2" FontSize="16" Grid.Row="1" Grid.RowSpan="3" Header="Opcje" Margin="10, 0" Padding="10" BorderBrush="Black" BorderThickness="2">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                    </Grid.RowDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
 
-                    <Label FontSize="16" Content="Wyświetl:" VerticalAlignment="Center"></Label>
-                    <ComboBox FontSize="16" SelectedIndex="0" Name="OrdersAndProductsCombobox" Grid.Column="1" Grid.ColumnSpan="3" Margin="11" ItemsSource="{Binding Source={enums:EnumBindingSource {x:Type enums:ClientPanelDisplayedItems}}}" SelectedItem="{Binding DisplayedItems}">
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="SelectionChanged">
-                                <i:InvokeCommandAction Command="{Binding ChangeDisplayedItemsCommand}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ComboBox}, 
+                <Label FontSize="16" Content="Wyświetl:" VerticalAlignment="Center"></Label>
+                <ComboBox FontSize="16" SelectedIndex="0" Name="OrdersAndProductsCombobox" Grid.Column="1" Grid.ColumnSpan="3" Margin="11" ItemsSource="{Binding Source={enums:EnumBindingSource {x:Type enums:ClientPanelDisplayedItems}}}" SelectedItem="{Binding DisplayedItems}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction Command="{Binding ChangeDisplayedItemsCommand}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ComboBox}, 
                                         Path=SelectedIndex}"/>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                    </ComboBox>
-                    <Button FontSize="16" Grid.Row="1" Grid.Column="3" Content="Szukaj" VerticalAlignment="Center" Command="{Binding SearchOrdPrdCommand}" Click="SearchButton_Click"/>
-                    <TextBox FontSize="16" Name="SearchQueryTextBox" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Margin="0 11 0 11" Text="{Binding OrdPrdSearchQuery, UpdateSourceTrigger=Explicit}"></TextBox>
-                </Grid>
-            </GroupBox>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ComboBox>
+                <Button FontSize="16" Grid.Row="1" Grid.Column="3" Padding="15 1" Content="Szukaj" VerticalAlignment="Center" Command="{Binding SearchOrdPrdCommand}" Click="SearchButton_Click"/>
+                <TextBox FontSize="16" Name="SearchQueryTextBox" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Margin="0 11 0 11" Text="{Binding OrdPrdSearchQuery, UpdateSourceTrigger=Explicit}"></TextBox>
+            </Grid>
+        </GroupBox>
 
-            <Grid Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="2" Grid.RowSpan="3">
+        <Grid Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="2" Grid.RowSpan="3">
 
             <Grid.RowDefinitions>
                 <RowDefinition/>
@@ -118,9 +118,9 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
 
-                        <Button Grid.Column="0" Margin="10" FontSize="16" Command="{Binding PreviousPageCommand}">Poprzednia</Button>
-                        <Label Grid.Column="1" VerticalAlignment="Center"  FontSize="23" Content="{Binding OrdPrdPage}"></Label>
-                        <Button Grid.Column="2" Margin="10" FontSize="16" Command="{Binding NextPageCommand}">Następna</Button>
+                        <Button Grid.Column="0" Margin="10, 10" Width="100" Height="30" FontSize="16" Command="{Binding PreviousPageCommand}" HorizontalAlignment="Right">Poprzednia</Button>
+                        <Label Grid.Column="1" VerticalAlignment="Center"   Margin="5"  FontSize="23" Content="{Binding OrdPrdPage}"></Label>
+                        <Button Grid.Column="2" Margin="10, 10" Width="100" Height="30" FontSize="16" Command="{Binding NextPageCommand}" HorizontalAlignment="Left">Następna</Button>
                     </Grid>
                 </Border>
             </Grid>
@@ -129,8 +129,8 @@
         <GroupBox FontSize="16" Padding="10" Grid.Row="1" Header="Dane" Grid.ColumnSpan="3" Grid.RowSpan="3" Margin="10 0" BorderBrush="Black" BorderThickness="2">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>

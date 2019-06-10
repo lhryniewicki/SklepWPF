@@ -68,13 +68,13 @@
                     <Label Grid.Column="0" FontSize="16" Margin="0 0 3 0">Kod pocztowy</Label>
                     <TextBox Grid.Column="1" Name="nrDomuTextBox" FontSize="16" Margin="3" Text="{Binding PostalCode}"></TextBox>
                 </Grid>
-                
+
                 <Label Grid.Row="4" Grid.Column="0" FontSize="16">Miasto</Label>
                 <TextBox Grid.Row="4" Grid.Column="1" Name="miastoTextBox" FontSize="16" Margin="3" Text="{Binding City}"></TextBox>
-                
+
                 <Label Grid.Row="5" Grid.Column="0" FontSize="16">Numer telefonu</Label>
                 <TextBox Grid.Row="5" Grid.Column="1" Name="numerTextBox" FontSize="16" Margin="3" Text="{Binding PhoneNumber}"></TextBox>
-    
+
                 <Label Grid.Row="6" Grid.Column="0" FontSize="16" VerticalAlignment="Center">Sposób dostawy</Label>
                 <ComboBox Grid.Row="6" Grid.Column="1" SelectedIndex="0" Margin="20,3" VerticalContentAlignment="Center" FontSize="18"
                           ItemsSource="{Binding Source={enums:EnumBindingSource {x:Type enums:DeliveryMethod}}}" SelectedItem="{Binding DeliveryMethod}">
@@ -88,11 +88,11 @@
         </Grid>
         <Grid Grid.Row="1" Grid.Column="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="auto"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" FontSize="24" VerticalAlignment="Center">Do zapłaty:</Label>
-            <Label Name="cenaDoZaplaty" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="24" Margin="15" Content="{Binding FinalPrice}"></Label>
+            <Label Grid.Column="0" FontSize="24" VerticalAlignment="Top" Margin="0 15" FontWeight="Bold">Do zapłaty:</Label>
+            <Label Name="cenaDoZaplaty" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="24" Margin="15" FontWeight="Bold" Content="{Binding FinalPrice}"></Label>
         </Grid>
 
         <ListBox Name="orderListBox" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" ItemsSource="{Binding OrderedProducts}">
@@ -113,8 +113,8 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <Button Grid.Column="1" Grid.Row="2" Margin="40,10" Padding="10" FontWeight="Bold" Background="Aquamarine" Command="{Binding BackCommand}">Powrót</Button>
-        <Button Grid.Column="0" Grid.Row="2" Margin="40,10" Padding="10" FontWeight="Bold" Background="DarkGoldenrod" Command="{Binding SaveOrderCommand}">Realizuj</Button>
+        <Button Grid.Column="1" Grid.Row="2" Margin="40,10" Width="100" Padding="10" FontWeight="Bold" FontSize="18" Background="Aquamarine" Command="{Binding BackCommand}" HorizontalAlignment="Center">Powrót</Button>
+        <Button Grid.Column="0" Grid.Row="2" Margin="40,10" Width="100" Padding="10" FontWeight="Bold" FontSize="18" Background="DarkGoldenrod" Command="{Binding SaveOrderCommand}" HorizontalAlignment="Center">Realizuj</Button>
 
 
     </Grid>

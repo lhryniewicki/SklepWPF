@@ -19,7 +19,7 @@
             <GradientStop Color="BlueViolet" Offset="1" />
         </LinearGradientBrush>
     </UserControl.Background>
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -52,8 +52,8 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" Name="productListButton" Width="200" Height="50" FontSize="25" Command="{Binding EditProductsCommand}">Lista Produktów</Button>
-            <Button Grid.Column="1" Name="clientListButton" Width="200" Height="50" FontSize="25" Command="{Binding UserListCommand}">Lista Klientów</Button>
+            <Button Grid.Column="0" Name="productListButton" Width="200" Height="50" FontSize="25" Command="{Binding EditProductsCommand}" HorizontalAlignment="Center">Lista Produktów</Button>
+            <Button Grid.Column="1" Name="clientListButton" Width="200" Height="50" FontSize="25" Command="{Binding UserListCommand}" HorizontalAlignment="Center">Lista Klientów</Button>
         </Grid>
     </Grid>
 </UserControl>

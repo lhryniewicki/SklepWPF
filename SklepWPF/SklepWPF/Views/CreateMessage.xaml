@@ -22,6 +22,7 @@
 
         <Grid Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -29,9 +30,8 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition/>
@@ -41,7 +41,7 @@
             <Label Margin="5" Grid.Row="1" Content="Tytuł:"/>
             <TextBox Text="{Binding Title, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" Validation.ErrorTemplate="{StaticResource errorTemplate}" Margin="5" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4"></TextBox>
 
-            <Button Name="ShowReplyingMessageButton" Margin="10 5 10 5" Padding="5" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="8"
+            <Button Name="ShowReplyingMessageButton" Margin="10 5 10 5" Padding="20 5" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="8"
                     Click="ShowReplyingMessageButton_Click" Content="Pokaż wiadomość"/>
 
         </Grid>
