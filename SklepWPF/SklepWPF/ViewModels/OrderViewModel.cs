@@ -8,18 +8,109 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Windows.Input;
+using System.ComponentModel.DataAnnotations;
 
 namespace SklepWPF.ViewModels
 {
     class OrderViewModel : ObservableObject, IPageViewModel
     {
         //dane osobowe użytkownika
-        public string FirstName { get; set; }
-        public string Surname { get; set; }
-        public string StreetName { get; set; }
-        public string PostalCode { get; set; }
-        public string City { get; set; }
-        public string PhoneNumber { get; set; }
+        private string firstName;
+        [Required(ErrorMessage = "Pole nie może być puste")]
+        public string FirstName
+        {
+            get
+            {
+                return firstName;
+            }
+            set
+            {
+                if (firstName != value)
+                    firstName = value;
+                ValidateProperty(value, "FirstName");
+            }
+        }
+
+        private string surname;
+        [Required(ErrorMessage = "Pole nie może być puste")]
+        public string Surname
+        {
+            get
+            {
+                return surname;
+            }
+            set
+            {
+                if (surname != value)
+                    surname = value;
+                ValidateProperty(value, "Surname");
+            }
+        }
+
+        private string streetName;
+        [Required(ErrorMessage = "Pole nie może być puste")]
+        public string StreetName
+        {
+            get
+            {
+                return streetName;
+            }
+            set
+            {
+                if (streetName != value)
+                    streetName = value;
+                ValidateProperty(value, "StreetName");
+            }
+        }
+
+        private string postalCode;
+        [Required(ErrorMessage = "Pole nie może być puste")]
+        public string PostalCode
+        {
+            get
+            {
+                return postalCode;
+            }
+            set
+            {
+                if (postalCode != value)
+                    postalCode = value;
+                ValidateProperty(value, "PostalCode");
+            }
+        }
+
+        private string city;
+        [Required(ErrorMessage = "Pole nie może być puste")]
+        public string City
+        {
+            get
+            {
+                return city;
+            }
+            set
+            {
+                if (city != value)
+                    city = value;
+                ValidateProperty(value, "City");
+            }
+        }
+
+        private string phoneNumber;
+        [Required(ErrorMessage = "Pole nie może być puste")]
+        public string PhoneNumber
+        {
+            get
+            {
+                return phoneNumber;
+            }
+            set
+            {
+                if (phoneNumber != value)
+                    phoneNumber = value;
+                ValidateProperty(value, "PhoneNumber");
+            }
+        }
+
         public PaymentMethod PaymentMethod { get; set; }
         public DeliveryMethod DeliveryMethod { get; set; }
 
@@ -67,9 +158,26 @@ namespace SklepWPF.ViewModels
             }
         }
 
+        public bool IsValid()
+        {
+            if (String.IsNullOrEmpty(FirstName) ||
+               String.IsNullOrEmpty(Surname) ||
+               String.IsNullOrEmpty(StreetName) ||
+               String.IsNullOrEmpty(PostalCode) ||
+               String.IsNullOrEmpty(City) ||
+               String.IsNullOrEmpty(PhoneNumber))
+
+                return false;
+
+            return true;
+        }
+
         public void SaveOrder()
         {
             List<OrderProduct> op = new List<OrderProduct>();
+
+            if (!IsValid())
+                return;
 
             var o = new Order(OrderStatus.Pending, _db.Users.Where(n => n.Name == RunTimeInfo.Instance.Username).SingleOrDefault(), FirstName, Surname, StreetName, PostalCode, City, PhoneNumber, PaymentMethod, DeliveryMethod);
 
@@ -135,6 +243,14 @@ namespace SklepWPF.ViewModels
         private void Back()
         {
             ApplicationViewModel.Instance.CurrentPageViewModel = new CartViewModel();
+        }
+
+        private void ValidateProperty<T>(T value, string name)
+        {
+            Validator.ValidateProperty(value, new ValidationContext(this, null, null)
+            {
+                MemberName = name
+            });
         }
     }
 }
