@@ -154,35 +154,20 @@
             </Grid>
         </GroupBox>
 
-        <Grid Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="2" Margin="10 0 10 50">
-            <Border BorderBrush="Black" BorderThickness="2 2 2 2" CornerRadius="0 0 5 5">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="auto"/>
-                    </Grid.ColumnDefinitions>
+        <Border Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="2" Margin="10 0 10 50" BorderBrush="Black" BorderThickness="2 2 2 2" CornerRadius="0 0 5 5">
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                <Button Grid.Column="0" Margin="10" Padding="5" FontSize="16" Command="{Binding PreviousPageCommand}">Poprzednia</Button>
+                <Label Grid.Column="1" VerticalAlignment="Center"  FontSize="23" Content="{Binding OrdPrdPage}"></Label>
+                <Button Grid.Column="2" Margin="10" Padding="5" FontSize="16" Command="{Binding NextPageCommand}">Następna</Button>
+            </StackPanel>
+        </Border>
 
-                    <Button Grid.Column="0" Margin="10" Padding="5" FontSize="16" Command="{Binding PreviousPageCommand}">Poprzednia</Button>
-                    <Label HorizontalAlignment="Center" Grid.Column="1" VerticalAlignment="Center"  FontSize="23" Content="{Binding OrdPrdPage}"></Label>
-                    <Button Grid.Column="2" Margin="10" Padding="5" FontSize="16" Command="{Binding NextPageCommand}">Następna</Button>
-                </Grid>
-            </Border>
-        </Grid>
-
-        <Grid Grid.Row="3" Grid.ColumnSpan="3" Margin="10 0 10 50">
-            <Border BorderBrush="Black" BorderThickness="2 2 2 2" CornerRadius="0 0 5 5">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-
-                    <Button Grid.Column="0" FontSize="16" Margin="10" Padding="5" Content="Zapisz" Command="{Binding SaveUserDataCommand}"></Button>
-                    <Button Grid.Column="1" FontSize="16" Margin="10" Padding="5" Content="Wyczyść" Click="ClearPersonalData_Click"></Button>
-                </Grid>
-            </Border>
-        </Grid>
+        <Border Grid.Row="3" Grid.ColumnSpan="3" Margin="10 0 10 50" BorderBrush="Black" BorderThickness="2 2 2 2" CornerRadius="0 0 5 5">
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                <Button Background="LawnGreen" FontSize="16" Margin="10" Padding="5" Content="Zapisz" Command="{Binding SaveUserDataCommand}"></Button>
+                <Button Background="IndianRed" FontSize="16" Margin="10" Padding="5" Content="Wyczyść" Click="ClearPersonalData_Click"></Button>
+            </StackPanel>
+        </Border>
 
     </Grid>
 </UserControl>
