@@ -55,7 +55,7 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
-            <GroupBox Grid.Column="3" Grid.ColumnSpan="2" FontSize="16" Header="Opcje" Margin="10, 0" Padding="10" BorderBrush="Black" BorderThickness="2">
+            <GroupBox Grid.Column="3" Grid.ColumnSpan="2" FontSize="16" Header="Opcje" Margin="10, 0" Padding="10" BorderBrush="Black" BorderThickness="2 2 2 0">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"/>
@@ -69,7 +69,7 @@
                     </Grid.RowDefinitions>
 
                     <Label FontSize="16" Content="Wyświetl:" VerticalAlignment="Center"></Label>
-                    <ComboBox FontSize="16" SelectedIndex="0" Name="OrdersAndProductsCombobox" Grid.Column="1" Grid.ColumnSpan="3" Margin="11" ItemsSource="{Binding Source={enums:EnumBindingSource {x:Type enums:ClientPanelDisplayedItems}}}" SelectedItem="{Binding DisplayedItems}">
+                    <ComboBox VerticalContentAlignment="Center" FontSize="16" SelectedIndex="0" Name="OrdersAndProductsCombobox" Grid.Column="1" Grid.ColumnSpan="3" Margin="11" ItemsSource="{Binding Source={enums:EnumBindingSource {x:Type enums:ClientPanelDisplayedItems}}}" SelectedItem="{Binding DisplayedItems}">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="SelectionChanged">
                                 <i:InvokeCommandAction Command="{Binding ChangeDisplayedItemsCommand}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ComboBox}, 
@@ -78,7 +78,7 @@
                         </i:Interaction.Triggers>
                     </ComboBox>
                     <Button FontSize="16" Grid.Row="1" Grid.Column="3" Content="Szukaj" VerticalAlignment="Center" Command="{Binding SearchOrdPrdCommand}" Click="SearchButton_Click"/>
-                    <TextBox FontSize="16" Name="SearchQueryTextBox" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Margin="0 11 0 11" Text="{Binding OrdPrdSearchQuery, UpdateSourceTrigger=Explicit}"></TextBox>
+                    <TextBox VerticalContentAlignment="Center" FontSize="16" Name="SearchQueryTextBox" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Margin="0 11 0 11" Text="{Binding OrdPrdSearchQuery, UpdateSourceTrigger=Explicit}"></TextBox>
                 </Grid>
             </GroupBox>
 
@@ -108,7 +108,7 @@
             </ListView>
         </Grid>
 
-        <GroupBox FontSize="16" Padding="10" Header="Dane" Grid.ColumnSpan="3" Grid.RowSpan="3" Margin="10 0" BorderBrush="Black" BorderThickness="2">
+        <GroupBox FontSize="16" Padding="10" Header="Dane" Grid.ColumnSpan="3" Grid.RowSpan="3" Margin="10 0" BorderBrush="Black" BorderThickness="2 2 2 0">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"/>
@@ -148,7 +148,7 @@
 
 
                 <Label FontSize="16" Content="Sposób płatności:" Grid.Row="7" VerticalAlignment="Center"></Label>
-                <ComboBox FontSize="16" ItemsSource="{Binding Source={enums:EnumBindingSource {x:Type enums:PaymentMethod}}}" SelectedItem="{Binding PaymentMethod}" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" Margin="10">
+                <ComboBox VerticalContentAlignment="Center" FontSize="16" ItemsSource="{Binding Source={enums:EnumBindingSource {x:Type enums:PaymentMethod}}}" SelectedItem="{Binding PaymentMethod}" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" Margin="10">
                 </ComboBox>
 
             </Grid>

@@ -41,7 +41,7 @@
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <Button Padding="5" Margin="5" Content="Utwórz" Command="{Binding CreateMessageCommand}" Visibility="{Binding CanCreate, Converter={StaticResource BoolToVis},FallbackValue=Visible}">
                             </Button>
-                            <Button Padding="5" Margin="5" Content="Podgląd" Command="{Binding DisplayMessageCommand}" CommandParameter="{Binding SelectedItem, ElementName=messages}">
+                            <Button Background="Aquamarine" Padding="5" Margin="5" Content="Podgląd" Command="{Binding DisplayMessageCommand}" CommandParameter="{Binding SelectedItem, ElementName=messages}">
                                 <Button.Style>
                                     <Style TargetType="Button">
                                         <Setter Property="IsEnabled" Value="False" />
@@ -53,8 +53,8 @@
                                     </Style>
                                 </Button.Style>
                             </Button>
-                            <Button Padding="5" Margin="5" Content="Usuń wybrane" IsEnabled="{Binding ElementName=messages, Path=SelectedItems.Count}" Command="{Binding DeleteSelectedMessagesCommand}" CommandParameter="{Binding SelectedItems, ElementName=messages}"></Button>
-                            <Button Padding="5" Margin="5" Content="Wyczyść" Command="{Binding ClearMessageBoxCommand}"></Button>
+                            <Button Background="IndianRed" Padding="5" Margin="5" Content="Usuń wybrane" IsEnabled="{Binding ElementName=messages, Path=SelectedItems.Count}" Command="{Binding DeleteSelectedMessagesCommand}" CommandParameter="{Binding SelectedItems, ElementName=messages}"></Button>
+                            <Button Background="IndianRed" Name="ClearMessageBoxButton" Padding="5" Margin="5" Content="Wyczyść" Click="ClearMessageBoxButton_Click"></Button>
                         </StackPanel>
                     </Border>
                 </Grid>
@@ -82,9 +82,9 @@
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
 
-                    <TextBox Name="SearchQueryTextBox" Grid.ColumnSpan="3" Margin="5 5 10 5" Text="{Binding MessageSearchQuery, UpdateSourceTrigger=Explicit}"/>
-                    <Button Grid.Column="3" Padding="20 0" Margin="0 5 5 5" Background="LawnGreen" Content="Szukaj" Click="SearchButton_Click"  Command="{Binding SearchMessagesCommand}"></Button>
-                    <ComboBox Grid.ColumnSpan="2" Grid.Column="4" Name="MessagesTypeCombobox" ItemsSource="{Binding Source={enums:EnumBindingSource {x:Type enums:MessageDisplay}}}" SelectedItem="{Binding DisplayedMessages}" Margin="5">
+                    <TextBox VerticalContentAlignment="Center" Name="SearchQueryTextBox" Grid.ColumnSpan="3" Margin="5 5 10 5" Text="{Binding MessageSearchQuery, UpdateSourceTrigger=Explicit}"/>
+                    <Button Grid.Column="3" Padding="15 5" Margin="5 5 10 5" Background="LawnGreen" Content="Szukaj" Click="SearchButton_Click"  Command="{Binding SearchMessagesCommand}"></Button>
+                    <ComboBox VerticalContentAlignment="Center" Grid.ColumnSpan="2" Grid.Column="4" Name="MessagesTypeCombobox" ItemsSource="{Binding Source={enums:EnumBindingSource {x:Type enums:MessageDisplay}}}" SelectedItem="{Binding DisplayedMessages}" Margin="5">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="SelectionChanged">
                                 <i:InvokeCommandAction Command="{Binding ChangeMessagesCommand}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ComboBox}, 

@@ -31,10 +31,10 @@
 
         <Label VerticalContentAlignment="Bottom" Grid.Row="2" Grid.Column="1" Content="{Binding WrongLoginCredentials}" Foreground="Red" Height="30" FontWeight="ExtraBold"></Label>
         <Label Margin="50,5,10,5" Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Right">Login</Label>
-        <TextBox Margin="5,5,50,5" Grid.Row="0" Grid.Column="1" VerticalAlignment="Top" Height="25" Text="{Binding Username}" />
+        <TextBox VerticalContentAlignment="Center" Margin="5,5,50,5" Grid.Row="0" Grid.Column="1" VerticalAlignment="Top" Height="25" Text="{Binding Username}" />
 
         <Label Margin="50,5,10,5" Grid.Column="0" Grid.Row="1" HorizontalContentAlignment="Right" DockPanel.Dock="Left">Hasło</Label>
-        <PasswordBox Grid.Column="1" Grid.Row="1" Name="passwordTxt" Margin="5,5,50,5" VerticalAlignment="Top" Height="25" />
+        <PasswordBox VerticalContentAlignment="Center" Grid.Column="1" Grid.Row="1" Name="passwordTxt" Margin="5,5,50,5" VerticalAlignment="Top" Height="25" />
 
         <StackPanel Grid.ColumnSpan="2" Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Width="240">
             <Button Margin="10,15" Height="30" Width="100" Background="LawnGreen" Command="{Binding loginCommand, Mode=OneWay}" Grid.Column="1" Grid.Row="2" CommandParameter="{Binding ElementName=passwordTxt}">Zaloguj</Button>

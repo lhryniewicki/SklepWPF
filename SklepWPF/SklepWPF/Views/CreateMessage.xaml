@@ -85,8 +85,8 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <TextBox Background="Beige" LostFocus="MessageTextBox_LostFocus" Name="MessageTextBox" Text="{Binding MessageContent, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" Validation.ErrorTemplate="{StaticResource errorTemplate}" Padding="5" Visibility="Visible" Grid.ColumnSpan="2"/>
-                <TextBlock Background="Beige" Name="ReplyingMessageTextBox" Text="{Binding ReplyingMessageContent}" Padding="5" Visibility="Hidden" Grid.ColumnSpan="2"/>
+                <TextBox Background="Beige" LostFocus="MessageTextBox_LostFocus" Name="MessageTextBox" Text="{Binding MessageContent, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" Validation.ErrorTemplate="{StaticResource errorTemplate}" Padding="5" Visibility="Visible" Grid.ColumnSpan="2" TextWrapping="Wrap"/>
+                <TextBlock Background="Beige" Name="ReplyingMessageTextBox" Text="{Binding ReplyingMessageContent}" Padding="5" Visibility="Hidden" Grid.ColumnSpan="2" TextWrapping="Wrap"/>
             </Grid>
         </Border>
 

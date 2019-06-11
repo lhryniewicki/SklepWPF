@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SklepWPF.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,6 +29,21 @@ namespace SklepWPF.Views
         {
             BindingExpression be = SearchQueryTextBox.GetBindingExpression(TextBox.TextProperty);
             be.UpdateSource();
+        }
+
+        private void ClearMessageBoxButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = System.Windows.MessageBox.Show("Czy na pewno chcesz usunąć wszystkie wiadomości?",
+                                          "Uwaga",
+                                          MessageBoxButton.YesNo,
+                                          MessageBoxImage.Warning);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                var viewModel = (MessageBoxViewModel)DataContext;
+                if (viewModel.ClearMessageBoxCommand.CanExecute(null))
+                    viewModel.ClearMessageBoxCommand.Execute(null);
+            }
         }
     }
 }

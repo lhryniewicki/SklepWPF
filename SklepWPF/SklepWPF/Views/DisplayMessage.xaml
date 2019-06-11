@@ -40,16 +40,16 @@
 
             <StackPanel VerticalAlignment="Center" Grid.ColumnSpan="4" Orientation="Horizontal">
                 <Label FontSize="19" Margin="30 5 0 5" Content="Autor:"/>
-                <Label FontSize="16" Margin="0 7 0 0" Content="{Binding AuthorFullName}"/>
+                <Label FontSize="16" Margin="0 8 0 0" Content="{Binding AuthorFullName}"/>
             </StackPanel>
             <StackPanel VerticalAlignment="Center" Grid.ColumnSpan="4" Grid.Row="1" Orientation="Horizontal">
                 <Label FontSize="19" Margin="30 5 0 5" Grid.Row="1" Content="Tytuł:"/>
-                <Label FontSize="16" Margin="0 7 0 0" Content="{Binding Title}"/>
+                <Label FontSize="16" Margin="0 8 0 0" Content="{Binding Title}"/>
             </StackPanel>
         </Grid>
 
         <Border Grid.Row="2" Grid.RowSpan="6" Grid.ColumnSpan="2" BorderBrush="Black" BorderThickness="2" Margin="30 0 30 0" CornerRadius="5 5 0 0">
-            <TextBlock Background="Beige" Padding="10" Text="{Binding MessageContent}"/>
+            <TextBlock Background="Beige" Padding="10" Text="{Binding MessageContent}" TextWrapping="Wrap"/>
         </Border>
 
         <Border Grid.Row="8" Grid.RowSpan="2"  Grid.ColumnSpan="2" Margin="30 0 30 30" BorderBrush="Black" BorderThickness="2 0 2 2" CornerRadius="0 0 5 5">
