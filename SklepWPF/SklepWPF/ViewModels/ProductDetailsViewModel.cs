@@ -5,11 +5,17 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Data.Entity;
+using System.Windows.Input;
+
 namespace SklepWPF.ViewModels
 {
 	 class ProductDetailsViewModel:ObservableObject,IPageViewModel
 	{
 		private readonly MyDbContext _db;
+
+		public ProductsViewModel ProductsViewModel { get; set; }
+
+		public int Id { get; set; }
 
 		public string Name { get ; set; }
 
@@ -35,6 +41,7 @@ namespace SklepWPF.ViewModels
 			Name = "Display";
 			_db = MyDbContext.Create();
 			LoadProduct(id);
+			Id = _product.Id;
 			ProductName = _product.Name;
 			Description = _product.Description;
 			Price = _product.Price;
@@ -42,6 +49,11 @@ namespace SklepWPF.ViewModels
 			Quantity = _product.Quantity;
 			Categories = _product.Categories;
 			ImagePath = _product.ImagePath;
+			ProductsViewModel = new ProductsViewModel();
+
+		}
+		public ProductDetailsViewModel()
+		{
 
 		}
 		public bool ShowButton
@@ -70,5 +82,6 @@ namespace SklepWPF.ViewModels
 				.Include(x => x.Categories)
 				.SingleOrDefault(x => x.Id == id);		
 		}
+
 	}
 }
