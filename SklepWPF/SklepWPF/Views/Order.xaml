@@ -54,26 +54,26 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <Label Grid.Row="0" Grid.Column="0" FontSize="16" >Imie</Label>
-                <TextBox Grid.Row="0" Grid.Column="1" Name="nazwaTextBox" FontSize="16" Margin="3" Text="{Binding FirstName}"></TextBox>
-                <Label Grid.Row="1" Grid.Column="0" FontSize="16" >Nazwisko</Label>
-                <TextBox Grid.Row="1" Grid.Column="1" Name="cenaTextBox" FontSize="16"  Margin="3" Text="{Binding Surname}"></TextBox>
-                <Label Grid.Row="2" Grid.Column="0" FontSize="16">Ulica</Label>
-                <TextBox Grid.Row="2" Grid.Column="1" Name="kategoriaTextBox" FontSize="16" Margin="3" Text="{Binding StreetName}"></TextBox>
+                <Label Grid.Row="0" Grid.Column="0" FontSize="16" Margin="0 0 20 0">Imie</Label>
+                <TextBox Grid.Row="0" Grid.Column="1" Name="nazwaTextBox" FontSize="16" Margin="3" Text="{Binding FirstName, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" Validation.ErrorTemplate="{StaticResource errorTemplate}"></TextBox>
+                <Label Grid.Row="1" Grid.Column="0" FontSize="16" Margin="0 0 20 0">Nazwisko</Label>
+                <TextBox Grid.Row="1" Grid.Column="1" Name="cenaTextBox" FontSize="16"  Margin="3" Text="{Binding Surname, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" Validation.ErrorTemplate="{StaticResource errorTemplate}"></TextBox>
+                <Label Grid.Row="2" Grid.Column="0" FontSize="16" Margin="0 0 20 0">Ulica</Label>
+                <TextBox Grid.Row="2" Grid.Column="1" Name="kategoriaTextBox" FontSize="16" Margin="3" Text="{Binding StreetName, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" Validation.ErrorTemplate="{StaticResource errorTemplate}"></TextBox>
                 <Grid Grid.Row="3" Grid.Column="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0" FontSize="16" Margin="0 0 3 0">Kod pocztowy</Label>
-                    <TextBox Grid.Column="1" Name="nrDomuTextBox" FontSize="16" Margin="3" Text="{Binding PostalCode}"></TextBox>
+                    <Label Grid.Column="0" FontSize="16" Margin="0 0 20 0">Kod pocztowy</Label>
+                    <TextBox Grid.Column="1" Name="nrDomuTextBox" FontSize="16" Margin="3" Text="{Binding PostalCode, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" Validation.ErrorTemplate="{StaticResource errorTemplate}"></TextBox>
                 </Grid>
 
-                <Label Grid.Row="4" Grid.Column="0" FontSize="16">Miasto</Label>
-                <TextBox Grid.Row="4" Grid.Column="1" Name="miastoTextBox" FontSize="16" Margin="3" Text="{Binding City}"></TextBox>
+                <Label Grid.Row="4" Grid.Column="0" FontSize="16" Margin="0 0 20 0">Miasto</Label>
+                <TextBox Grid.Row="4" Grid.Column="1" Name="miastoTextBox" FontSize="16" Margin="3" Text="{Binding City, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" Validation.ErrorTemplate="{StaticResource errorTemplate}"></TextBox>
 
-                <Label Grid.Row="5" Grid.Column="0" FontSize="16">Numer telefonu</Label>
-                <TextBox Grid.Row="5" Grid.Column="1" Name="numerTextBox" FontSize="16" Margin="3" Text="{Binding PhoneNumber}"></TextBox>
+                <Label Grid.Row="5" Grid.Column="0" FontSize="16" Margin="0 0 20 0">Numer telefonu</Label>
+                <TextBox Grid.Row="5" Grid.Column="1" Name="numerTextBox" FontSize="16" Margin="3" Text="{Binding PhoneNumber, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" Validation.ErrorTemplate="{StaticResource errorTemplate}"></TextBox>
 
                 <Label Grid.Row="6" Grid.Column="0" FontSize="16" VerticalAlignment="Center">Sposób dostawy</Label>
                 <ComboBox Grid.Row="6" Grid.Column="1" SelectedIndex="0" Margin="20,3" VerticalContentAlignment="Center" FontSize="18"
